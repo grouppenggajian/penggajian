@@ -1,0 +1,34 @@
+1,MASTER,0,,1,1
+1a,Pendapatan,1,,0,1
+1b,Jabatan,1,,0,1
+1c,Potongan,1,,0,1
+1d,Shift,1,,0,1
+1e,Pegawai,1,,0,1
+1f,Periode Gaji,1,,0,1
+1g,RUMUS,1,,1,1
+1g1,Rumus Pendapatan,1g,,0,1
+1g2,Rumus Potongan,1g,,0,1
+1g3,Rumus Lembur,1g,,0,1
+1g4,Rumus Insentif Hadir,1g,,0,1
+1g5,Rumus Thr,1g,,0,1
+2,ADMINISTRASI,0,,1,1
+2a,Jadwal,2,,0,1
+2b,Absensi,2,,0,1
+2c,Koreksi Absensi,2,,0,1
+2d,Approval Koreksi,2,,0,1
+2e,Pinjaman,2,,0,1
+2f,GAJI,2,,1,1
+2f1,Perhitungan Pendapatan,2f,,0,1
+2f2,Perhitungan Potongan,2f,,0,1
+2f3,Slip Gaji,2f,,0,1
+2g,THR,2,,1,1
+2g1,Perhitungan Thr,2g,,0,1
+2g2,Slip Thr,2g,,0,1
+3,LAPORAN,0,,1,1
+3a,Rekap Gaji,3,,0,1
+3b,Laporan Keterlambatan,3,,0,1
+3c,Lapran Penilaian,3,,0,1
+3d,Laporan Hutang Pegawai,3,,0,1
+4,ADMIN PANEL,0,,1,1
+4a,Role Setting,4,,0,1
+4b,User Setting,4,,0,1
