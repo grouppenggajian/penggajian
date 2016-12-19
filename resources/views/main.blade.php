@@ -336,6 +336,7 @@
         var datakelamin=[['L','Laki-laki'],['P','Perempuan']];
         var datastatuslembur=[['BIASA','BIASA'],['OFF','OFF']];
         var dataharimenit=[['HARI','HARI'],['MENIT','MENIT']];
+        var datahari=['MINGGU','SENIN','SELASA','RABU','KAMIS','JUM\'AT','SABTU'];
         
     </script>
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
