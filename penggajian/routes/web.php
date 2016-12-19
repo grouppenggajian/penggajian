@@ -69,8 +69,11 @@ Route::get('/pegawai/loadjadwal','PegawaiController@loadJadwal');
 Route::post('/pegawai/deletejadwal','PegawaiController@deleteJadwal');
 Route::post('/pegawai/savejadwal','PegawaiController@saveJadwal');
 Route::get('/shift/loadpegawai','ShiftController@loadpegawai');
+Route::get('/shift/loadcombo','ShiftController@loadcombo');
+
 
 Route::get('/pegawai/getpegawaitwin','PegawaiController@getPegawaiTwin');
+Route::get('/pegawai/getpegawaitwinjabatan','PegawaiController@getPegawaiTwinByjabatan');
 
 Route::get('/rumuspendapatan/load','RumusPendapatanController@index');
 Route::post('/rumuspendapatan/save','RumusPendapatanController@executeRows');
@@ -109,6 +112,7 @@ Route::get('/adminpanel/roledetailall','AdminPanelController@roleDetailAll');
 Route::post('/adminpanel/saverole','AdminPanelController@saveRole');
 Route::post('/adminpanel/deleterole','AdminPanelController@deleteRole');
 
+
 Route::get('/adminpanel/loaduser','AdminPanelController@loadUser');
 Route::post('/adminpanel/saveuser','AdminPanelController@saveUser');
 Route::post('/adminpanel/deleteuser','AdminPanelController@deleteUser');
@@ -121,5 +125,7 @@ Route::get('/jadwal/load','JadwalController@index');
 Route::get('/jadwal/loadinputjadwal','JadwalController@loadInput');
 Route::post('/jadwal/savejadwal','JadwalController@saveJadwal');
 Route::post('/jadwal/deletejadwal','JadwalController@deleteJadwal');
+
+Route::get('/tukaroff/loadjadwalpegawai','JadwalController@loadJadwalPegawai');
 
 
