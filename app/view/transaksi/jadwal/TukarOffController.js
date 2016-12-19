@@ -6,5 +6,17 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffController', {
 //        var refstorejadwal=Ext.getCmp('idtukarofflist').store;   
 //            ////                        console.log(refjkstoregrid);
 //            refstorejadwal.loadPage(1);
+    },
+    onClickAdd:function(btn,opts){
+        var wintukaroff=Ext.create({
+            xtype:'tukaroffinput'
+        });
+//        winjadwal.setTitle('Input Pegawai');
+        Ext.getCmp('idButtonTukarOffInputSave').setText('Simpan');
+        Ext.getCmp('idButtonTukarOffInputSave').setIconCls('icons-add');   
+//        Ext.getCmp('jadwalnama').store.load();
+        Ext.getCmp('tukaroffkode_jabatan').store.load();
+                                            
+        wintukaroff.show();
     }
 });
