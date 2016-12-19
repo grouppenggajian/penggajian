@@ -168,7 +168,46 @@ Ext.define('Penggajian.view.adminpanel.RoleSetting',
 //                        collapsible: true,
                         useArrows: true,
                         rootVisible: false,
-                        store: 'storeroledetail',
+                        //store: 'storeroledetail',
+                        store:Ext.create('Ext.data.TreeStore', {
+                    root: {
+                        expanded: true
+                        }
+                    ,
+                    fields: [
+                       {name:'text',type:'string'}
+                    ],
+                    proxy: {
+                        type: 'ajax',
+                        url: Penggajian.Global.getApiUrl()+'adminpanel/roledetail'
+                        ,reader: {
+                            type: 'json'
+
+                //            ,rootProperty    : 'data',
+                //            totalProperty   : 'record'
+                        }
+                        ,success:function(){
+                            
+                        }
+                        ,exception:function( tstore, response, operation, eOpts ){
+                            if(response.status=='500'){
+                                tstore.reload();
+                            }
+                                
+                             var err = Ext.decode(response.responseText); 
+                            console.log(err);
+                            if (err){
+                                if (err.errMsg == 'Session Expired' || err.message == 'Session Expired') {
+                                    session_expired('Session Expired');
+                                }                                            
+                                else{
+                                    console.log(err);
+                                }  
+                            }    
+                        }
+                    }
+                }),                        
+
                         multiSelect: false,
                         expandAll:true,
                         columns:[
