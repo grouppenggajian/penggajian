@@ -20,8 +20,11 @@ Ext.define('Penggajian.Application', {
         'referensi.ImageStore','referensi.TipePinjaman'
         ,'pegawai.Pegawai','pegawai.PegawaiPendapatan','pegawai.PegawaiPendapatanEdit'
         ,'pegawai.PegawaiJadwal','pegawai.ShiftPegawaiEditor','pegawai.PegawaiTwin','pegawai.PegawaiCombo'
+        ,'pegawai.PegawaiTwinJabatan'
         ,'Pinjaman','PinjamanAngsuran'
-        ,'adminpanel.RoleMaster','adminpanel.RoleDetail','adminpanel.RoleDetailAll'
+        ,'adminpanel.RoleMaster'
+//        ,'adminpanel.RoleDetail'
+//        ,'adminpanel.RoleDetailAll'
         ,'adminpanel.User'
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
         ,'jadwal.TukarOff'
@@ -65,7 +68,7 @@ Ext.define('Penggajian.Application', {
 //            });           
 
 //        loggedIn = locaStorage.getItem('userid');        
-        console.log(userstatus);
+//        console.log(userstatus);
         
         if(userstatus){
             var appm=Ext.getCmp('app-main-id');
