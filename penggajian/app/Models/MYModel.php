@@ -17,7 +17,9 @@ class MYModel extends Model {
     protected function getFieldsTable($table) {
         return DB::getSchemaBuilder()->getColumnListing($table);
     }
-
+    protected function getDBTable($table) {
+        return $this->db = DB::table($table);
+    }
     protected function setInsertRow($table, $data = NULL) {
         $this->db = DB::table($table);
         $column = $this->getFieldsTable($table);
@@ -174,9 +176,10 @@ class MYModel extends Model {
         if ($order) {
             $this->db->orderBy($order[0], $order[1]);
         }
-        $query = $this->db->offset($offset)
-                ->limit($limit)
-                ->get();       
+        $this->db->offset($offset);
+        $this->db->limit($limit);
+        $query = $this->db->get(); 
+                    
 
         return array($query,$totalrec);
     }
