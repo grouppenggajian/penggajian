@@ -113,6 +113,27 @@ class JadwalController extends Controller{
         
         return response($data,200);
     }
+    
+    public function loadJadwalPegawai(Request $request) {
+        $hari = $request->hari ? $request->hari : '';
+        $nik = $request->nik ? $request->nik : null;
+        $jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
+              
+        $data = MYModel::getDBTable('mst_jadwal_karyawans')
+            ->join('shifts','mst_jadwal_karyawans.'.$hari, '=', 'shifts.kode')            
+            ->select('shifts.kode', 'shifts.jam_kerja_1', 'shifts.jam_kerja_2',
+                    'shifts.jam_kerja_3', 'shifts.jam_kerja_4' )
+            ->where(array(array('nik','=',$nik),array('kode_jabatan','=',$jabatan)))
+            ->get();
+        
+        
+        return  json_encode([
+                    'success' => true,
+                    'data' => $data,
+                    'record' => count($data)
+                        ]);
+    }
+    
 }
 
 ?>

@@ -174,6 +174,28 @@ class PegawaiController extends Controller {
                     'record' => $data[1]
                 ]);
     }
+    public function getPegawaiTwinByjabatan(Request $request) {
+        $start = $request->start ? $request->start : 0;
+        $limit = $request->limit ? $request->limit : 0;
+        $jabatan = $request->kode_jabatan ? $request->kode_jabatan : NULL;
+        $query=$request->searchvalue?$request->searchvalue:NULL;
+//        `sp_paging`(select_stmt TEXT, tbl varchar(50), where_stmt TEXT,order_stmt TEXT,limit_stmt varchar(20))
+        $sqlsearch=' where jabatan="'.$jabatan.'" ';
+        
+        if($query){
+            $sqlsearch.=' and (nama LIKE "%'.$query.'%" or nik LIKE "%'.$query.'%")';
+        }
+//        $vlimit=NULL;
+        $dataall=Pegawai::SP_getData('sp_paging',array('select * ','v_pegawai_twin',$sqlsearch,"",""));
+        $vlimit=" limit $start,$limit ";
+
+        $data = Pegawai::SP_getData('sp_paging',array('select * ','v_pegawai_twin',$sqlsearch,'',$vlimit));
+        return json_encode([
+                    'success' => true,
+                    'data' => $data,
+                    'record' => count($dataall)
+                ]);
+    }
     
     public function setUploadPhoto($file) {
         $photo = NULL;

@@ -13,7 +13,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 use App\Models\Shift;
  
 class ShiftController extends Controller{
@@ -64,6 +64,25 @@ class ShiftController extends Controller{
         }
 
         $data = Shift::getRowsTableQueryLimit('shifts', $sqlsearch,$start, $limit);
+        return  json_encode([
+                    'success' => true,
+                    'data' => $data[0],
+                    'record' => $data[1]
+                        ]);
+    }
+    
+    public function loadcombo(Request $request){
+        $query=$request->searchvalue?$request->searchvalue:NULL;        
+        $sqlsearch=NULL;
+
+        if($query){
+            $sqlsearch['where']=array(['kode', 'LIKE', '%'.$query.'%']);
+            $sqlsearch['orwhere']= array(
+                ['keterangan', 'LIKE', '%'.$query.'%']
+                );
+        }
+
+        $data = Shift::getRowsTableWhereOr('shifts', $sqlsearch);
         return  json_encode([
                     'success' => true,
                     'data' => $data[0],
