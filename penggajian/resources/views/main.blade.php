@@ -337,6 +337,7 @@
         var datastatuslembur=[['BIASA','BIASA'],['OFF','OFF']];
         var dataharimenit=[['HARI','HARI'],['MENIT','MENIT']];
         var datahari=['MINGGU','SENIN','SELASA','RABU','KAMIS','JUM\'AT','SABTU'];
+        var datatipeijin=[['1','1 Hari'],['0.5','1/2 Hari']];
         
     </script>
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->

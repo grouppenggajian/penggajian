@@ -27,7 +27,7 @@ Ext.define('Penggajian.Application', {
 //        ,'adminpanel.RoleDetailAll'
         ,'adminpanel.User'
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
-        ,'jadwal.TukarOff'
+        ,'jadwal.TukarOff','ijin.Ijin'
         // TODO: add global / shared stores here
     ],
     views:['Penggajian.view.auth.Login',
