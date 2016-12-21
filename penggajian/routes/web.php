@@ -128,4 +128,9 @@ Route::post('/jadwal/deletejadwal','JadwalController@deleteJadwal');
 
 Route::get('/tukaroff/loadjadwalpegawai','JadwalController@loadJadwalPegawai');
 
+//Route::resource('/ijin', 'IjinController');
+Route::get('/ijin/kategoriabsen', 'IjinController@getKategoriAbsen');
+
+
+
 
