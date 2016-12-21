@@ -87,8 +87,28 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinNikEditor', {
                     var me=Ext.getCmp('ijin_nik_editor_id');
                     var twinparent=Ext.getCmp(me.twin);
                         twinparent.setValue(sel[0].get('nik'));
-//                        Ext.getCmp('pinjaman_nama').setValue(sel[0].get('nama'));
-//                        Ext.getCmp('pinjaman_kode_jabatan').setValue(sel[0].get('jabatan'));
+                        Ext.getCmp('ijinnama').setValue(sel[0].get('nama'));
+                        Ext.getCmp('ijinkode_jabatan').setValue(sel[0].get('jabatan'));
+                   if(Ext.getCmp('ijinhari').getValue()){
+                            var mysqtore=Ext.getCmp('ijin_input').getViewModel().getData().shiftijin;
+                            mysqtore.load({
+                                params:{nik:sel[0].get('nik'),
+                                    kode_jabatan:Ext.getCmp('ijinkode_jabatan').getValue(),
+                                    hari:Ext.getCmp('ijinhari').getValue()
+                                }
+                                ,callback:function(records, operation, success) {
+                                if(success){
+                                    if(records.length>0){
+                                        Ext.getCmp('ijinkode_shift').setValue(records[0].get('kode'));
+                                        Ext.getCmp('ijinjam_kerja_1').setValue(records[0].get('jam_kerja_1'));
+                                        Ext.getCmp('ijinjam_kerja_2').setValue(records[0].get('jam_kerja_2'));
+                                        Ext.getCmp('ijinjam_kerja_3').setValue(records[0].get('jam_kerja_3'));
+                                        Ext.getCmp('ijinjam_kerja_4').setValue(records[0].get('jam_kerja_4'));
+                                    }
+                                }
+                            }
+                            });
+                        }
                    me.close();
             
                 }
