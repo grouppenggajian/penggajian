@@ -131,6 +131,8 @@ Route::get('/tukaroff/loadjadwalpegawai','JadwalController@loadJadwalPegawai');
 //Route::resource('/ijin', 'IjinController');
 Route::get('/ijin/kategoriabsen', 'IjinController@getKategoriAbsen');
 
+Route::get('/cuti/kategoriabsen', 'CutiController@getKategoriAbsen');
+
 
 
 
