@@ -99,8 +99,15 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
         },
 
         {
-            text:'Tipe Ijin',
+            text:'Kategori Ijin',
             dataIndex:'kategori_ijin',
+            sortable:false,
+            width:110,
+            hidden:false
+        },
+        {
+            text:'Tipe Ijin',
+            dataIndex:'tipe_ijin',
             sortable:false,
             width:110,
             hidden:false
