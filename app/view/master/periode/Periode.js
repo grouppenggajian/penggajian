@@ -8,7 +8,7 @@ Ext.define('Penggajian.view.master.periode.Periode', {
     ],
     controller:'periode',
     title: 'Master Periode Gaji',
-    id: 'tab1f',
+    id: 'tab1f1',
     closable: true,        
     layout: 'border', 
     items:[       
