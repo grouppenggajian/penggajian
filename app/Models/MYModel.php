@@ -22,18 +22,18 @@ class MYModel extends Model {
     }
     protected function setInsertRow($table, $data = NULL) {
         $this->db = DB::table($table);
-        $column = $this->getFieldsTable($table);
-        $valInsert = array();
-        $valColumn = array();
+//        $column = $this->getFieldsTable($table);
+//        $valInsert = array();
+//        $valColumn = array();
+//
+//        foreach ($column as $key =>$col) {
+//
+//            $valColumn[$key] = $col;
+//        }
+//        array_push($valInsert, $valColumn);
+//        $valColumn = array();
 
-        foreach ($column as $col) {
-
-            $valColumn[$col] = $data[$col];
-        }
-        array_push($valInsert, $valColumn);
-        $valColumn = array();
-
-        if ($this->db->insert($valInsert)) {
+        if ($this->db->insert($data)) {
             $affected = 1;
         } else {
             $affected = 0;
@@ -43,22 +43,16 @@ class MYModel extends Model {
     }
     
     protected function setUpdateRow($table, $wheredata=NULL,$data = NULL) {
-        $this->db = DB::table($table);
-        $column = $this->getFieldsTable($table);
+        $this->db = DB::table($table);        
         $valInsert = array();
         $valColumn = array();
 
-        foreach ($column as $col) {
-
-            $valColumn[$col] = $data[$col];
-        }
-//        array_push($valInsert, $valColumn);
-//        $valColumn = array();
+        
         if($wheredata){
             $this->db->where($wheredata);
         }
         
-        if ($this->db->update($valColumn)) {
+        if ($this->db->update($data)) {
             $affected = 1;
         } else {
             $affected = 0;
