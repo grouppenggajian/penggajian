@@ -1,6 +1,9 @@
 Ext.define('Penggajian.store.ijin.Ijin', {
     extend: 'Ext.data.Store',
     storeId:'storeijin',
+    requires:[
+        'Ext.ux.DataFieldTime'
+    ],
 //        autoSync:true,
     proxy: {
         type: 'ajax',        
@@ -18,7 +21,8 @@ Ext.define('Penggajian.store.ijin.Ijin', {
     {	name:	'no_ijin'	},
 {	name:	'tgl_ijin'	},
 {	name:	'hari_ijin'	},
-{	name:	'jam_ijin'	},
+{	name:	'jam_ijin_awal'	,type: 'time'},
+{	name:	'jam_ijin_akhir'	,type: 'time'},
 {	name:	'nik'	},
 {	name:	'nama'	},
 {	name:	'jabatan'	},
@@ -26,10 +30,10 @@ Ext.define('Penggajian.store.ijin.Ijin', {
 {	name:	'tipe_ijin'	},
 {	name:	'keterangan'	},
 {	name:	'jadwal'	},
-{	name:	'jam_kerja_1'	},
-{	name:	'jam_kerja_2'	},
-{	name:	'jam_kerja_3'	},
-{	name:	'jam_kerja_4'	},
+{	name:	'jam_kerja_1'	,type: 'time'},
+{	name:	'jam_kerja_2'	,type: 'time'},
+{	name:	'jam_kerja_3'	,type: 'time'},
+{	name:	'jam_kerja_4'	,type: 'time'},
 {	name:	'create_date'	},
 {	name:	'create_by'	}
 
