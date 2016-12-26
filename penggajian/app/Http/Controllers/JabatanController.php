@@ -34,7 +34,7 @@ class JabatanController extends Controller {
         
         $sqlsearch=NULL;
         if($query){
-            $sqlsearch="where (kode_jabatan LIKE '%$query%' or nama_jabatan LIKE '%$query%')";
+            $sqlsearch='where (a.kode_jabatan LIKE "%'.$query.'%" or nama_jabatan LIKE "%'.$query.'%")';
         }
         $vlimit=NULL;
         $dataall=Jabatan::SP_getData('sp_paging_jabatan',array($sqlsearch,$vlimit));
