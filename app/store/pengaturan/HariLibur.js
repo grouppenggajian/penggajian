@@ -4,7 +4,7 @@ Ext.define('Penggajian.store.pengaturan.HariLibur', {
 //        autoSync:true,
     proxy: {
         type: 'ajax',        
-        url: Penggajian.Global.getApiUrl()+'pengaturan/load',
+        url: Penggajian.Global.getApiUrl()+'libur/load',
         reader: {
             type: 'json',
             
