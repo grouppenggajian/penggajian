@@ -37,7 +37,7 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
                 getTip: function(v, meta, rec) {
                     return 'Delete Plant';
                 },
-                handler: 'onDeleteJadwal'
+                handler: 'onDeleteClick'
             }]
                                 
         },
@@ -54,7 +54,7 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             text:'Tanggal',
             dataIndex:'tgl_ijin',
             sortable:false,
-            width:80,
+            width:100,
             hidden:false
         },
 
@@ -63,15 +63,26 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             dataIndex:'hari_ijin',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
 
         {
-            text:'Jam',
-            dataIndex:'jam_ijin',
+            text:'Jam Awal',
+            dataIndex:'jam_ijin_awal',
             sortable:false,
-            width:60,
-            hidden:false
+            width:80,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
+        },
+        
+        {
+            text:'Jam Akhir',
+            dataIndex:'jam_ijin_akhir',
+            sortable:false,
+            width:80,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
         },
 
         {
@@ -79,7 +90,8 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             dataIndex:'nik',
             sortable:false,
             width:100,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
 
         {
@@ -87,7 +99,8 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             dataIndex:'nama',
             sortable:false,
             width:150,
-            hidden:false
+            hidden:false,
+            align:'left'
         },
 
         {
@@ -95,22 +108,25 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             dataIndex:'jabatan',
             sortable:false,
             width:150,
-            hidden:false
+            hidden:false,
+            align:'left'
         },
 
         {
-            text:'Kategori Ijin',
+            text:'Kat Ijin',
             dataIndex:'kategori_ijin',
             sortable:false,
-            width:110,
-            hidden:false
+            width:80,
+            hidden:false,
+            align:'center'
         },
         {
             text:'Tipe Ijin',
             dataIndex:'tipe_ijin',
             sortable:false,
-            width:110,
-            hidden:false
+            width:100,
+            hidden:false,
+            align:'center'
         },
 
         {
@@ -118,7 +134,8 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             dataIndex:'keterangan',
             sortable:false,
             width:200,
-            hidden:false
+            hidden:false,
+            align:'left'
         },
 
         {
@@ -133,39 +150,43 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
             text:'I Masuk',
             dataIndex:'jam_kerja_1',
             sortable:false,
-            width:80,
-            hidden:false
+            width:100,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
         },
 
         {
             text:'II Keluar/Pulang',
             dataIndex:'jam_kerja_2',
             sortable:false,
-            width:80,
-            hidden:false
+            width:100,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
         },
 
         {
             text:'III Masuk',
             dataIndex:'jam_kerja_3',
             sortable:false,
-            width:80,
-            hidden:false
+            width:100,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
         },
 
         {
             text:'IV  Keluar/Pulang',
             dataIndex:'jam_kerja_4',
             sortable:false,
-            width:80,
-            hidden:false
+            width:100,
+            hidden:false,
+            xtype: 'datecolumn',   format:'H:i'
         },
 
         {
             text:'create_date',
             dataIndex:'create_date',
             sortable:false,
-            width:80,
+            width:100,
             hidden:false
         },
 
@@ -225,11 +246,7 @@ Ext.define('Penggajian.view.transaksi.ijin.Ijin', {
     ]
     ,
     listeners:{
-//        show:function(){
-//            var refstoregrid=Ext.getCmp('idpinjamanlist').store;               
-//            refstoregrid.loadPage(1);
-//        
-//        }
+        show:'onShow'
 }
     
 
