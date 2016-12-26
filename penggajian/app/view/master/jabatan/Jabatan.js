@@ -164,7 +164,7 @@ Ext.define('Penggajian.view.master.jabatan.Jabatan', {
                                     {
                                         xtype: 'searchfield',
                                         id:'jabatansearch',
-                                        store: 'storejabatan',
+                                        store: 'storejabatannew',
                                         width: 380,
                                         emptyText: 'Quick Search...'
                                     }],
