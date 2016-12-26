@@ -182,7 +182,7 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
                         anchor    : '100%',
                         hiddenName:'keterangan',
                         allowBlank: false  ,  
-                        readOnly:true,
+                        readOnly:false,
                         width:210                       
                                 
                     }
