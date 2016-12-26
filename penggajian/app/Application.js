@@ -35,6 +35,9 @@ Ext.define('Penggajian.Application', {
     'Penggajian.view.main.Main'],
     requires:[
         'Penggajian.Global',
+        'Ext.ux.SearchField',
+         'Ext.ux.TwinCombo',
+        'Ext.ux.TimeSpinner'
 //       'Penggajian.view.main.Main'
     ],
     
