@@ -5,9 +5,7 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinInput',
         requires        : [
         'Penggajian.view.transaksi.ijin.IjinController',
         'Penggajian.view.transaksi.ijin.IjinNikEditor',
-        'Penggajian.view.transaksi.ijin.IjinModel',
-         'Ext.ux.TwinCombo',
-        'Ext.ux.TimeSpinner'
+        'Penggajian.view.transaksi.ijin.IjinModel'
         ],
         controller:'ijin',
         viewModel:'ijin',
@@ -51,7 +49,25 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinInput',
                 },
                 items:[
                     
-                
+                {
+                        xtype:'textfield',
+                        name: 'no_ijin',
+                        id: 'ijinno_ijin',
+                        flex:1,
+                        //                                tooltip: 'Maximal 8 character Field tidak boleh kosong',
+                        afterLabelTextTpl: required_css,
+                        //                                fieldStyle: 'text-transform:uppercase;',
+                        //                fieldLabel: 'Nama',
+                        //                        labelWidth : '10',
+                        //                        labelStyle: 'width:120px; white-space: nowrap;text-transform:propercase;', 
+                        anchor    : '75%',
+                        hiddenName:'no_ijin',
+                        allowBlank: true  ,  
+                        readOnly:false,
+                        hidden:true,
+                        width:210                       
+                                
+                    },
                 {
                 
                     xtype: 'fieldcontainer',                
@@ -375,7 +391,7 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinInput',
                         anchor    : '100%',
                         hiddenName:'keterangan',
                         allowBlank: false  ,  
-                        readOnly:true,
+                        readOnly:false,
                         width:210                       
                                 
                     }

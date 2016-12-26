@@ -29,24 +29,20 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinModel', {
             },            
 
             {
-                name: 'jam_kerja_1',
-                type: 'time'
+                name: 'jam_kerja_1',type:'time'
  
             },
 
             {
-                name: 'jam_kerja_2', 
-                type:'time'
+                name: 'jam_kerja_2',type: 'time'
             },
 
             {
-                name: 'jam_kerja_3', 
-                type:'time'
+                name: 'jam_kerja_3',type: 'time'
             },
 
             {
-                name: 'jam_kerja_4', 
-                type:'time'
+                name: 'jam_kerja_4',type: 'time'
             }
         
         
