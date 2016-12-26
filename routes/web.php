@@ -87,6 +87,11 @@ Route::post('/rumuslembur/save','RumusLemburController@executeRows');
 Route::post('/rumuslembur/deletePendapatan','RumusLemburController@deletePendapatan');
 Route::post('/rumuslembur/deletePengali','RumusLemburController@deletePengali');
 
+Route::get('/rumusinsentifhadir/load','RumusInsentifHadirController@index');
+Route::get('/rumusinsentifhadir/jenisharikerja','RumusInsentifHadirController@jenisharikerja');
+Route::post('/rumusinsentifhadir/executeRow','RumusInsentifHadirController@executeRow');
+Route::post('/rumusinsentifhadir/delete','RumusInsentifHadirController@delete');
+
 
 Route::get('/referensi/agama','ReferensiController@getAgama');
 Route::get('/referensi/golongandarah','ReferensiController@getGolonganDarah');
@@ -130,8 +135,22 @@ Route::get('/tukaroff/loadjadwalpegawai','JadwalController@loadJadwalPegawai');
 
 //Route::resource('/ijin', 'IjinController');
 Route::get('/ijin/kategoriabsen', 'IjinController@getKategoriAbsen');
+Route::get('/ijin/load', 'IjinController@index');
+Route::post('/ijin/executeRow', 'IjinController@executeRow');
+Route::post('/ijin/delete', 'IjinController@delete');
+
 
 Route::get('/cuti/kategoriabsen', 'CutiController@getKategoriAbsen');
+
+Route::get('/libur/load', 'HariLiburController@index');
+Route::post('/libur/save', 'HariLiburController@save');
+Route::post('/libur/delete', 'HariLiburController@deleteRow');
+
+Route::get('/ketentuan/load', 'KetentuanController@index');
+Route::get('/ketentuan/pantangan', 'KetentuanController@indexPantangan');
+Route::post('/ketentuan/save', 'KetentuanController@save');
+Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan');
+
 
 
 
