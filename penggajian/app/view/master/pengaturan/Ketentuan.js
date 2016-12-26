@@ -3,10 +3,11 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
     xtype: 'TabKetentuan',
     alias: 'widget.Ketentuan',
     requires: [
-//    'Penggajian.view.master.periode.PeriodeController',
-//    'Penggajian.view.master.periode.PeriodeInput'
+        'Penggajian.view.master.pengaturan.KetentuanController',
+        'Penggajian.view.master.pengaturan.KetentuanModel'
     ],
-//    controller:'periode',
+    controller:'ketentuan',
+    viewModel:'ketentuan',
     title: 'Ketentuan',
     id: 'tab1f3',
     closable: true,        
@@ -14,20 +15,25 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
     items:[       
     {
         xtype:'form',
-        region:'center',
-        layout: 'anchor',
+        region:'north',
+        layout: 'hbox',
+        height:200,
+            minHeight:200,
         bodyPadding: '5 5 5 5',
         items:[
             {
                 xtype:'fieldset',
-                anchor:'50%',
+                title:'Toleransi dan Cuti',
+                width:'50%',
                 layout:'anchor',
+                margin:'0 10 0 5',
                 defaults:{
                   labelWidth:150  
                 },
                 items:[
                     {
                         xtype: 'fieldcontainer',
+                        margin:'3 10 3 5',
                         anchor:'100%',
                         fieldLabel:'Toleransi Keterlambatan',
                         combineErrors: false,
@@ -37,13 +43,14 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                         },
                         items: [
                            {
+                               id:'ketentuan_toleransi',
                                name : 'absentoleransi',
                                xtype: 'numberfield',
                                width: 70,
                                minValue:0,
                                step: 5,
                                allowBlank: false,
-                               margin:'3 10 5 5'
+                              margin:'0 10 0 5'
                                
                            },
                            {
@@ -55,6 +62,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                     },
                     {
                         xtype: 'fieldcontainer',
+                        margin:'0 10 0 5',
                         fieldLabel:'Kuota Cuti Tahunan',
                         anchor:'100%',
                         combineErrors: false,
@@ -65,12 +73,13 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                         },
                         items: [
                            {
+                               id:'ketentuan_kuotacuti',
                                name : 'kuotacuti',
                                xtype: 'numberfield',
                                width: 70,
                                minValue:0,
                                allowBlank: false,
-                               margin:'3 10 5 5'
+                               margin:'0 10 0 5'
                            },
                            {
                                xtype: 'displayfield',
@@ -80,10 +89,231 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                         ]
                     }
                 ]
-            }
-        ]
+            },
+            {
+                xtype:'fieldset',
+                title:'Periode Gaji',
+                anchor:'50%',
+                flex:1,
+                margin:'0 10 0 5',
+                layout:'anchor',
+                defaults:{
+                  labelWidth:150  
+                },
+                items:[
+                    {
+                        id:'ketentuan_periodemulai',
+                               name : 'periodemulai',
+                               fieldLabel:'Mulai',
+                               xtype: 'numberfield',
+                               width: 225,
+                               minValue:1,
+                               maxValue:31,
+                               allowBlank: false,
+                               margin:'3 10 2 5'
+                           },{
+                               id:'ketentuan_periodeselesai',
+                               name : 'periodeselesai',
+                               fieldLabel:'Selesai',
+                               xtype: 'numberfield',
+                               width: 225,
+                               minValue:1,
+                               maxValue:31,
+                               allowBlank: false,
+                               margin:'8 10 10 5'
+                           }
+                    
+                ]
+            }]
+    },
+            
+                    {   
+//                margin: '0 5 3 5',
+                xtype:'grid',                 
+                id:'ketentuanpantangan',   
+                region:'center',
+                border:true,
+                height:129,
+                anchor:'100%',
+                bind:{
+                  store:'{storepantangan}'  
+                },
+                stripeRows: true,
+                loadMask: true,
+                stateful:true,
+                stateId:'stateketentuanpantangan',
+                queryParam:'searchvalue',
+                selModel: {
+                    selType: 'rowmodel'
+                },
+                plugins: {
+                    ptype: 'rowediting',
+                    clicksToEdit: 2,
+                    listeners: {
+                        cancelEdit: function(rowEditing, context) {
+                            // Canceling editing of a locally added, unsaved record: remove it
+                            if (context.record.phantom) {
+                                context.grid.store.remove(context.record);
+                            }
+                        }
+
+                    }
+                },
+                columns:[
+                {
+                    xtype: 'actioncolumn',
+                    header: 'Act',
+                    menuDisabled: true,
+                    sortable: false,   
+                    align:'center',
+                    width: 50,
+                    items: [
+                    {
+                        iconCls: 'icon-delete',
+                        tooltip: 'Delete Row',
+                        handler: function(grid, rowIndex, colIndex) {
+                        var rec = grid.getStore().getAt(rowIndex);
+                        Ext.Msg.show({
+                            title: 'Confirm',
+                            msg: 'Are you sure delete selected row ?',
+                            buttons: Ext.Msg.YESNO,
+                            icon: Ext.Msg.QUESTION,
+                            fn: function(btn){
+                                if (btn == 'yes') {                                                                
+                                    var data = rec.data;                                                                 
+                                    Ext.Ajax.request({                                                            
+                                        url: Penggajian.Global.getApiUrl() + 'ketentuan/deletePantangan',
+                                        method: 'POST',
+                                        params: {
+                                            opt: 'delete',
+                                            _token: tokendata,                                            
+                                            postdata:Ext.JSON.encode(data)
+                                        },
+                                        success: function(obj) {
+                                            var   resp = Ext.decode(obj.responseText);                                                                
+                                            if(resp.success==true){
+                                                Ext.Msg.show({
+                                                    title:'Message Info',
+                                                    msg: resp.message,
+                                                    buttons: Ext.Msg.OK,
+                                                    icon: Ext.Msg.INFO
+                                                });
+                                                Ext.getCmp('ketentuanpantangan').store.reload();
+                                            }else{
+                                                Ext.Msg.show({
+                                                    title: 'Error',
+                                                    msg: resp.message,
+                                                    modal: true,
+                                                    icon: Ext.Msg.ERROR,
+                                                    buttons: Ext.Msg.OK,
+                                                    fn: function(btn){
+                                                        if (btn == 'ok' && resp.msg == 'Session Expired') {
+                                                            window.location = Penggajian.Global.getApiUrl();
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        failure: function(obj) {
+                                            var  resp = Ext.decode(obj.responseText);
+                                            Ext.Msg.alert('info',resp.reason);
+                                        }
+                                    });                 
+                                } 
+                            }
+                        });
+                    }
+                    }]
+
+                },
+                {
+                    text: 'Hari',  
+                    dataIndex: 'hari',
+                    align:'left',
+                    width:150
+                    ,
+                    field:{
+                        xtype:'combo',
+                        id: 'ketentuan_pantangan',                            
+                        allowBlank: false,                            
+                        store: createArrayStore(dataharicombo),
+                        valueField: 'mtext',
+                        displayField: 'mtext',
+                        typeAhead: true,
+                        triggerAction: 'all' ,
+                        queryParam:'searchvalue',
+                        width:150,
+                        listeners:{
+                            select:function( combo, records, eOpts ){
+                                var gridstore=Ext.getCmp('ketentuanpantangan').store;
+                               var frec= gridstore.findRecord('hari',combo.getValue());
+                                if(frec){
+                                    combo.setValue(null);
+                                    Ext.getCmp('ketentuanpantangan').getPlugin().cancelEdit();
+                                }
+                                
+                                
+                            }
+                        }
+                    }
+                    
+                }
+                
+                ]
+                ,
+                tbar:{
+                    xtype:'toolbar',
+                    //                    padding: '10 5 10 0',
+                    items:[
+                    {
+                        
+                        xtype:'button',
+                        text:'Add Pantangan',
+                        iconCls:'icon-grid',
+                        handler:function(){
+                            // empty record
+                            var grid=Ext.getCmp('ketentuanpantangan');
+                            var str=grid.getStore();
+                            var edit=grid.getPlugin();
+//                            var rec = new Penggajian.view.rumus.lembur.WriterPendapatan({
+//                                kode:'',
+//                                keterangan:''
+//                            });
+                            var rec = new str.getModel();
+//                            edit.cancelEdit();
+                            grid.store.insert(0, rec);
+                            edit.startEdit(0, 0);
+                        }
+                    } 
+                    ]
+                },
+    bbar:{
+         xtype:'toolbar',
+         buttonAlign:'center',
+                    items:[ '->',  {
+                        
+                        
+                text:'Refresh',
+                iconCls:'icon-preview',
+                handler:'onRefreshClick'
+            } ,{
+                        
+                        
+                text:'Simpan',
+                iconCls:'icon-simpan',
+                handler:'onSimpanClick'
+            } ]
     }
-    ]
+            
+          
+            }
+                    
+              
+        
+    ],
+    listeners:{
+        show:'onShow'
+    }
 }
 );
         
