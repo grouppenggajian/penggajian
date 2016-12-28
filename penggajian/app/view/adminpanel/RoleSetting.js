@@ -7,8 +7,7 @@ Ext.define('Penggajian.view.adminpanel.RoleSetting',
         id: 'tab4a',
           requires: [
     'Penggajian.view.adminpanel.RoleSettingController',
-    'Penggajian.view.adminpanel.RoleSettingInput',
-    'Ext.ux.SearchField'
+    'Penggajian.view.adminpanel.RoleSettingInput'
     ],
     controller:'rolesetting',
         closable: true,        
