@@ -3,8 +3,7 @@ Ext.define('Penggajian.view.master.shift.ShiftInput',
         extend          : 'Ext.window.Window',
         title           : 'Input Shift',
         requires        : [
-        'Penggajian.view.master.shift.ShiftController',
-        'Ext.ux.TimeSpinner'
+        'Penggajian.view.master.shift.ShiftController'
         ],
         controller:'shift',
         //        plugins: {
