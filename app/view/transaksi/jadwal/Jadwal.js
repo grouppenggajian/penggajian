@@ -4,8 +4,7 @@ Ext.define('Penggajian.view.transaksi.jadwal.Jadwal', {
     alias: 'widget.Jadwal',
     requires: [
     'Penggajian.view.transaksi.jadwal.JadwalController',
-    'Penggajian.view.transaksi.jadwal.JadwalInput',    
-    'Ext.ux.SearchField'
+    'Penggajian.view.transaksi.jadwal.JadwalInput'
     ],
     controller:'jadwal',
     title: 'Jadwal',
