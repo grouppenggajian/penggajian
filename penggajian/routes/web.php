@@ -159,7 +159,7 @@ Route::get('/ketentuan/pantangan', 'KetentuanController@indexPantangan');
 Route::post('/ketentuan/save', 'KetentuanController@save');
 Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan');
 
-
+Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 
 
 
