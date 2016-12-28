@@ -4,9 +4,7 @@ Ext.define('Penggajian.view.transaksi.pinjaman.PinjamanInput',
         title           : 'Input Pinjaman',
         requires        : [
         'Penggajian.view.transaksi.pinjaman.PinjamanController',
-        'Penggajian.view.transaksi.pinjaman.PinjamanNikEditor',
-        'Ext.ux.TwinCombo',
-        'Ext.ux.NumericField'
+        'Penggajian.view.transaksi.pinjaman.PinjamanNikEditor'
         ],
         controller:'pinjaman',
         //        plugins: {
