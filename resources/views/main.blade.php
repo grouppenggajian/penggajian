@@ -53,6 +53,13 @@
              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
            };
+       function dateDiff(mulai,selesai){
+           var date1 = new Date(mulai.getFullYear(),mulai.getMonth(),mulai.getDate()); 
+           var date2 = new Date(selesai.getFullYear(),selesai.getMonth(),selesai.getDate()); 
+           var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+           var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+           return diffDays;
+       }
        function clearSession(){
            localStorage.removeItem('userid');
             localStorage.removeItem('username');
@@ -340,7 +347,8 @@
         var dataharicombo=[[0,'MINGGU'],[1,'SENIN'],[2,'SELASA'],[3,'RABU'],
             [4,'KAMIS'],[5,'JUM\'AT'],[6,'SABTU']];
         var datatipeijin=[['1','1 Hari'],['0.5','1/2 Hari']];
-        
+//        var base_url="{{url('/').'/'}}";
+//        console.log(base_url);
     </script>
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
     <script id="microloader" data-app="891d821a-13e8-4ab0-b9b8-fa1fea70420b" type="text/javascript" src="bootstrap.js"></script>
