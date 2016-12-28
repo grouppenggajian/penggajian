@@ -7,8 +7,7 @@ Ext.define('Penggajian.view.rumus.pendapatan.RmsPendapatan',
         id: 'tab1g1',
         requires:[
         'Penggajian.view.rumus.pendapatan.RmsPendapatanController',
-        'Penggajian.view.rumus.pendapatan.RmsPendapatanEditor',
-        'Ext.ux.TwinCombo'
+        'Penggajian.view.rumus.pendapatan.RmsPendapatanEditor'
         ],
         controller:'rmspendapatan',
         
