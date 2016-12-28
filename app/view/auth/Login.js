@@ -1,7 +1,7 @@
 Ext.define('Penggajian.view.auth.Login', {
     extend: 'Ext.window.Window',
     xtype: 'login',
-
+    id:'loginid',
     requires: [
         'Penggajian.view.auth.LoginController',
         'Ext.form.Panel'
