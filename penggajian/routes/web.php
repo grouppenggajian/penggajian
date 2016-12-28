@@ -132,6 +132,9 @@ Route::post('/jadwal/savejadwal','JadwalController@saveJadwal');
 Route::post('/jadwal/deletejadwal','JadwalController@deleteJadwal');
 
 Route::get('/tukaroff/loadjadwalpegawai','JadwalController@loadJadwalPegawai');
+Route::get('/tukaroff/load','JadwalController@indexTukarOff');
+Route::post('/tukaroff/executeRow','JadwalController@executeRowTukaroff');
+Route::post('/tukaroff/delete','JadwalController@deleteTukaroff');
 
 //Route::resource('/ijin', 'IjinController');
 Route::get('/ijin/kategoriabsen', 'IjinController@getKategoriAbsen');
@@ -141,6 +144,11 @@ Route::post('/ijin/delete', 'IjinController@delete');
 
 
 Route::get('/cuti/kategoriabsen', 'CutiController@getKategoriAbsen');
+Route::get('/cuti/sisacuti', 'CutiController@getSisaCuti');
+Route::get('/cuti/load', 'CutiController@index');
+Route::post('/cuti/executeRow', 'CutiController@executeRow');
+Route::post('/cuti/delete', 'CutiController@delete');
+
 
 Route::get('/libur/load', 'HariLiburController@index');
 Route::post('/libur/save', 'HariLiburController@save');
