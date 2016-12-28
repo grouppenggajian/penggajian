@@ -31,7 +31,8 @@ Ext.define('Penggajian.Application', {
         ,'pengaturan.HariLibur'
         // TODO: add global / shared stores here
     ],
-    views:['Penggajian.view.auth.Login',
+    views:[
+        'Penggajian.view.auth.Login',
     'Penggajian.view.main.Main'],
     requires:[
         'Penggajian.Global',
@@ -85,9 +86,15 @@ Ext.define('Penggajian.Application', {
                 });
             }
         }else{
-            Ext.create({
-                xtype:  'login'
-            });
+            var applogin=Ext.getCmp('loginid');
+            if(applogin){
+                applogin.show();
+            }else{
+                Ext.create({
+                    xtype:  'login'
+                });
+            }
+            
         }
 
     },
