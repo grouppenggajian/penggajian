@@ -88,7 +88,9 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiNikEditor', {
                     var twinparent=Ext.getCmp(me.twin);
                         twinparent.setValue(sel[0].get('nik'));
                         Ext.getCmp('cutinama').setValue(sel[0].get('nama'));
-                        Ext.getCmp('cutikode_jabatan').setValue(sel[0].get('jabatan'));
+                        Ext.getCmp('cutikode_jabatan').setValue(sel[0].get('nama_jabatan'));
+                        var frm= Ext.getCmp('cuti_input');
+                                frm.getController().getSisaCuti();
                    me.close();
             
                 }

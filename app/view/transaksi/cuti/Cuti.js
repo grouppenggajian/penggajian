@@ -37,7 +37,7 @@ Ext.define('Penggajian.view.transaksi.cuti.Cuti', {
                 getTip: function(v, meta, rec) {
                     return 'Delete Plant';
                 },
-                handler: 'onDeleteJadwal'
+                handler: 'onDeleteClick'
             }]
                                 
         },
@@ -47,14 +47,16 @@ Ext.define('Penggajian.view.transaksi.cuti.Cuti', {
             dataIndex:'no_cuti',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
         {
             text:'NIK',
             dataIndex:'nik',
             sortable:false,
             width:100,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
 
         {
@@ -62,23 +64,26 @@ Ext.define('Penggajian.view.transaksi.cuti.Cuti', {
             dataIndex:'nama',
             sortable:false,
             width:150,
-            hidden:false
+            hidden:false,
+            align:'left'
         },
 
         {
             text:'Jabatan',
             dataIndex:'jabatan',
             sortable:false,
-            width:150,
-            hidden:false
+            width:200,
+            hidden:false,
+            align:'left'
         },
 
         {
-            text:'Kategori Cuti',
+            text:'Kat Cuti',
             dataIndex:'kategori_cuti',
             sortable:false,
-            width:110,
-            hidden:false
+            width:80,
+            hidden:false,
+            align:'center'
         },
 
         {
@@ -86,38 +91,50 @@ Ext.define('Penggajian.view.transaksi.cuti.Cuti', {
             dataIndex:'keterangan',
             sortable:false,
             width:200,
-            hidden:false
+            hidden:false,
+            align:'left'
         },
 
         {
-            text:'Mulai',
+            text:'Cuti',
             dataIndex:'tgl_mulai',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
 
         {
-            text:'Selesai',
+            text:'Masuk',
             dataIndex:'tgl_selesai',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'center'
         },
         {
-            text:'Sisa Cuti',
+            text:'Sisa',
             dataIndex:'sisa_cuti',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'right'
         },
 
         {
-            text:'Jumlah Cuti',
+            text:'Jumlah',
             dataIndex:'jml_cuti',
             sortable:false,
             width:80,
-            hidden:false
+            hidden:false,
+            align:'right'
+        },{
+            text:'Kuota',
+            dataIndex:'sisakuota_cuti',
+            sortable:false,
+            width:80,
+            hidden:false,
+            align:'right'
         },
 
         {
@@ -184,11 +201,7 @@ Ext.define('Penggajian.view.transaksi.cuti.Cuti', {
     ]
     ,
     listeners:{
-//        show:function(){
-//            var refstoregrid=Ext.getCmp('idpinjamanlist').store;               
-//            refstoregrid.loadPage(1);
-//        
-//        }
+        show:'onShow'
     }
     
 
