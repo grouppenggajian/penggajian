@@ -27,6 +27,7 @@
     23 => 'App\\Providers\\AuthServiceProvider',
     24 => 'App\\Providers\\EventServiceProvider',
     25 => 'App\\Providers\\RouteServiceProvider',
+    26 => 'Codedge\\Fpdf\\FpdfServiceProvider',
   ),
   'eager' => 
   array (
@@ -134,6 +135,7 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
+    'fpdf' => 'Codedge\\Fpdf\\FpdfServiceProvider',
   ),
   'when' => 
   array (
@@ -171,6 +173,9 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
+    array (
+    ),
+    'Codedge\\Fpdf\\FpdfServiceProvider' => 
     array (
     ),
   ),
