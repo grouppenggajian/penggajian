@@ -25,6 +25,7 @@ Ext.define('Penggajian.store.ijin.Cuti', {
 {	name:	'tgl_selesai'	},
 {	name:	'sisa_cuti'	},
 {	name:	'jumlah_cuti'	},
+{	name:	'sisakuota_cuti'	},
 {	name:	'create_date'	},
 {	name:	'create_by'	}
 
