@@ -37,7 +37,8 @@ Ext.define('Penggajian.Application', {
         'Penggajian.Global',
         'Ext.ux.SearchField',
          'Ext.ux.TwinCombo',
-        'Ext.ux.TimeSpinner'
+        'Ext.ux.TimeSpinner',
+        'Ext.ux.NumericField'
 //       'Penggajian.view.main.Main'
     ],
     
