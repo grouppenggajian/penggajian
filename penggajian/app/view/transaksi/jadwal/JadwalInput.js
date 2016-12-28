@@ -5,8 +5,7 @@ Ext.define('Penggajian.view.transaksi.jadwal.JadwalInput',
         requires        : [
         'Penggajian.view.transaksi.jadwal.JadwalController',
         'Penggajian.view.transaksi.jadwal.JadwalNikEditor',
-        'Penggajian.view.transaksi.jadwal.JadwalShiftEditor',
-        'Ext.ux.TwinCombo'
+        'Penggajian.view.transaksi.jadwal.JadwalShiftEditor'
         ],
         controller:'jadwal',
         //        plugins: {
