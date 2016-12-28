@@ -5,8 +5,7 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
         requires        : [
         'Penggajian.view.transaksi.cuti.CutiController',
         'Penggajian.view.transaksi.cuti.CutiNikEditor',
-        'Penggajian.view.transaksi.cuti.CutiModel',
-        'Ext.ux.TwinCombo'
+        'Penggajian.view.transaksi.cuti.CutiModel'
         ],
         controller:'cuti',
         viewModel:'cuti',
@@ -49,7 +48,18 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
                     ,labelWidth:100
                 },
                 items:[
-                    
+                    {
+                xtype:'textfield',
+                name: 'no_cuti',
+                id: 'cutino_cuti',                        
+                afterLabelTextTpl: required_css,                        
+                fieldLabel: 'no_cuti',
+                anchor    : '100%',
+                hiddenName:'no_cuti',
+                allowBlank: true,                                                             
+                width:400,
+                readOnly:true,hidden:true
+            },
                 
                 {
                 
@@ -92,21 +102,14 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
                                 
                     }]
                 },{
-                xtype:'combo',
+                xtype:'textfield',
                 name: 'kode_jabatan',
                 id: 'cutikode_jabatan',                        
                 afterLabelTextTpl: required_css,                        
                 fieldLabel: 'Jabatan',
                 anchor    : '100%',
-                hiddenName:'kode_jabatan',
-                allowBlank: false,                                             
-                store: 'storejabatancombo',
-                valueField: 'kode_jabatan',
-                displayField: 'nama_jabatan',
-                typeAhead: true,
-                triggerAction: 'all' ,
-                hideTrigger:false,
-                queryParam:'searchvalue',
+                hiddenName:'nama_jabatan',
+                allowBlank: false,                                                             
                 width:400,
                 readOnly:true
             },{
@@ -124,7 +127,7 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
                     items: [
                     {
                         xtype:'datefield',
-                        fieldLabel:'Mulai',
+                        fieldLabel:'Mulai Cuti',
                         labelStyle:'text-align:center;background-color:#5FA2DD;color:white;',
                         name: 'tgl_mulai',
                         id: 'cutitgl_mulai',    
@@ -132,19 +135,102 @@ Ext.define('Penggajian.view.transaksi.cuti.CutiInput',
                         afterLabelTextTpl: required_css,                                                
                         hiddenName:'tgl_mulai',
                         allowBlank: false,            
-                        format:'d-m-Y'
+                        format:'d-m-Y',
+                        width:120,
+                        listeners:{
+                             select :function( dtfield , value , eOpts ){
+                                var frm= Ext.getCmp('cuti_input');
+                                var selesai=Ext.getCmp('cutitgl_selesai').getValue();
+                                if(!selesai){
+                                    selesai=value;
+                                }                       
+                                var diffDays = dateDiff(value,selesai); 
+                                    Ext.getCmp('cutijml_cuti').setValue(diffDays);
+                                frm.getController().getSisaCuti();
+                                
+                                
+                             }
+
+                        }
                     },{
                         xtype:'datefield',
-                        fieldLabel:'Selesai',
+                        fieldLabel:'Mulai Masuk',
                         labelStyle:'text-align:center;background-color:#5FA2DD;color:white;',
                         name: 'tgl_selesai',
-                        id: 'cutitgl_selsai',    
+                        id: 'cutitgl_selesai',    
                         minValue:new Date(),
                         afterLabelTextTpl: required_css,                                                
                         hiddenName:'tgl_selesai',
                         allowBlank: false,            
-                        format:'d-m-Y'
-                    }           
+                        format:'d-m-Y',
+                        width:120,
+                        listeners:{
+                            select :function(dtfield , value , eOpts){
+                                var mulai=Ext.getCmp('cutitgl_mulai').getValue();
+                                var frm= Ext.getCmp('cuti_input');
+                                var sisakuota=0;
+                                if(value<=mulai ){
+                                    dtfield.setValue(null);
+                                    Ext.getCmp('cutijml_cuti').setValue(0);
+                                    sisakuota=frm.getController().getSisaKuotaCuti();
+                                    Ext.getCmp('cutisisakuota_cuti').setValue(sisakuota);
+                                }else{
+                                    
+                                    var diffDays = dateDiff(mulai,value); 
+                                    Ext.getCmp('cutijml_cuti').setValue(diffDays);
+                                    sisakuota=frm.getController().getSisaKuotaCuti();
+                                    if(sisakuota<0){
+                                        dtfield.setValue(null);
+                                        Ext.getCmp('cutijml_cuti').setValue(0);
+                                        sisakuota=frm.getController().getSisaKuotaCuti();
+                                        Ext.getCmp('cutisisakuota_cuti').setValue(sisakuota);
+                                    }else{
+                                        Ext.getCmp('cutisisakuota_cuti').setValue(sisakuota);
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },{
+                               id:'cutijml_cuti',
+                               name : 'jml_cuti',
+                               xtype: 'numberfield',
+                               fieldLabel:'Jml',
+                               fieldStyle: 'text-align: center;' ,
+                                labelStyle:'text-align:center;background-color:#5FA2DD;color:white;',
+                               width: 70,
+                               minValue:0,
+                               value:0,
+                               allowBlank: false,
+                               readOnly:true
+                               
+                           },   {
+                               id:'cutisisa_cuti',
+                               name : 'sisa_cuti',
+                               xtype: 'numberfield',
+                               fieldLabel:'Sisa',
+                               fieldStyle: 'text-align: center;' ,
+                                labelStyle:'text-align:center;background-color:#5FA2DD;color:white;',
+                               width: 70,
+                               minValue:0,
+                               value:0,
+                               allowBlank: false,
+                               readOnly:true
+                               
+                           }    ,   {
+                               id:'cutisisakuota_cuti',
+                               name : 'sisakuota_cuti',
+                               xtype: 'numberfield',
+                               fieldLabel:'Sisa Kuota',
+                               fieldStyle: 'text-align: center;' ,
+                                labelStyle:'text-align:center;background-color:#5FA2DD;color:white;',
+                               width: 70,
+                               minValue:0,
+                               value:0,
+                               allowBlank: false,
+                               readOnly:true
+                               
+                           }     
                     ]
                 }
                 ,{
