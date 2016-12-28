@@ -53,6 +53,9 @@
              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
            };
+       function to_print(domid,url){      
+                        Ext.getDom(domid).src ="{{ url('/').'/'}}" + url;
+                    }
        function dateDiff(mulai,selesai){
            var date1 = new Date(mulai.getFullYear(),mulai.getMonth(),mulai.getDate()); 
            var date2 = new Date(selesai.getFullYear(),selesai.getMonth(),selesai.getDate()); 
