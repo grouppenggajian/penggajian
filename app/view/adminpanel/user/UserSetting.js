@@ -8,8 +8,7 @@ Ext.define('Penggajian.view.adminpanel.user.UserSetting',
         requires: [
         'Penggajian.view.adminpanel.user.UserSettingController',
         'Penggajian.view.adminpanel.user.UserSettingInput',
-        'Penggajian.view.adminpanel.user.ResetPassword',
-        'Ext.ux.SearchField'
+        'Penggajian.view.adminpanel.user.ResetPassword'
         ],
         controller:'usersetting',
         closable: true,        
