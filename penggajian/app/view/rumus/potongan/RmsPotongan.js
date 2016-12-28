@@ -7,8 +7,7 @@ Ext.define('Penggajian.view.rumus.potongan.RmsPotongan',
         id: 'tab1g2',
         requires:[
         'Penggajian.view.rumus.potongan.RmsPotonganController',
-        'Penggajian.view.rumus.potongan.RmsPotonganEditor',
-        'Ext.ux.TwinCombo'
+        'Penggajian.view.rumus.potongan.RmsPotonganEditor'
         ],
         controller:'rmspotongan',
         
