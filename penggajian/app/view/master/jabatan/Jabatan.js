@@ -4,8 +4,7 @@ Ext.define('Penggajian.view.master.jabatan.Jabatan', {
     alias: 'widget.Jabatan',
     requires: [
     'Penggajian.view.master.jabatan.JabatanController',
-    'Penggajian.view.master.jabatan.JabatanInput',
-    'Ext.ux.SearchField'
+    'Penggajian.view.master.jabatan.JabatanInput'
     ],
     controller:'jabatan',
     title: 'Master Jabatan',

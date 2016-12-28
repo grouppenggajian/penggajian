@@ -4,8 +4,7 @@ Ext.define('Penggajian.view.master.pegawai.Pegawai', {
     alias: 'widget.Pegawai',
     requires: [
     'Penggajian.view.master.pegawai.PegawaiController',
-    'Penggajian.view.master.pegawai.PegawaiInput',    
-    'Ext.ux.SearchField'
+    'Penggajian.view.master.pegawai.PegawaiInput'
     ],
     controller:'pegawai',
     title: 'Master Pegawai',
