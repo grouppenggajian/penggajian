@@ -20,8 +20,8 @@ SELECT `a`.`id` AS `id`,
            `pendapatans` `b`
         ON ((`a`.`kode` = `b`.`kode`)));
         
-DROP PROCEDURE IF EXISTS gaji_db.sp_rumusthr_masakerja;
-CREATE PROCEDURE gaji_db.`sp_rumusthr_masakerja`(opt           varchar(20),
+DROP PROCEDURE IF EXISTS gaji_db_new.sp_rumusthr_masakerja;
+CREATE PROCEDURE gaji_db_new.`sp_rumusthr_masakerja`(opt           varchar(20),
                            vmasakerja	varchar(10),
 vpembagi	varchar(20)
                            )
@@ -54,8 +54,8 @@ BEGIN
   END CASE;         
 END;
 
-        DROP PROCEDURE IF EXISTS gaji_db.sp_rumusthr_pendapatan;
-CREATE PROCEDURE gaji_db.`sp_rumusthr_pendapatan`(opt           varchar(20),
+        DROP PROCEDURE IF EXISTS gaji_db_new.sp_rumusthr_pendapatan;
+CREATE PROCEDURE gaji_db_new.`sp_rumusthr_pendapatan`(opt           varchar(20),
                            vkode      varchar(10)
                            )
 BEGIN
