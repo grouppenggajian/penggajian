@@ -343,9 +343,10 @@
         var dataoperator=[['+','+'],['-','-'],['*','x'],['/','/']];
         var datastatuskawin=[['KAWIN','KAWIN'],['TIDAK KAWIN','TIDAK KAWIN']];
         var datastatuspegawai=[['AKTIF','AKTIF'],['KELUAR','KELUAR']];
+        var datathr=[['<1 TAHUN','<1 TAHUN'],['>1 TAHUN','>1 TAHUN']];
         var datakelamin=[['L','Laki-laki'],['P','Perempuan']];
         var datastatuslembur=[['BIASA','BIASA'],['OFF','OFF']];
-        var dataharimenit=[['HARI','HARI'],['MENIT','MENIT']];
+        var dataharimenit=[['HARI','HARI'],['MENIT','MENIT'],['TAHUN','TAHUN'],['BULAN','BULAN'],['MASA KERJA','MASA KERJA']];
         var datahari=['MINGGU','SENIN','SELASA','RABU','KAMIS','JUM\'AT','SABTU'];
         var dataharicombo=[[0,'MINGGU'],[1,'SENIN'],[2,'SELASA'],[3,'RABU'],
             [4,'KAMIS'],[5,'JUM\'AT'],[6,'SABTU']];

@@ -79,6 +79,8 @@ Route::get('/rumuspendapatan/load','RumusPendapatanController@index');
 Route::post('/rumuspendapatan/save','RumusPendapatanController@executeRows');
 Route::get('/rumuspotongan/load','RumusPotonganController@index');
 Route::post('/rumuspotongan/save','RumusPotonganController@executeRows');
+Route::get('/rumusthr/load','RumusTHRController@index');
+Route::post('/rumusthr/save','RumusTHRController@executeRows');
 
 Route::get('/rumuslembur/loadpembagi','RumusLemburController@loadPembagi');
 Route::get('/rumuslembur/loadpengali','RumusLemburController@loadPengali');
