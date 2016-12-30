@@ -110,6 +110,15 @@ class ReferensiController extends Controller{
                         ]);
     }
     
+    public function getThrPembagi(Request $request){
+        $query = MYModel::getRowsTable(NULL, 'ref_thrpembagi', [], ['id', 'asc']);
+        return json_encode([
+                    'success' => true,
+                    'data' => $query,
+                    'record' => count($query)
+                        ]);
+    }
+    
     
 }
 

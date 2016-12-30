@@ -20,16 +20,10 @@ Ext.define('Penggajian.store.rumus.RmsTHR', {
         name: 'id'
     },
     {
-        name: 'kode'
+        name: 'masakerja'
     },
     {
-        name: 'komponen'
-    },
-    {
-        name: 'rowset'
-    },
-    {
-        name: 'column_name'
+        name: 'pembagi'
     }
         
         

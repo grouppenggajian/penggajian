@@ -79,8 +79,13 @@ Route::get('/rumuspendapatan/load','RumusPendapatanController@index');
 Route::post('/rumuspendapatan/save','RumusPendapatanController@executeRows');
 Route::get('/rumuspotongan/load','RumusPotonganController@index');
 Route::post('/rumuspotongan/save','RumusPotonganController@executeRows');
+
 Route::get('/rumusthr/load','RumusTHRController@index');
 Route::post('/rumusthr/save','RumusTHRController@executeRows');
+Route::get('/rumusthr/loadpendapatan','RumusTHRController@loadPendapatan');
+Route::post('/rumusthr/deletePendapatan','RumusTHRController@deletePendapatan');
+Route::post('/rumusthr/deleteMasaKerja','RumusTHRController@deleteMasaKerja');
+
 
 Route::get('/rumuslembur/loadpembagi','RumusLemburController@loadPembagi');
 Route::get('/rumuslembur/loadpengali','RumusLemburController@loadPengali');
@@ -105,6 +110,7 @@ Route::get('/referensi/kabupaten','ReferensiController@getKabupaten');
 Route::get('/referensi/kecamatan','ReferensiController@getKecamatan');
 Route::get('/referensi/kelurahan','ReferensiController@getKelurahan');
 Route::get('/referensi/tipepinjaman','ReferensiController@getTipePinjaman');
+Route::get('/referensi/thrpembagi','ReferensiController@getThrPembagi');
 
 
 Route::get('/pinjaman/load','PinjamanController@index');
