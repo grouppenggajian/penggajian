@@ -3,347 +3,145 @@ Ext.define('Penggajian.view.rumus.thr.RmsTHRController', {
 
     alias: 'controller.rmsthr',
     onShow:function(me,opts){
-        //        console.log('test');
-        Ext.override(Ext.data.Store,{
-            addField: function(field){
-                //                            readLog(this);
-                field = new Ext.data.Field(field);
-                //		this.recordType.prototype.fields.replace(field);
-                if(typeof field.defaultValue != 'undefined'){
-                    this.each(function(r){
-                        if(typeof r.data[field.name] == 'undefined'){
-                            r.data[field.name] = field.defaultValue;
-                        }
-                    });
-                }
-            },
-            removeField: function(name){
-                //		this.recordType.prototype.fields.removeKey(name);
-                this.each(function(r){
-                    delete r.data[name];
-                    if(r.modified){
-                        delete r.modified[name];
-                    }
-                });
-            }
+        Ext.getCmp('rmsthr_pendapatan').store.load();
+        Ext.getCmp('rmsthr_masakerja').store.load();
+    },
+    onRefreshClick:function(btn){
+        Ext.getCmp('rmsthr_pendapatan').store.load();
+        Ext.getCmp('rmsthr_masakerja').store.load();
+    },
+    onSimpanClick:function(btn){
+        
+        
+        var thrpendapatan=new Array();
+        var recpendapatan = Ext.getCmp('rmsthr_pendapatan').getStore();
+        recpendapatan.each(function(node){
+            thrpendapatan.push(node.data);
         });
-        this.getDataSet();
-    //            var rmsthrgrid=Ext.getCmp('idthrlist').store;   
+        
+        var thrmasakerja=new Array();
+        var recmasakerja = Ext.getCmp('rmsthr_masakerja').getStore();
+        recmasakerja.each(function(node){
+            thrmasakerja.push(node.data);
+        });
+        execute_confirm('Are you sure to Save this ?', Penggajian.Global.getApiUrl()+'rumusthr/save', {
             
-    },
-    
-    onClickRefresh:function(btn,opt){
-        this.getDataSet();
-                                                
-    },
-    getDataSet:function(){
-        
-        
-        
-        Ext.Ajax.request({
-            url: Penggajian.Global.getApiUrl()+'rumusthr/load',
-            method:'GET',
-            waitMsg:'Load Data...',
-            //                params:{},
-            success: function(obj, opts) {
-                var   resp = Ext.decode(obj.responseText);                 
-                var data=resp.data;  
-                //                console.log(data);
-                var gridView = Ext.getCmp('rmsthr_grid');
-                var me=Ext.getCmp('tab1g5').controller;
-                gridView.reconfigure(me.genStore(data), me.genColumns(data));
-                 
-            },
-
-            failure: function(response, opts) {
-                var  resp = Ext.decode(response.responseText);
-                if (resp.reason == 'Session Expired' || resp.message == 'Session Expired') {
-                    session_expired('Session Expired');
-                } else{
-                    set_message(0, resp.reason +' '+resp.message);
-                }
-            }
-        });    
-    },
-    
-    getKeysFromJson : function (obj) {
-        var keys = [];
-        for (var key in obj) {
-            if(key!='id'){
-                if (obj.hasOwnProperty(key)) {
-                    keys.push(key);
-                }
-            }
-            
-        }
-        return keys;
-    },
-
-    genStore : function (json) {
-        //        console.log(json);
-        var me=Ext.getCmp('tab1g5').controller;
-        var keys = me.getKeysFromJson(json[0]);
-        var app = Penggajian.getApplication();
-        var gridstore=app.getStore('storerumusthr');
-        gridstore.setFields(keys);
-        gridstore.setData(json);
-        
-        return gridstore;
-        
-    },
-
-    genColumns : function (json) {
-        var me=Ext.getCmp('tab1g5').controller;
-        var keys = me.getKeysFromJson(json[0]);
-        //        readLog(json[0]);
-        return keys.map(function (field) {
-            var col=null;
-            if(field=='col0'){
-                col={
-                    text: Ext.String.capitalize(field),
-                    width: 200,
-                    dataIndex: field,
-                    align:'center'
-                    ,
-                    editor:{
-                    
-                        xtype:'combo',
-                        id:'rumusthr_'+field,
-                        name:'rumusthr_'+field,
-                        hiddenName:'rumusthr_'+field, 
-                        
-                        store: createArrayStore(datathr),
-                        valueField: 'mid',
-                        displayField: 'mtext',
-                        typeAhead: true,
-                        triggerAction: 'all'                    
-                        ,
-                        listeners:{
-                            select:function( combo, records, eOpts ){
-                                var gvStore=Ext.getCmp('rmsthr_grid').store;
-                                var frec=gvStore.findRecord('col0',combo.getValue());
-                                if(frec){
-                                    combo.setValue(null);
-                                    set_message(2,'Record Is Exists On Entry Grid, Try Another Data !!! ');
-                                    Ext.getCmp('rmsthr_grid').getView().refresh();
-                                }
-                            //                                getDataSeat(combo.getValue());
-
-                            }
-                        }
-                                        
-                    
-                    
-                    }
-                };
-            }else{
-                col={
-                    text: Ext.String.capitalize(field),
-                    width: 100,
-                    dataIndex: field,
-                    align:'center'
-                    ,
-                    editor:{
-                        xtype:'twincombo',
-                        id:'rumusthr_'+field,                    
-                        menu:'threditor',                    
-                        width: 95,
-                        name: 'rumusthr_'+field,
-                        itemId: 'itemIdrumusthr_'+field  ,
-                        listeners:{
-                            onChange:function(){}
-                        }
-                    
-                    }
-                };
-            }
-            return col;
-        });
-    },
-    
-    genColumns0 :function (json) {
-        var me=Ext.getCmp('tab1g5').controller;
-        var keys =me.getKeysFromJson(json);
-        
-        return keys.map(function (field) {
-            var col=null;
-            if(field=='col0'){
-                col={
-                    text: Ext.String.capitalize(field),
-                    width: 200,
-                    dataIndex: field,
-                    align:'center'
-                    ,
-                    editor:{
-                    
-                        xtype:'combo',
-                        id:'rumusthr_'+field,
-                        name:'rumusthr_'+field,
-                        hiddenName:'rumusthr_'+field,                                                                                        
-                        store: createArrayStore(datathr),
-                        valueField: 'mid',
-                        displayField: 'mtext',
-                        typeAhead: true,
-                        triggerAction: 'all'                    
-                    //                                            ,listeners:{
-                    //                                                change:function( me, newValue, oldValue, eOpts ){
-                    //                                                    getDataSeat(newValue);
-                    //                                                }
-                    //                                                ,select:function( combo, records, eOpts ){
-                    //                                                    getDataSeat(combo.getValue());
-                    //                                                    
-                    //                                                }
-                    //                                            }
-                                        
-                    
-                    
-                    }
-                };
-            }else{
-                col={
-                    text: Ext.String.capitalize(field),
-                    width: 100,
-                    dataIndex: field,
-                    align:'center'
-                    ,
-                    editor:{
-                        xtype:'twincombo',
-                        id:'rumusthr_'+field,                    
-                        menu:'threditor',                    
-                        width: 95,
-                        name: 'rumusthr_'+field,
-                        itemId: 'itemIdrumusthr_'+field  ,
-                        listeners:{
-                            onChange:function(){}
-                        }
-                    
-                    }
-                };
-            }
-            return col;
-        });
-    },
-    addColumnClick:function(btn,opt){
-        var me=Ext.getCmp('tab1g5').controller;
-        var gridView = Ext.getCmp('rmsthr_grid');     
-        var gridColumn=gridView.getColumns();
-        var newcolumn='col'+gridColumn.length
-        var column = Ext.create('Ext.grid.column.Column', {
-            text: newcolumn
-        });
-                        
-        gridView.headerCt.insert(gridColumn.length, column);
-        var sstore=gridView.store;
-        var djson=new Array();
-        var storefields=sstore.getModel().getFields();
-
-        if(storefields.length>0){
-            var field={
-                name: newcolumn, 
-                defaultValue: ''
-            }
-            sstore.addField(field);
-            sstore.each(function(node){
-                djson.push(node.data);
-            });
-            if(djson.length==0){
-                var field={}
-                field[newcolumn]='';
-                djson.push(field);
-            }
-        }else{
-            var field={}
-            field[newcolumn]='';
-            djson.push(field);
-        }
-                                                
-                                                
-        gridView.getView().refresh();
-        if(storefields.length==0){
-            gridView.reconfigure(me.genStore(djson), me.genColumns(djson));
-                                                    
-        }else{
-            gridView.reconfigure(me.genStore(djson), me.genColumns0(gridView.store.data.items[0].data));
-        }
-    },
-    addRowClick:function(btn,opt){
-        var me=Ext.getCmp('tab1g5').controller;
-        var gridView = Ext.getCmp('rmsthr_grid');
-        var sstore=gridView.store;
-        var storefield=sstore.getModel().getFields();
-        //        console.log(storefield);
-        if(storefield.length==0){
-            return;
-        }
-        
-        //                                                readLog(sstore.data);
-        //                                                readLog(sstore.data.items[0].fields.keys);
-        //        var keysfield=storefield;
-        var retval={};
-        var rdata=storefield.map(function(field){
-            if(field!=='id'){
-                retval[field]='';
-            }
-                                                    
-        });
-        //        readLog(Ext.JSON.encode(retval));
-        sstore.insert(sstore.getCount(), retval);
-    //                                                json1.push(retval);
-    //                                                readLog(json1);
-    },
-    onSaveClick:function(btn,opt){
-        var datasave=new Array();
-        var gridView = Ext.getCmp('rmsthr_grid');
-        var sstore=gridView.store;        
-        var storefield=sstore.getModel().getFields();
-        var i=-1;
-        sstore.each(function(node){
-            i++;
-            var ndata=node.data;
-            //                                                    readLog(ndata);
-//            var keysfield=node.fields.keys;
-            //    
-            if(ndata.col0!==null || ndata.col0!=='undefined'){
-                Ext.each(storefield, function(keys) {
-                if(keys.name!=='id'){
-                    if(keys.name==storefield[0].name){
-                        datasave.push({
-                            kode:ndata[keys.name],
-                            komponen:null,
-                            rowset:i,
-                            column_name:keys.name
-                        });
-                    }else{
-                        datasave.push({
-                            kode:ndata[storefield[0].name],
-                            komponen:ndata[keys.name],
-                            rowset:i,
-                            column_name:keys.name
-                        });
-                    }
-                    
-                }
-                                                       
-            });
-            }
-            
-                                                    
-        });
-//         console.log(datasave);    
-//         return;
-        execute_confirm('Are you sure to save this ?', Penggajian.Global.getApiUrl()+'rumusthr/save', {
-            postdata:Ext.JSON.encode(datasave),_token:tokendata
-            }, function(obj) {                                                            
+            masakerja:Ext.JSON.encode(thrmasakerja),                                  
+            pendapatan:Ext.JSON.encode(thrpendapatan),
+            _token:tokendata
+        }, function(obj) {                                                            
             var retval=Ext.JSON.decode(obj.responseText);
             var me=Ext.getCmp('tab1g5').controller;
-            me.onClickRefresh();
-            set_message(0,retval.message)
-            } );
-                                                
-    }
+            me.onRefreshClick();
+            set_message(0,retval.message);
+        } );
+    },
     
+    onDeletePendapatanThr:function(grid, rowIndex, colIndex) {
+                        var rec = grid.getStore().getAt(rowIndex);
+                        Ext.Msg.show({
+                            title: 'Confirm',
+                            msg: 'Are you sure delete selected row ?',
+                            buttons: Ext.Msg.YESNO,
+                            icon: Ext.Msg.QUESTION,
+                            fn: function(btn){
+                                if (btn == 'yes') {                                                                
+                                    var data = rec.data;                                                                 
+                                    Ext.Ajax.request({                                                            
+                                        url: Penggajian.Global.getApiUrl() + 'rumusthr/deletePendapatan',
+                                        method: 'POST',
+                                        params: {
+                                            opt: 'delete',
+                                            _token: tokendata,                                            
+                                            postdata:Ext.JSON.encode(data)
+                                        },
+                                        success: function(obj) {
+                                            var   resp = Ext.decode(obj.responseText);                                                                
+                                            if(resp.success==true){
+                                                Ext.Msg.show({
+                                                    title:'Message Info',
+                                                    msg: resp.message,
+                                                    buttons: Ext.Msg.OK,
+                                                    icon: Ext.Msg.INFO
+                                                });
+                                                Ext.getCmp('rmsthr_pendapatan').store.reload();
+                                            }else{
+                                                Ext.Msg.show({
+                                                    title: 'Error',
+                                                    msg: resp.message,
+                                                    modal: true,
+                                                    icon: Ext.Msg.ERROR,
+                                                    buttons: Ext.Msg.OK,
+                                                    fn: function(btn){
+                                                        if (btn == 'ok' && resp.msg == 'Session Expired') {
+                                                            window.location = Penggajian.Global.getApiUrl();
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        failure: function(obj) {
+                                            var  resp = Ext.decode(obj.responseText);
+                                            Ext.Msg.alert('info',resp.reason);
+                                        }
+                                    });                 
+                                } 
+                            }
+                        });
+                    }
     
-    
+  ,onDeleteMasakerja:function(grid, rowIndex, colIndex) {
+                        var rec = grid.getStore().getAt(rowIndex);
+                        Ext.Msg.show({
+                            title: 'Confirm',
+                            msg: 'Are you sure delete selected row ?',
+                            buttons: Ext.Msg.YESNO,
+                            icon: Ext.Msg.QUESTION,
+                            fn: function(btn){
+                                if (btn == 'yes') {                                                                
+                                    var data = rec.data;                                                                 
+                                    Ext.Ajax.request({                                                            
+                                        url: Penggajian.Global.getApiUrl() + 'rumusthr/deleteMasaKerja',
+                                        method: 'POST',
+                                        params: {
+                                            opt: 'delete',
+                                            _token: tokendata,                                            
+                                            postdata:Ext.JSON.encode(data)
+                                        },
+                                        success: function(obj) {
+                                            var   resp = Ext.decode(obj.responseText);                                                                
+                                            if(resp.success==true){
+                                                Ext.Msg.show({
+                                                    title:'Message Info',
+                                                    msg: resp.message,
+                                                    buttons: Ext.Msg.OK,
+                                                    icon: Ext.Msg.INFO
+                                                });
+                                                Ext.getCmp('rmsthr_masakerja').store.reload();
+                                            }else{
+                                                Ext.Msg.show({
+                                                    title: 'Error',
+                                                    msg: resp.message,
+                                                    modal: true,
+                                                    icon: Ext.Msg.ERROR,
+                                                    buttons: Ext.Msg.OK,
+                                                    fn: function(btn){
+                                                        if (btn == 'ok' && resp.msg == 'Session Expired') {
+                                                            window.location = Penggajian.Global.getApiUrl();
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        failure: function(obj) {
+                                            var  resp = Ext.decode(obj.responseText);
+                                            Ext.Msg.alert('info',resp.reason);
+                                        }
+                                    });                 
+                                } 
+                            }
+                        });
+                    }  
 });
 
 

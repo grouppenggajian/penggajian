@@ -11,7 +11,7 @@ Ext.define('Penggajian.Application', {
     stores: [
         'Jabatan','JabatanNew','Pendapatan','Potongan','Shift','JabatanPendapatan','PendapatanCombo',
         'JabatanPendapatanInput','Periode','rumus.RmsPendapatan','rumus.RmsPotongan','rumus.RmsTHR',
-        'rumus.RmsLemburPengali','rumus.RmsLemburPembagi','rumus.RmsLemburPendapatan',
+        'rumus.RmsLemburPengali','rumus.RmsLemburPembagi','rumus.RmsLemburPendapatan','rumus.RmsThrPendapatan',
         'referensi.Agama','referensi.GolonganDarah','referensi.StatusKerja',
         'referensi.Propinsi'
         ,'referensi.Kabupaten'
