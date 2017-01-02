@@ -169,5 +169,6 @@ Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan')
 
 Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 
-
+Route::get('/absen/testkoneksi', 'AbsensiController@index');
+Route::get('/absen/setmesin', 'AbsensiController@set_mesin');
 
