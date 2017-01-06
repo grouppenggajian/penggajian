@@ -171,4 +171,7 @@ Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 
 Route::get('/absen/testkoneksi', 'AbsensiController@index');
 Route::get('/absen/setmesin', 'AbsensiController@set_mesin');
+Route::get('/absen/getlogmesin', 'AbsensiController@get_logmesin');
+Route::get('/absen/clearlogmesin', 'AbsensiController@clear_logmesin');
+Route::get('/absen/deleteusermesin', 'AbsensiController@delete_pinmesin');
 
