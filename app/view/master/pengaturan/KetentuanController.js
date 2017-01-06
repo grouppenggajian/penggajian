@@ -19,7 +19,10 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
        })
     },
     onShow:function(){
+        
         Ext.getCmp('tab1f3').getController().onRefreshClick();
+        
+        
     },
     onSimpanClick:function(){
         var toleransi=Ext.getCmp('ketentuan_toleransi').getValue()

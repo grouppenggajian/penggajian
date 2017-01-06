@@ -17,8 +17,8 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
         xtype:'form',
         region:'north',
         layout: 'hbox',
-        height:200,
-            minHeight:200,
+        height:250,
+            minHeight:250,
         bodyPadding: '5 5 5 5',
         items:[
             {
@@ -85,6 +85,82 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                xtype: 'displayfield',
                                value: 'hari',
                                width: 50
+                           }
+                        ]
+                    },{
+                        xtype: 'fieldcontainer',
+                        margin:'3 10 3 5',
+                        anchor:'100%',
+                        fieldLabel:'Mulai Absen',
+                        combineErrors: false,
+                        layout:'hbox',
+                        defaults: {
+                            hideLabel: true
+                        },
+                        items: [
+                           {
+                               id:'ketentuan_mulaiabsen',
+                               name : 'mulaiabsen',
+                               xtype: 'numberfield',
+                               width: 70,
+                               minValue:0,
+                               step: 5,
+                               allowBlank: false,
+                              margin:'0 10 0 5'
+                               
+                           },
+                           {
+                               xtype: 'displayfield',
+                               value: 'menit sebelum masuk',
+                               width: 150
+                           }
+                        ]
+                    },{
+                        xtype: 'fieldcontainer',
+                        margin:'3 10 3 5',
+                        anchor:'100%',
+                        fieldLabel:'IP Mesin',
+                        combineErrors: false,
+                        layout:'hbox',
+                        defaults: {
+                            hideLabel: true
+                        },
+                        items: [
+                           {
+                               id:'ketentuan_ipmesin',
+                               name : 'ipmesin',
+                               xtype: 'textfield',
+                               width: 120,
+                               vtype:{
+                                   ip:function(v){
+                                   var ipAddress = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/;
+                                   var matches = ipAddress.exec(v);
+                                    if (matches) {
+                                        for (var i = 1; i <= 3; i++)
+                                        {
+                                            if (matches[i] && !(parseInt(matches[i], 10) < 256 && parseInt(matches[i], 10) >= 0))
+                                            {
+                                                return false;
+                                            }
+                                        }
+                                        // the last octet should be greater than 0 and lesser than 255
+                                        if (matches[4] && !(parseInt(matches[4], 10) < 255 && parseInt(matches[4], 10) > 0))
+                                        {
+                                            return false;
+                                        }return true;
+                                    }return false;
+                                },
+                                ipText : 'Invalid ip address'
+                               
+                               },
+                               allowBlank: false,
+                              margin:'0 10 0 5'
+                               
+                           },
+                           {
+                               xtype: 'displayfield',
+                               value: '127.0.0.1',
+                               width: 120
                            }
                         ]
                     }
