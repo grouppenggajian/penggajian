@@ -117,20 +117,20 @@ class AbsensiController extends Controller{
                     $Status = Parse_Data($data,"<Status>","</Status>");
                     $WorkCode = Parse_Data($data,"<WorkCode>","</WorkCode>");
                     $Card = Parse_Data($data,"<Card>","</Card>");
-                    // if(!$this->if_exist_check($PIN,$DateTime) && $PIN && $DateTime){
-                    // 	$retval = MYModel::setInsertRow('log_absen', array( array(
-                    //     'pin' => $PIN,
-                    //     'date_time' => $DateTime,
-                    //     'verified' => $Verified,
-                    //     'status' => $Status)));
-                    // }
-                    echo json_encode(array(
-                    	'pin'=>$PIN,
-                    	'dt'=>$DateTime,
-                    	'verified'=>$Verified,
-                    	'status'=>$Status,
-                    	'workcode'=>$WorkCode
-                    	));
+                     if(!$this->if_exist_check($PIN,$DateTime) && $PIN && $DateTime){
+                     	$retval = MYModel::setInsertRow('log_absen', array( array(
+                         'pin' => $PIN,
+                         'date_time' => $DateTime,
+                         'verified' => $Verified,
+                         'status' => $Status)));
+                     }
+//                    echo json_encode(array(
+//                    	'pin'=>$PIN,
+//                    	'dt'=>$DateTime,
+//                    	'verified'=>$Verified,
+//                    	'status'=>$Status,
+//                    	'workcode'=>$WorkCode
+//                    	));
                     }
                 }
 		}else echo "Koneksi Gagal";
