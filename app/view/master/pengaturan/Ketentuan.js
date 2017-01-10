@@ -24,7 +24,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
             {
                 xtype:'fieldset',
                 title:'Toleransi dan Cuti',
-                width:'50%',
+                width:'45%',
                 layout:'anchor',
                 margin:'0 10 0 5',
                 defaults:{
@@ -115,7 +115,20 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                width: 150
                            }
                         ]
-                    },{
+                    }
+                ]
+            },
+            {
+                xtype:'fieldset',
+                title:'Setting Mesin',
+                width:'35%',
+                layout:'anchor',
+                margin:'0 10 0 5',
+                defaults:{
+                  labelWidth:80  
+                },
+                items:[
+                    {
                         xtype: 'fieldcontainer',
                         margin:'3 10 3 5',
                         anchor:'100%',
@@ -131,28 +144,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                name : 'ipmesin',
                                xtype: 'textfield',
                                width: 120,
-                               vtype:{
-                                   ip:function(v){
-                                   var ipAddress = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/;
-                                   var matches = ipAddress.exec(v);
-                                    if (matches) {
-                                        for (var i = 1; i <= 3; i++)
-                                        {
-                                            if (matches[i] && !(parseInt(matches[i], 10) < 256 && parseInt(matches[i], 10) >= 0))
-                                            {
-                                                return false;
-                                            }
-                                        }
-                                        // the last octet should be greater than 0 and lesser than 255
-                                        if (matches[4] && !(parseInt(matches[4], 10) < 255 && parseInt(matches[4], 10) > 0))
-                                        {
-                                            return false;
-                                        }return true;
-                                    }return false;
-                                },
-                                ipText : 'Invalid ip address'
-                               
-                               },
+                               vtype:'IPAddress',
                                allowBlank: false,
                               margin:'0 10 0 5'
                                
@@ -163,18 +155,47 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                width: 120
                            }
                         ]
+                    },{
+                        xtype: 'fieldcontainer',
+                        margin:'3 10 3 5',
+                        anchor:'100%',
+                        fieldLabel:'Password',
+                        combineErrors: false,
+                        layout:'hbox',
+                        defaults: {
+                            hideLabel: true
+                        },
+                        items: [
+                           {
+                               id:'ketentuan_pwdmesin',
+                               name : 'pwdmesin',
+                               xtype: 'textfield',
+                               width: 120,
+                               inputType: 'password',
+                               maxLength:6,
+                               enforceMaxLength:true,
+                               allowBlank: false,
+                              margin:'0 10 0 5'
+                               
+                           },
+                           {
+                               xtype: 'displayfield',
+                               value: '6 karakter',
+                               width: 120
+                           }
+                        ]
                     }
                 ]
             },
             {
                 xtype:'fieldset',
                 title:'Periode Gaji',
-                anchor:'50%',
+                anchor:'20%',
                 flex:1,
                 margin:'0 10 0 5',
                 layout:'anchor',
                 defaults:{
-                  labelWidth:150  
+                  labelWidth:60  
                 },
                 items:[
                     {
@@ -182,7 +203,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                name : 'periodemulai',
                                fieldLabel:'Mulai',
                                xtype: 'numberfield',
-                               width: 225,
+                               width: 150,
                                minValue:1,
                                maxValue:31,
                                allowBlank: false,
@@ -192,7 +213,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                                name : 'periodeselesai',
                                fieldLabel:'Selesai',
                                xtype: 'numberfield',
-                               width: 225,
+                               width: 150,
                                minValue:1,
                                maxValue:31,
                                allowBlank: false,

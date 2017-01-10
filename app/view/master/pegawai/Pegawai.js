@@ -103,9 +103,85 @@ Ext.define('Penggajian.view.master.pegawai.Pegawai', {
                                 
             },
             {
+                text: 'Finger', 
+                dataIndex: 'post_finger', 
+                xtype:'checkcolumn',
+                align:'center',
+//                processEvent:function ( type , view , cell , recordIndex , cellIndex , e , record , row ){
+//                    var retval=false;
+//                    console.log(record.get('post_finger'));
+//                    if(record.get('post_finger')==0){
+//                        retval=true;
+//                    }
+//                    return retval;
+//                },
+                width:60,
+                listeners:{
+                     
+                        checkchange:function( grid, rowIndex, checked,record , e , eOpts ){
+                            var rec = record.data;
+                            var str=rec.nik;
+                            var pegawaiurl=checked?'pegawai/postFinger':'pegawai/deleteFinger';
+                            console.log(checked);
+                            if(!record.get('pin')){
+                                Ext.getCmp('idpegawailist').store.reload();
+                                return;
+                            }
+                            Ext.Ajax.request({                                                            
+                                        url: Penggajian.Global.getApiUrl() + pegawaiurl,
+                                        method: 'POST',
+                                        params: {                                            
+                                            _token: tokendata,
+                                            pin:rec.pin,
+                                            name:rec.nama_panggilan,
+                                            card:str.substring((str.length -5) , str.len)
+                                        },
+                                        success: function(obj) {
+                                            var   resp = Ext.decode(obj.responseText);                                                                
+                                            if(resp.success==true){
+                                                Ext.Msg.show({
+                                                    title:'Message Info',
+                                                    msg: resp.message,
+                                                    buttons: Ext.Msg.OK,
+                                                    icon: Ext.Msg.INFO
+                                                });
+                                                Ext.getCmp('idpegawailist').store.reload();
+                                            }else{
+                                                Ext.Msg.show({
+                                                    title: 'Error',
+                                                    msg: resp.message,
+                                                    modal: true,
+                                                    icon: Ext.Msg.ERROR,
+                                                    buttons: Ext.Msg.OK,
+                                                    fn: function(btn){
+                                                        if (btn == 'ok' && resp.msg == 'Session Expired') {
+                                                            window.location = Penggajian.Global.getApiUrl();
+                                                        }
+                                                    }
+                                                });
+                                                Ext.getCmp('idpegawailist').store.reload();
+                                            }
+                                        },
+                                        failure: function(obj) {
+                                            var  resp = Ext.decode(obj.responseText);
+                                            Ext.Msg.alert('info',resp.reason);
+//                                            Ext.getCmp('idpegawailist').store.reload();
+                                        }
+                                    });
+                        }
+                }
+            },
+            
+            {
                 text: 'NIK',  
                 dataIndex: 'nik',
                 align:'center'
+            },
+            {
+                text: 'PIN',  
+                dataIndex: 'pin',
+                align:'center',
+                width:50
             },
             {
                 text: 'Nama', 

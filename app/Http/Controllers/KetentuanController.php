@@ -42,6 +42,7 @@ class KetentuanController extends controller {
         $kuotacuti = $request->kuotacuti ? $request->kuotacuti : NULL;
         $mulaiabsen = $request->mulaiabsen ? $request->mulaiabsen : NULL;
         $ipmesin = $request->ipmesin ? $request->ipmesin : NULL;
+        $pwdmesin = $request->pwdmesin  ? $request->pwdmesin  : NULL;
         $periodemulai = $request->periodemulai ? $request->periodemulai : NULL;
         $periodeselesai = $request->periodeselesai ? $request->periodeselesai : NULL;
         $pantangan = $request->pantangan ? json_decode($request->pantangan) : array();
@@ -56,7 +57,8 @@ class KetentuanController extends controller {
                         'periodemulai' => $periodemulai,
                         'periodeselesai' => $periodeselesai,
                                 'mulaiabsen' => $mulaiabsen,
-                        'ipmesin' => $ipmesin
+                        'ipmesin' => $ipmesin,
+                                'pwdmesin'=> $pwdmesin
                                 ));
         }else{
             $retval = MYModel::setInsertRow('ketentuan', array( array(
@@ -65,7 +67,9 @@ class KetentuanController extends controller {
                         'periodemulai' => $periodemulai,
                         'periodeselesai' => $periodeselesai,
                                 'mulaiabsen' => $mulaiabsen,
-                        'ipmesin' => $ipmesin)));
+                        'ipmesin' => $ipmesin,
+                                'pwdmesin'=> $pwdmesin
+                )));
         }
 //        if($retval){
             $param = array('clear', null);

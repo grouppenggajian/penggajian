@@ -65,6 +65,9 @@ Route::get('/pegawai/getImage','PegawaiController@getImage');
 Route::post('/pegawai/deletePendapatan','PegawaiController@deletePendapatan');
 Route::post('/pegawai/savePendapatan','PegawaiController@savePendapatan');
 
+Route::post('/pegawai/postFinger','PegawaiController@postFinger');
+Route::post('/pegawai/deleteFinger','PegawaiController@deleteFinger');
+
 Route::get('/pegawai/loadjadwal','PegawaiController@loadJadwal');
 Route::post('/pegawai/deletejadwal','PegawaiController@deleteJadwal');
 Route::post('/pegawai/savejadwal','PegawaiController@saveJadwal');
@@ -169,9 +172,12 @@ Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan')
 
 Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 
-Route::get('/absen/testkoneksi', 'AbsensiController@index');
-Route::get('/absen/setmesin', 'AbsensiController@set_mesin');
-Route::get('/absen/getlogmesin', 'AbsensiController@get_logmesin');
-Route::get('/absen/clearlogmesin', 'AbsensiController@clear_logmesin');
-Route::get('/absen/deleteusermesin', 'AbsensiController@delete_pinmesin');
+Route::get('/absensi/load', 'AbsensiController@index');
+Route::post('/absensi/getlogmesin', 'AbsensiController@getLogMesin');
+Route::post('/absensi/clearlogmesin', 'AbsensiController@clearLogMesin');
+
+
+Route::get('/mesin/getuserinfo', 'MesinController@GetUserInfo');
+
+
 

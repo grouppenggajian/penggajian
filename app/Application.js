@@ -29,6 +29,7 @@ Ext.define('Penggajian.Application', {
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
         ,'jadwal.TukarOff','ijin.Ijin','ijin.Cuti'
         ,'pengaturan.HariLibur'
+        ,'Absensi'
         // TODO: add global / shared stores here
     ],
     views:[

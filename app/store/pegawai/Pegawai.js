@@ -17,6 +17,10 @@ Ext.define('Penggajian.store.pegawai.Pegawai', {
                
     {
         name:	'nik'
+    },{
+        name:	'pin'
+    },{
+        name:	'post_finger'
     },
 {
         name:	'nama'

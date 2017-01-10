@@ -57,6 +57,12 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanModel', {
                 name:	'periodemulai'
             },{
                 name:	'periodeselesai'
+            },{
+                name:	'mulaiabsen'
+            },{
+                name:	'ipmesin'
+            },{
+                name:	'pwdmesin'
             }
             ]
         }

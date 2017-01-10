@@ -15,7 +15,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
-
+use App\Http\Controllers\MesinController;
 class PegawaiController extends Controller {
 
     //put your code here
@@ -40,6 +40,85 @@ class PegawaiController extends Controller {
                 ]);
     }
 
+    public function postFinger(Request $request){
+        $pin = $request->pin? $request->pin : 1;
+        $name = $request->name? $request->name : null;
+        $card = $request->card? $request->card : null;
+        $retval=MesinController::GetUserInfo($pin);
+        $setretval=false;
+        $json = array();
+        if(!is_array($retval)){
+            if($retval=="koneksi gagal"){
+                $json = array(
+                        "success" => false,
+                        "message" => 'Set Mesin Koneksi Gagal'
+                    );
+            }
+          return  response($json, 200);
+        }
+        if(count($retval)>0){
+            $json = array(
+                        "success" => false,
+                        "message" => 'Data Is Exists, Try Another Data'
+                    );
+        }else{
+            $setretval=MesinController::SetUserInfo($pin, $name, $card);
+            if($setretval==1){
+                $json = array(
+                        "success" => true,
+                        "message" => 'Set Mesin Success'
+                    );
+            }
+            
+            if($setretval=="Koneksi Gagal"){
+                $json = array(
+                        "success" => false,
+                        "message" => 'Set Mesin Koneksi Gagal'
+                    );
+            }
+            
+        }
+        return response($json, 200);
+    }
+    public function deleteFinger(Request $request){
+        $pin = $request->pin? $request->pin : 1;        
+        $retval=MesinController::GetUserInfo($pin);
+        $setretval=false;
+        $json = array();
+        if(!is_array($retval)){
+            if($retval=="koneksi gagal"){
+                $json = array(
+                        "success" => false,
+                        "message" => 'Delete Mesin Koneksi Gagal'
+                    );
+            }
+          return  response($json, 200);
+        }
+        if(count($retval)>0){
+            $setretval=MesinController::DeleteUserInfo($pin);
+            if($setretval==1){
+                $json = array(
+                        "success" => true,
+                        "message" => 'Delete Mesin Success'
+                    );
+            }
+            
+            if($setretval=="Koneksi Gagal"){
+                $json = array(
+                        "success" => false,
+                        "message" => 'Delete Mesin Koneksi Gagal'
+                    );
+            }
+        }else{
+            $json = array(
+                        "success" => false,
+                        "message" => 'Data Is Not Exists, Try Another Data'
+                    );
+            
+            
+        }
+        return response($json, 200);
+    }
     public function loadPendapatan(Request $request) {
         $start = $request->start ? $request->start : 0;
         $limit = $request->limit ? $request->limit : 0;

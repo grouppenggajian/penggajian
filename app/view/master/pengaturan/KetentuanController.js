@@ -13,13 +13,23 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
                             Ext.getCmp('ketentuan_kuotacuti').setValue(records[0].get('kuotacuti'));
                             Ext.getCmp('ketentuan_periodemulai').setValue(records[0].get('periodemulai'));
                             Ext.getCmp('ketentuan_periodeselesai').setValue(records[0].get('periodeselesai'));
+                            Ext.getCmp('ketentuan_mulaiabsen').setValue(records[0].get('mulaiabsen'));
+                            Ext.getCmp('ketentuan_ipmesin').setValue(records[0].get('ipmesin'));
+                            Ext.getCmp('ketentuan_pwdmesin').setValue(records[0].get('pwdmesin'));
                         }
                     }
             }
        })
     },
     onShow:function(){
-        
+        Ext.override(Ext.form.field.VTypes,{
+            IPAddress:  function(value) {
+              return this.IPAddressRe.test(value);
+          },
+          IPAddressRe: /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+          IPAddressText: 'Must be a numeric IP address',
+          IPAddressMask: /[\d\.]/i
+        });
         Ext.getCmp('tab1f3').getController().onRefreshClick();
         
         
@@ -28,7 +38,11 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
         var toleransi=Ext.getCmp('ketentuan_toleransi').getValue()
        ,kuotacuti= Ext.getCmp('ketentuan_kuotacuti').getValue()
        ,periodemulai= Ext.getCmp('ketentuan_periodemulai').getValue()
-       ,periodeselesai= Ext.getCmp('ketentuan_periodeselesai').getValue();
+       ,periodeselesai= Ext.getCmp('ketentuan_periodeselesai').getValue()       
+        ,mulaiabsen= Ext.getCmp('ketentuan_mulaiabsen').getValue()
+       ,ipmesin= Ext.getCmp('ketentuan_ipmesin').getValue()
+       ,pwdmesin= Ext.getCmp('ketentuan_pwdmesin').getValue();
+       
        
        var pantangan=new Array();
         var recpantangan = Ext.getCmp('ketentuanpantangan').getStore();
@@ -41,6 +55,9 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
             kuotacuti:kuotacuti,
             periodemulai:periodemulai,
             periodeselesai:periodeselesai,
+            mulaiabsen:mulaiabsen,
+            ipmesin:ipmesin,
+            pwdmesin:pwdmesin,
             pantangan:Ext.JSON.encode(pantangan),                                              
             _token:tokendata
         }, function(obj) {                                                            
