@@ -91,9 +91,11 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadirModel', {
             ,
             fields: [
                
-            {	name:	'id'	},
-{	name:	'name'	}
-          
+            
+           {	name:	'kode'	},
+{	name:	'keterangan'	},
+{	name:	'nilai'	},
+{	name:	'loadform'	}
 
             
         
@@ -120,11 +122,9 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadirModel', {
             }
             ,
             fields: [
-               
-            {	name:	'kode'	},
-{	name:	'keterangan'	},
-{	name:	'nilai'	},
-{	name:	'loadform'	}
+               {	name:	'id'	},
+{	name:	'name'	}
+           
           
 
             
