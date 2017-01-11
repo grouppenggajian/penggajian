@@ -54,7 +54,7 @@ class PegawaiController extends Controller {
                         "message" => 'Set Mesin Koneksi Gagal'
                     );
             }
-          return  response($json, 200);
+//          return  response($json, 200);
         }
         if(count($retval)>0){
             $json = array(
@@ -62,11 +62,22 @@ class PegawaiController extends Controller {
                         "message" => 'Data Is Exists, Try Another Data'
                     );
         }else{
+//            echo 'disini';
             $setretval=MesinController::SetUserInfo($pin, $name, $card);
-            if($setretval==1){
+//            echo $setretval;
+            if($setretval){
                 $json = array(
                         "success" => true,
                         "message" => 'Set Mesin Success'
+                    );
+                $retupdate= Pegawai::setUpdateRow('mst_karyawans', array(array('pin','=',$pin))
+                            , array(
+                        'post_finger' => 1
+                                ));
+            }else{
+                $json = array(
+                        "success" => false,
+                        "message" => 'Set Mesin Aborted'
                     );
             }
             
@@ -101,6 +112,10 @@ class PegawaiController extends Controller {
                         "success" => true,
                         "message" => 'Delete Mesin Success'
                     );
+                $retupdate= Pegawai::setUpdateRow('mst_karyawans', array(array('pin','=',$pin))
+                            , array(
+                        'post_finger' => 0
+                                ));
             }
             
             if($setretval=="Koneksi Gagal"){

@@ -122,7 +122,8 @@ Ext.define('Penggajian.view.master.pegawai.Pegawai', {
                             var rec = record.data;
                             var str=rec.nik;
                             var pegawaiurl=checked?'pegawai/postFinger':'pegawai/deleteFinger';
-                            console.log(checked);
+                            console.log(rec.pin);
+//                            return;
                             if(!record.get('pin')){
                                 Ext.getCmp('idpegawailist').store.reload();
                                 return;

@@ -173,11 +173,17 @@ Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan')
 Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 
 Route::get('/absensi/load', 'AbsensiController@index');
-Route::post('/absensi/getlogmesin', 'AbsensiController@getLogMesin');
+Route::get('/absensi/getlogmesin', 'AbsensiController@getLogMesin');
 Route::post('/absensi/clearlogmesin', 'AbsensiController@clearLogMesin');
+Route::post('/absensi/delete', 'AbsensiController@deleteLogAbsen');
+
+
+Route::get('/mesin/getlogmesin', 'MesinController@GetAttLogView');
 
 
 Route::get('/mesin/getuserinfo', 'MesinController@GetUserInfo');
+Route::get('/mesin/setuserinfo', 'MesinController@SetUserInfo');
+
 
 
 

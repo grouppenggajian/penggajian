@@ -97,6 +97,27 @@ class AbsensiController extends Controller {
         }
         return response($json, 200);
     }
+    
+    public function deleteLogAbsen(Request $request) {
+        $id=$request->noid ? $request->noid : 0;
+        $query = MYModel::getRowsTable([array('id','=',$id)], 'log_absen');
+        $retval = 0;
+        $json=array("success" => true,
+                            "message" => 'Execute Successfull!');
+        if (count($query) > 0) {
+            $retval = MYModel::setUpdateRow('log_absen', [array('id','=',$id)]
+                            , array(
+                        'deleted' => 1));
+        }
+        if($retval){
+            $json=array("success" => true,
+                            "message" => 'Execute Successfull!');
+        }else{
+            $json=array("success" => false,
+                            "message" => 'Execute Aborted!');
+        }
+        return response($json,200);
+    }
 
 }
 

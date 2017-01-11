@@ -28,7 +28,7 @@ class MesinController extends Controller {
         return $query;
     }
 
-    public function setSoapMesin($Connect, $soap_request) {
+    public static function setSoapMesin($Connect, $soap_request) {
         $newLine = "\r\n";
         fputs($Connect, "POST /iWsService HTTP/1.0" . $newLine);
         fputs($Connect, "Content-Type: text/xml" . $newLine);
@@ -49,6 +49,12 @@ class MesinController extends Controller {
         $errstr = null;
         $errno = null;
 
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
 
         if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
             return "koneksi gagal";
@@ -56,7 +62,7 @@ class MesinController extends Controller {
 
         if ($Connect) {
             $soap_request = "<GetUserInfo><ArgComKey Xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg><PIN Xsi:type=\"xsd:integer\">$pin</ PIN></ Arg></ GetUserInfo>";
-            $buffer_soap = $this->setSoapMesin($Connect, $soap_request);
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
             $buffer_xml = Parse_Data($buffer_soap, "<GetUserInfoResponse>", "</GetUserInfoResponse>");
             $buffer = explode("\r\n", $buffer_xml);
             $rowmesin = array();
@@ -89,24 +95,30 @@ class MesinController extends Controller {
         $ketentuan = MesinController::getKetentuan();
         $ip = $ketentuan[0]->ipmesin;
         $pwd = $ketentuan[0]->pwdmesin;
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
         if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
             return "koneksi gagal";
         }
         if ($Connect) {
             // echo "Koneksi Sukses"."\r\n";	
             $soap_request = "<SetUserInfo><ArgComKey Xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg>
-                <PIN>$pin</ PIN><Name>$name</ Name>
-                <Password></ Password>
-                <Group>0</ Group>
-                <Privilege>0</ Privilege>
-                <Card>$card</ Card>
-                    <PIN2>$pin</ PIN2>
-                        <TZ1>0</ TZ1><TZ2>0</ TZ2 <TZ3>0</ TZ3>
-			</ Arg></ SetUserInfo>";
-            $buffer_soap = $this->setSoapMesin($Connect, $soap_request);
+                <PIN>$pin</PIN><Name>$name</Name>
+                <Password></Password>
+                <Group>0</Group>
+                <Privilege>0</Privilege>
+                <Card>$card</Card>
+                    <PIN2>$pin</PIN2>
+                        <TZ1>0</TZ1><TZ2>0</TZ2 <TZ3>0</TZ3>
+			</Arg></SetUserInfo>";
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
             $buffer_xml = Parse_Data($buffer_soap, "<SetUserInfoResponse>", "</SetUserInfoResponse>");
             $buffer = explode("\r\n", $buffer_xml);
-//            $rowmesin = array();
+//            echo var_dump($buffer);
             $retval = false;
             for ($a = 0; $a < count($buffer); $a++) {
                 $data = Parse_Data($buffer[$a], "<Row>", "</Row>");
@@ -124,6 +136,13 @@ class MesinController extends Controller {
         $ketentuan = MesinController::getKetentuan();
         $ip = $ketentuan[0]->ipmesin;
         $pwd = $ketentuan[0]->pwdmesin;
+        
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
         if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
             return "koneksi gagal";
         }
@@ -131,7 +150,7 @@ class MesinController extends Controller {
         if ($Connect) {
             // echo "Koneksi Sukses"."\r\n";	
             $soap_request = "<DeleteUser><ArgComKey xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">$pin</PIN></Arg></DeleteUser>";
-            $buffer_soap = $this->setSoapMesin($Connect, $soap_request);
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
             $buffer_xml = Parse_Data($buffer_soap, "<DeleteUserResponse>", "</DeleteUserResponse>");
             $buffer = explode("\r\n", $buffer_xml);
 //            $rowmesin = array();
@@ -145,10 +164,10 @@ class MesinController extends Controller {
             @fclose($Connect);
             return $retval;
         }else
-            echo "Koneksi Gagal";
+            return "Koneksi Gagal";
     }
 
-    public function if_exist_check($PIN, $DateTime) {
+    public static function if_exist_check($PIN, $DateTime) {
         // validasi periode
         $data = MYModel::getRowsTable([['pin', '=', $PIN], ['date_time', '=', $DateTime]], 'log_absen');
 
@@ -159,7 +178,7 @@ class MesinController extends Controller {
         return $retval;
     }
 
-    public function validasi_periode($datefinger, $DateStart, $DateFinish) {
+    public static function validasi_periode($datefinger, $DateStart, $DateFinish) {
         // validasi periode
         $datef = strtotime($datefinger);
         $datef = date('Y-m-d', $datef);
@@ -170,6 +189,53 @@ class MesinController extends Controller {
         }
     }
 
+    public static function GetAttLogView($pin = 'All') {
+        $ketentuan = MesinController::getKetentuan();
+        $ip = $ketentuan[0]->ipmesin;
+        $pwd = $ketentuan[0]->pwdmesin;
+
+        $periode = MesinController::getPeriode();
+        $tglawal = $periode[0]->tglawal;
+        $tglakhir = $periode[0]->tglakhir;
+
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
+        
+        if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
+            return "koneksi gagal";
+        }
+        if ($Connect) {
+            // echo "Koneksi Sukses"."\r\n";	
+            $soap_request = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">$pin</PIN></Arg></GetAttLog>";
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
+            $buffer_xml = Parse_Data($buffer_soap, "<GetAttLogResponse>", "</GetAttLogResponse>");
+            $buffer = explode("\r\n", $buffer_xml);
+//             echo var_dump($buffer);
+            for ($a = 0; $a < count($buffer); $a++) {
+                $data = Parse_Data($buffer[$a], "<Row>", "</Row>");
+                if (strlen($data) > 0) {
+                    $PIN = Parse_Data($data, "<PIN>", "</PIN>");
+                    $DateTime = Parse_Data($data, "<DateTime>", "</DateTime>");
+                    $Verified = Parse_Data($data, "<Verified>", "</Verified>");
+                    $Status = Parse_Data($data, "<Status>", "</Status>");
+                    $WorkCode = Parse_Data($data, "<WorkCode>", "</WorkCode>");
+                    $Card = Parse_Data($data, "<Card>", "</Card>");
+                    echo json_encode( array(
+                                            'pin' => $PIN,
+                                            'date_time' => $DateTime,
+                                            'verified' => $Verified,
+                                            'status' => $Status));
+                }
+            }
+            @fclose($Connect);
+            return true;
+        }else return "Koneksi Gagal";
+    }
+    
     public static function GetAttLog($pin = 'All') {
         $ketentuan = MesinController::getKetentuan();
         $ip = $ketentuan[0]->ipmesin;
@@ -179,16 +245,24 @@ class MesinController extends Controller {
         $tglawal = $periode[0]->tglawal;
         $tglakhir = $periode[0]->tglakhir;
 
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
+        
         if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
             return "koneksi gagal";
         }
         if ($Connect) {
             // echo "Koneksi Sukses"."\r\n";	
             $soap_request = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">$pin</PIN></Arg></GetAttLog>";
-            $buffer_soap = $this->setSoapMesin($Connect, $soap_request);
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
             $buffer_xml = Parse_Data($buffer_soap, "<GetAttLogResponse>", "</GetAttLogResponse>");
             $buffer = explode("\r\n", $buffer_xml);
             // echo var_dump($buffer);
+            $retval=false;
             for ($a = 0; $a < count($buffer); $a++) {
                 $data = Parse_Data($buffer[$a], "<Row>", "</Row>");
                 if (strlen($data) > 0) {
@@ -211,20 +285,28 @@ class MesinController extends Controller {
             }
             @fclose($Connect);
             return true;
-        }return "Koneksi Gagal";
+        }else return "Koneksi Gagal";
     }
 
-    public function ClearLog() {
+    public static function ClearLog() {
         $ketentuan = MesinController::getKetentuan();
         $ip = $ketentuan[0]->ipmesin;
         $pwd = $ketentuan[0]->pwdmesin;
+        
+        if(!$ip){
+            return "koneksi gagal";
+        }
+        if(!$pwd){
+            return "koneksi gagal";
+        }
+        
         if (!$Connect = @fsockopen($ip, "80", $errno, $errstr, 1)) {
             return "koneksi gagal";
         }
         if ($Connect) {
             // echo "Koneksi Sukses"."\r\n";	
             $soap_request = "<ClearData><ArgComKey xsi:type=\"xsd:integer\">$pwd</ArgComKey><Arg><Value xsi:type=\"xsd:integer\">3</Value></Arg></ClearData>";
-            $buffer_soap = $this->setSoapMesin($Connect, $soap_request);
+            $buffer_soap = MesinController::setSoapMesin($Connect, $soap_request);
             $buffer_xml = Parse_Data($buffer_soap, "<ClearDataResponse>", "</ClearDataResponse>");
             $buffer = explode("\r\n", $buffer_xml);
             $retval = false;
