@@ -17,8 +17,8 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
         xtype:'form',
         region:'north',
         layout: 'hbox',
-        height:250,
-            minHeight:250,
+        height:220,
+            minHeight:220,
         bodyPadding: '5 5 5 5',
         items:[
             {
@@ -35,7 +35,7 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                         xtype: 'fieldcontainer',
                         margin:'3 10 3 5',
                         anchor:'100%',
-                        fieldLabel:'Toleransi Keterlambatan',
+                        fieldLabel:'Toleransi/Batas Keterlambatan',
                         combineErrors: false,
                         layout:'hbox',
                         defaults: {
@@ -55,11 +55,56 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                            },
                            {
                                xtype: 'displayfield',
+                               value: '/',
+                               width: 10
+                           },
+                           {
+                               id:'ketentuan_batas',
+                               name : 'absenbatas',
+                               xtype: 'numberfield',
+                               width: 70,
+                               minValue:0,
+                               step: 5,
+                               allowBlank: false,
+                              margin:'0 10 0 5'
+                               
+                           },
+                           {
+                               xtype: 'displayfield',
                                value: 'menit',
                                width: 50
                            }
                         ]
                     },
+//                    {
+//                        xtype: 'fieldcontainer',
+//                        margin:'3 10 3 5',
+//                        anchor:'100%',
+//                        fieldLabel:'Posting Keterlambatan',
+//                        combineErrors: false,
+//                        layout:'hbox',
+//                        defaults: {
+//                            hideLabel: true
+//                        },
+//                        items: [
+//                           {
+//                               id:'ketentuan_post_terlambat',
+//                               name : 'post_terlambat',
+//                               xtype: 'combo',
+//                               bind:
+//                                   {store:'{storepotong}'},
+////                               store: createArrayStore(dataharicombo),
+//                                valueField: 'kode',
+//                                displayField: 'keterangan',
+//                                typeAhead: true,
+//                                triggerAction: 'all' ,
+//                                queryParam:'searchvalue',
+//                               width: 150,                               
+//                              margin:'0 10 0 5'
+//                               
+//                           }
+//                        ]
+//                    },
                     {
                         xtype: 'fieldcontainer',
                         margin:'0 10 0 5',
@@ -116,6 +161,35 @@ Ext.define('Penggajian.view.master.pengaturan.Ketentuan', {
                            }
                         ]
                     }
+//                    ,{
+//                        xtype: 'fieldcontainer',
+//                        margin:'3 10 3 5',
+//                        anchor:'100%',
+//                        fieldLabel:'Posting MasaKerja',
+//                        combineErrors: false,
+//                        layout:'hbox',
+//                        defaults: {
+//                            hideLabel: true
+//                        },
+//                        items: [
+//                           {
+//                               id:'ketentuan_post_masakerja',
+//                               name : 'post_masakerja',
+//                               xtype: 'combo',
+//                               bind:
+//                                   {store:'{storemasakerja}'},
+////                               store: createArrayStore(dataharicombo),
+//                                valueField: 'kode',
+//                                displayField: 'keterangan',
+//                                typeAhead: true,
+//                                triggerAction: 'all' ,
+//                                queryParam:'searchvalue',
+//                               width: 170,                               
+//                              margin:'0 10 0 5'
+//                               
+//                           }
+//                        ]
+//                    }
                 ]
             },
             {

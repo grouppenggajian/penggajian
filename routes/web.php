@@ -102,6 +102,15 @@ Route::get('/rumusinsentifhadir/jenisharikerja','RumusInsentifHadirController@je
 Route::post('/rumusinsentifhadir/executeRow','RumusInsentifHadirController@executeRow');
 Route::post('/rumusinsentifhadir/delete','RumusInsentifHadirController@delete');
 
+Route::get('/rumusketerlambatan/loadpembagi','RumusKeterlambatanController@loadPembagi');
+
+Route::get('/rumusketerlambatan/jenisharikerja','RumusKeterlambatanController@jenisHariKerja');
+Route::get('/rumusketerlambatan/loadpengali','RumusKeterlambatanController@loadPengali');
+Route::get('/rumusketerlambatan/loadpendapatan','RumusKeterlambatanController@loadPendapatan');
+//Route::get('/rumusketerlambatan/postpotongan','RumusKeterlambatanController@loadPostPotongan');
+Route::post('/rumusketerlambatan/save','RumusKeterlambatanController@executeRows');
+Route::post('/rumusketerlambatan/deletePendapatan','RumusKeterlambatanController@deletePendapatan');
+Route::post('/rumusketerlambatan/deletePengali','RumusKeterlambatanController@deletePengali');
 
 Route::get('/referensi/agama','ReferensiController@getAgama');
 Route::get('/referensi/golongandarah','ReferensiController@getGolonganDarah');
@@ -169,6 +178,16 @@ Route::get('/ketentuan/load', 'KetentuanController@index');
 Route::get('/ketentuan/pantangan', 'KetentuanController@indexPantangan');
 Route::post('/ketentuan/save', 'KetentuanController@save');
 Route::post('/ketentuan/deletePantangan', 'KetentuanController@deletePantangan');
+
+Route::get('/posting/pendapatan', 'PostingController@loadPendapatan');
+Route::get('/posting/potongan', 'PostingController@loadPotongan');
+Route::get('/posting/jenis', 'PostingController@loadJenis');
+Route::post('/posting/savependapatan', 'PostingController@savePendapatan');
+Route::post('/posting/deletependapatan', 'PostingController@deletePendapatan');
+Route::post('/posting/savepotongan', 'PostingController@savePotongan');
+Route::post('/posting/deletepotongan', 'PostingController@deletePotongan');
+
+
 
 Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
 

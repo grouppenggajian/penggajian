@@ -12,6 +12,7 @@ Ext.define('Penggajian.Application', {
         'Jabatan','JabatanNew','Pendapatan','Potongan','Shift','JabatanPendapatan','PendapatanCombo',
         'JabatanPendapatanInput','Periode','rumus.RmsPendapatan','rumus.RmsPotongan','rumus.RmsTHR',
         'rumus.RmsLemburPengali','rumus.RmsLemburPembagi','rumus.RmsLemburPendapatan','rumus.RmsThrPendapatan',
+        'rumus.RmsKeterlambatanPengali','rumus.RmsKeterlambatanPendapatan',
         'referensi.Agama','referensi.GolonganDarah','referensi.StatusKerja',
         'referensi.Propinsi'
         ,'referensi.Kabupaten'
@@ -28,7 +29,7 @@ Ext.define('Penggajian.Application', {
         ,'adminpanel.User'
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
         ,'jadwal.TukarOff','ijin.Ijin','ijin.Cuti'
-        ,'pengaturan.HariLibur'
+        ,'pengaturan.HariLibur','pengaturan.PostingPendapatan','pengaturan.PostingPotongan'
         ,'Absensi'
         // TODO: add global / shared stores here
     ],

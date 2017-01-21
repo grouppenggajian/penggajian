@@ -16,7 +16,7 @@ class AbsensiController extends Controller {
         $tglawal = $request->awal ? $request->awal : date('Y-m-01');
         $tglakhir = $request->akhir ? $request->akhir : date('Y-m-t');
 
-        $table = MYModel::getDBTable('v_logabsen');
+        $table = MYModel::getDBTable('v_absentemp');
         //        if($tglawal){
         //            if($tglakhir){
         //                
@@ -25,22 +25,22 @@ class AbsensiController extends Controller {
 
         if ($query) {
             $table->where(array(['nik', 'LIKE', '%' . $query . '%']));
-            $table->orWhere(array(['nama', 'LIKE', '%' . $query . '%'], ['nama_jabatan', 'LIKE', '%' . $query . '%']));
+            $table->orWhere(array(['nama', 'LIKE', '%' . $query . '%'], ['jabatan', 'LIKE', '%' . $query . '%']));
         }
-        $table->whereBetween('tanggal', [$tglawal, $tglakhir]);
+        $table->whereBetween('tgl', [$tglawal, $tglakhir]);
         $totalrec = $table->count();
 
         //        $table=MYModel::getDBTable('harilibur_pantangan');
         if ($query) {
             $table->where(array(['nik', 'LIKE', '%' . $query . '%']));
-            $table->orWhere(array(['nama', 'LIKE', '%' . $query . '%'], ['nama_jabatan', 'LIKE', '%' . $query . '%']));
+            $table->orWhere(array(['nama', 'LIKE', '%' . $query . '%'], ['jabatan', 'LIKE', '%' . $query . '%']));
         }
-        $table->whereBetween('tanggal', [$tglawal, $tglakhir]);
+        $table->whereBetween('tgl', [$tglawal, $tglakhir]);
         $table->offset($start);
         $table->limit($limit);
 
         $table->orderBy('pin', 'asc');
-        $table->orderBy('date_time', 'asc');
+        $table->orderBy('tgl', 'asc');
         $recquery = $table->get();
         return json_encode([
                     'success' => true,

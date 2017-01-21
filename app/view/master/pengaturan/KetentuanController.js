@@ -4,12 +4,18 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
     alias: 'controller.ketentuan',
     onRefreshClick:function(btn){
        Ext.getCmp('tab1f3').getViewModel().getData().storepantangan.load();
+       
+//       Ext.getCmp('tab1f3').getViewModel().getData().storemasakerja.load();
+       var masker='',terlambat='';
        var storeket=Ext.getCmp('tab1f3').getViewModel().getData().storeketentuan;
+       
        storeket.load({
            callback:function(records, operation, success){
                     if(success){
                         if(records.length>0){
+                          
                             Ext.getCmp('ketentuan_toleransi').setValue(records[0].get('toleransi'));
+                            Ext.getCmp('ketentuan_batas').setValue(records[0].get('batas'));
                             Ext.getCmp('ketentuan_kuotacuti').setValue(records[0].get('kuotacuti'));
                             Ext.getCmp('ketentuan_periodemulai').setValue(records[0].get('periodemulai'));
                             Ext.getCmp('ketentuan_periodeselesai').setValue(records[0].get('periodeselesai'));
@@ -41,7 +47,9 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
        ,periodeselesai= Ext.getCmp('ketentuan_periodeselesai').getValue()       
         ,mulaiabsen= Ext.getCmp('ketentuan_mulaiabsen').getValue()
        ,ipmesin= Ext.getCmp('ketentuan_ipmesin').getValue()
-       ,pwdmesin= Ext.getCmp('ketentuan_pwdmesin').getValue();
+       ,pwdmesin= Ext.getCmp('ketentuan_pwdmesin').getValue()       
+       ,batas= Ext.getCmp('ketentuan_batas').getValue();
+       
        
        
        var pantangan=new Array();
@@ -52,12 +60,13 @@ Ext.define('Penggajian.view.master.pengaturan.KetentuanController', {
         
         execute_confirm('Are you sure to Save this ?', Penggajian.Global.getApiUrl()+'ketentuan/save', {
             toleransi:toleransi,
+            batas:batas,
             kuotacuti:kuotacuti,
             periodemulai:periodemulai,
             periodeselesai:periodeselesai,
             mulaiabsen:mulaiabsen,
             ipmesin:ipmesin,
-            pwdmesin:pwdmesin,
+            pwdmesin:pwdmesin,            
             pantangan:Ext.JSON.encode(pantangan),                                              
             _token:tokendata
         }, function(obj) {                                                            

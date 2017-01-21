@@ -341,7 +341,7 @@
             var userstatus="{{ $data['success'] }}";
         
             var tokendata="{{ csrf_token() }}";
-            var dataoperator=[['+','+'],['-','-'],['*','x'],['/','/']];
+            var dataoperator=[['+','+'],['-','-'],['*','x'],['/','/'],['(','('],[')',')']];
             var datastatuskawin=[['KAWIN','KAWIN'],['TIDAK KAWIN','TIDAK KAWIN']];
             var datastatuspegawai=[['AKTIF','AKTIF'],['KELUAR','KELUAR']];
             var datathr=[['<1 TAHUN','<1 TAHUN'],['>1 TAHUN','>1 TAHUN']];

@@ -7,7 +7,7 @@ Ext.define('Penggajian.view.transaksi.absensi.Absensi', {
     ],
     controller:'absensi',
     title: 'Absensi',
-    id: 'tab2b',
+    id: 'tab2b1',
     closable: true,        
     layout: 'border', 
     items:[ 
@@ -17,21 +17,21 @@ Ext.define('Penggajian.view.transaksi.absensi.Absensi', {
         region:'center',            
         store: 'storeabsensi',
         columns: [
-        {
-            xtype: 'actioncolumn',
-            header: 'Action',
-            menuDisabled: true,
-            sortable: false,   
-            align:'center',
-            width: 85,
-            items: [
-            {
-                iconCls: 'icon-delete',
-                tooltip: 'Delete Row',
-                handler: 'onDeleteClick' 
-            }]
-                                
-        },
+//        {
+//            xtype: 'actioncolumn',
+//            header: 'Action',
+//            menuDisabled: true,
+//            sortable: false,   
+//            align:'center',
+//            width: 85,
+//            items: [
+//            {
+//                iconCls: 'icon-delete',
+//                tooltip: 'Delete Row',
+//                handler: 'onDeleteClick' 
+//            }]
+//                                
+//        },
         {
             text:'ID',
             dataIndex:'id',
@@ -45,7 +45,7 @@ Ext.define('Penggajian.view.transaksi.absensi.Absensi', {
             text:'PIN',
             dataIndex:'pin',
             sortable:false,
-            width:100,
+            width:60,
             hidden:false
         },
 {
@@ -66,8 +66,8 @@ Ext.define('Penggajian.view.transaksi.absensi.Absensi', {
             align:'left'
         },
         {
-            text:'Nama Jabatan',
-            dataIndex:'nama_jabatan',
+            text:'Jabatan',
+            dataIndex:'jabatan',
             sortable:false,
             width:200,
             hidden:false,
@@ -82,36 +82,136 @@ Ext.define('Penggajian.view.transaksi.absensi.Absensi', {
             hidden:false,
             align:'center'
         },
-
+        {
+            text:'Shift',
+            dataIndex:'kode_shift',
+            sortable:false,
+            width:80,
+            hidden:false,
+            align:'center'
+        },
         {
             text:'Tanggal',
-            dataIndex:'tanggal',
+            dataIndex:'tgl',
             sortable:false,
             width:100,
             hidden:false,
             align:'center'
         },
-
-        
-
         {
-            text:'Jam',
+            text:'Masuk',
             xtype:'datecolumn',
-            dataIndex:'jam',
+            dataIndex:'masuk',
             sortable:false,
             width:100,
             hidden:false,
             align:'center',   
-            format:'H:i:s'
+            format:'H:i'
         },
-
         {
-            text:'Absen',            
-            dataIndex:'status_absen',
+            text:'Keluar',
+            xtype:'datecolumn',
+            dataIndex:'keluar',
             sortable:false,
-            width:120,
+            width:100,
             hidden:false,
-            align:'left'
+            align:'center',   
+            format:'H:i'
+        },
+        {
+            text:'Masuk Kembali',
+            xtype:'datecolumn',
+            dataIndex:'masuk_kembali',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'center',   
+            format:'H:i'
+        },
+        {
+            text:'Pulang',
+            xtype:'datecolumn',
+            dataIndex:'pulang',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'center',   
+            format:'H:i'
+        },{
+            text:'JamAbsen',            
+            dataIndex:'jmljamabsen',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'right'
+        },{
+            text:'Lembur Masuk',
+            xtype:'datecolumn',
+            dataIndex:'lembur_masuk',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'center',   
+            format:'H:i'
+        },{
+            text:'Lembur Keluar',
+            xtype:'datecolumn',
+            dataIndex:'lembur_keluar',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'center',   
+            format:'H:i'
+        },
+        
+        {
+            text:'JamLembur',            
+            dataIndex:'jmljamlembur',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'right'
+        },
+            {
+                text: 'I/Masuk', 
+                dataIndex: 'jam_kerja_1', 
+                align:'center',
+                xtype: 'datecolumn',   
+                format:'H:i',
+                width:100
+            },
+            {
+                text: 'II/Keluar/Pulang', 
+                dataIndex: 'jam_kerja_2', 
+                align:'center',
+                xtype: 'datecolumn',   
+                format:'H:i',
+                width:100
+            },
+            {
+                text: 'III/Masuk', 
+                dataIndex: 'jam_kerja_3', 
+                align:'center',
+                xtype: 'datecolumn',   
+                format:'H:i',
+                width:100
+            },
+            {
+                text: 'IV/Keluar/Pulang', 
+                dataIndex: 'jam_kerja_4', 
+                align:'center',
+                xtype: 'datecolumn',   
+                format:'H:i',
+                width:100
+            },
+        
+        {
+            text:'JamShift',            
+            dataIndex:'jmljamkerja',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'right'
         }
 
         

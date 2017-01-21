@@ -1,57 +1,61 @@
-Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
+Ext.define('Penggajian.view.rumus.keterlambatan.RmsKeterlambatan',
     {
         extend: 'Ext.container.Container',
-        xtype:'TabRumusLembur',
-        alias: 'widget.RumusLembur',
-        title: 'Rumus Lembur',        
-        id: 'tab1g3',
+        xtype:'TabRumusKeterlambatan',
+        alias: 'widget.RumusKeterlambatan',
+        title: 'Rumus Keterlambatan',        
+        id: 'tab1g6',
         requires:[
-        'Penggajian.view.rumus.lembur.RmsLemburController' 
+        'Penggajian.view.rumus.keterlambatan.RmsKeterlambatanController' ,
+        'Penggajian.view.rumus.keterlambatan.RmsKeterlambatanModel' 
         ],
-        controller:'rmslembur',
+        controller:'rmsketerlambatan',
+        viewModel:'rmsketerlambatan',
         
         height: '100%',
         closable: true,
         layout: 'border',
         
         items:  [
-        {                
-            xtype:'form',
-            region:'north',
-            height:80,
-            minHeight:80,
-            layout:'anchor',
-            items:[
-            {
-                xtype: 'fieldset',
-                anchor: '48%',
-                layout: 'anchor',  
-                margin: '10 5 3 5',
-                padding: '10 5 3 10',
-                defaults: {
-                    hideEmptyLabel: true
-                },
-                items: [
-                {
-                    xtype: 'numberfield',
-                    id: 'rmslembur_pembagi',
-                    name:'nilai',
-                    hiddenName:'nilai',
-                    fieldLabel: 'Pembagi',
-                    fieldStyle: 'text-align: right;' ,
-                    allowBlank: false,   
-                    hideTrigger: true,
-                    minValue:0,
-                    value:0,
-                    labelWidth: 90,                        
-                    labelAlign: 'left',                        
-                    anchor:'50%',
-                    width:150
-                }
-                ]
-            }
-            ]
-        },
+//        {                
+//            xtype:'form',
+//            region:'north',
+//            height:80,
+//            minHeight:80,
+//            layout:'anchor',
+//            items:[
+//            {
+//                xtype: 'fieldset',
+//                anchor: '48%',
+//                layout: 'anchor',  
+//                margin: '10 5 3 5',
+//                padding: '10 5 3 10',
+//                defaults: {
+//                    hideEmptyLabel: true,
+//                    labelWidth:150  
+//                },
+//                items: [
+//                    {
+//                               id:'rmsketerlambatan_postpotongan',
+//                               name : 'postpotongan',
+//                               xtype: 'combo',
+//                               fieldLabel:'Posting Potongan',
+//                               bind:
+//                                   {store:'{storepotong}'},
+//                                valueField: 'kode',
+//                                displayField: 'keterangan',
+//                                typeAhead: true,
+//                                triggerAction: 'all' ,
+//                                queryParam:'searchvalue',
+//                               width: 150,    
+//                               anchor:'70%'
+//                               
+//                           },
+//
+//                ]
+//            }
+//            ]
+//        },
         {                
             xtype:'form',
             region:'center',
@@ -62,18 +66,18 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
             {   
                 margin: '5 5 5 5',
                 xtype:'grid',                 
-                id:'rmslembur_pendapatan',   
+                id:'rmsketerlambatan_pendapatan',   
                 region:'center',
                 border:true,
                 height:'100%',
                 flex:1,
                 //            hideHeaders:true,
 //                autoScroll:true,           
-                store: 'storerumuslemburpendapatan',
+                store: 'storerumusketerlambatanpendapatan',
                 stripeRows: true,
                 loadMask: true,
                 stateful:true,
-                stateId:'statermslemburpendapatan',
+                stateId:'statermsketerlambatanpendapatan',
                 queryParam:'searchvalue',
                 selModel: {
                     selType: 'rowmodel'
@@ -102,7 +106,7 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                     {
                         iconCls: 'icon-delete',
                         tooltip: 'Delete Row',
-                        handler: 'onDeletePendapatanLembur' 
+                        handler: 'onDeletePendapatanKeterlambatan' 
                     }]
 
                 },
@@ -115,9 +119,9 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                     field:{
                         xtype:'combo',
                         name: 'kode',
-                        id: 'rmslembur_kode',                            
+                        id: 'rmsketerlambatan_kode',                            
                         //                                    afterLabelTextTpl: required_css,                                                                
-                        hiddenName:'rmslembur_kode',
+                        hiddenName:'rmsketerlambatan_kode',
                         allowBlank: false,                            
                         store: 'storependapatancombo',
                         valueField: 'kode',
@@ -128,13 +132,13 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                         width:150,
                         listeners:{
                             select:function( combo, records, eOpts ){
-                                var gridstore=Ext.getCmp('rmslembur_pendapatan').store;
+                                var gridstore=Ext.getCmp('rmsketerlambatan_pendapatan').store;
                                var frec= gridstore.findRecord('kode',records.get('kode'));
                                 if(!frec){
-                                    Ext.getCmp('rmslembur_keterangan').setValue(records.get('keterangan'));
+                                    Ext.getCmp('rmsketerlambatan_keterangan').setValue(records.get('keterangan'));
                                 }else{
                                     combo.setValue(null);
-                                    Ext.getCmp('rmslembur_pendapatan').getPlugin().cancelEdit();
+                                    Ext.getCmp('rmsketerlambatan_pendapatan').getPlugin().cancelEdit();
                                 }
                                 
                                 
@@ -151,7 +155,7 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                     editor:{
                         xtype:'textfield',
                         name: 'keterangan',
-                        id: 'rmslembur_keterangan',                                
+                        id: 'rmsketerlambatan_keterangan',                                
                         hiddenName:'keterangan',
                         allowBlank: true,
                         readOnly:true
@@ -170,10 +174,10 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                         iconCls:'icon-grid',
                         handler:function(){
                             // empty record
-                            var grid=Ext.getCmp('rmslembur_pendapatan');
+                            var grid=Ext.getCmp('rmsketerlambatan_pendapatan');
                             var str=grid.getStore();
                             var edit=grid.getPlugin();
-//                            var rec = new Penggajian.view.rumus.lembur.WriterPendapatan({
+//                            var rec = new Penggajian.view.rumus.keterlambatan.WriterPendapatan({
 //                                kode:'',
 //                                keterangan:''
 //                            });
@@ -196,15 +200,15 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                 height:'100%',
                 width:580,
                 minWidth:580,
-                id:'rmslembur_pengali',   
+                id:'rmsketerlambatan_pengali',   
                 flex:1,
                 //            hideHeaders:true,
 //                autoScroll:true,           
-                store: 'storerumuslemburpengali',
+                store: 'storerumusketerlambatanpengali',
                 stripeRows: true,
                 loadMask: true,
                 stateful:true,
-                stateId:'stateGridRmslemburpengali',
+                stateId:'stateGridRmsketerlambatanpengali',
                 selModel: {
                     selType: 'rowmodel'
                 },
@@ -218,7 +222,8 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                                 context.grid.store.remove(context.record);
                             }
                         }
-//                        ,beforeEdit:function ( editor , context , eOpts ) {
+//                        ,
+//                        beforeEdit:function ( editor , context , eOpts ) {
 //                            context.grid.store.on('update',
 //                            function ( store , record , operation , modifiedFieldNames , details , eOpts ){
 //                                var recfind=store.queryRecordsBy( function(rec,id){
@@ -272,145 +277,53 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                     editor:{
                                     xtype:'combo',
                                     name: 'status',
-                                    id: 'rmslembur_status',                            
+                                    id: 'rmsketerlambatan_status',                            
                                     hiddenName:'status',
-                                    allowBlank: false,                            
-                                    store: createArrayStore(datastatuslembur),
-                                    valueField: 'mid',
-                                    displayField: 'mtext',
+                                    allowBlank: false,    
+                                    bind:{
+                                        store: '{strjenisharikerja}'
+                                    },
+//                                    store: createArrayStore(datastatuslembur),
+                                    valueField: 'name',
+                                    displayField: 'name',
                                     typeAhead: true,
                                     triggerAction: 'all' ,                                   
                                     width:190,
-                        listeners:{
-                            select:function( combo, records, eOpts ){
-                                var gridstore=Ext.getCmp('rmslembur_pengali').store;
-                               var frec= gridstore.findRecord('status',records.get('mtext'));
-                                if(frec){
-                                    combo.setValue(null);
-                                    Ext.getCmp('rmslembur_pengali').getPlugin().cancelEdit();
-                                }
-                                
-                                
-                            }
-                        }                            
+                                    listeners:{
+                                        select:function( combo, records, eOpts ){
+                                            var gridstore=Ext.getCmp('rmsketerlambatan_pengali').store;
+                                           var frec= gridstore.findRecord('status',records.get('name'));
+                                            if(frec){
+                                                combo.setValue(null);
+                                                Ext.getCmp('rmsketerlambatan_pengali').getPlugin().cancelEdit();
+                                            }
+
+
+                                        }
+                                    }
                                 }
                 },
-//                {
-//                    text: 'Jam Ke',  
-//                    dataIndex: 'jam_ke',
-//                    align:'center',
-//                    width:80,
-//                    xtype:'numbercolumn',
-//                    format:'0,000',
-//                    editor:{
-//                        xtype: 'numberfield',
-//                        id: 'rmslembur_jamke',
-//                        name:'jam_ke',
-//                        hiddenName:'jam_ke',                        
-//                        allowBlank: false,   
-//                        hideTrigger: true,
-//                        minValue:0,
-//                        value:0
-//                    }
-//                },
-//                {
-//                    text: 'Min',  
-//                    dataIndex: 'min_jam',
-//                    align:'center',
-//                    width:80,
-//                    xtype:'numbercolumn',
-//                    format:'0,000',
-//                    editor:{
-//                        xtype: 'numberfield',
-//                        id: 'rmslembur_minjam',
-//                        name:'min_jam',
-//                        hiddenName:'min_jam',                        
-//                        allowBlank: false,   
-//                        hideTrigger: true,
-//                        minValue:0,
-//                        value:0
-//                    }
-//                },
-//                {
-//                    text: 'Max',  
-//                    dataIndex: 'max_jam',
-//                    align:'center',
-//                    width:80,
-//                    xtype:'numbercolumn'
-//                    ,format:'0,000',
-//                    editor:{
-//                        xtype: 'numberfield',
-//                        id: 'rmslembur_maxjam',
-//                        name:'max_jam',
-//                        hiddenName:'max_jam',                        
-//                        allowBlank: false,   
-//                        hideTrigger: true,
-//                        minValue:0,
-//                        value:0
-//                    }
-//                },
                 {
                     text: 'Nilai',  
                     dataIndex: 'nilaikali',
                     align:'center',
                     width:80,
-                    xtype:'numbercolumn'
-                    ,format:'0,000',
+                    xtype:'numbercolumn',
+                    format:'0,000.00',
                     editor:{
                         xtype: 'numberfield',
-                        id: 'rmslembur_nilaikali',
+                        id: 'rmsketerlambatan_nilaikali',
                         name:'nilaikali',
                         hiddenName:'nilaikali',                        
                         allowBlank: false,   
                         hideTrigger: true,
                         minValue:0,
-                        value:0
+                        value:0,
+                        allowDecimals:true,
+                    decimalSeparator:'.'
                     }
                 }
-//                ,{
-//                    text: 'Order',  
-//                    dataIndex: 'ordernum',
-//                    align:'center',
-//                    width:80,
-//                    xtype:'numbercolumn'
-//                    ,format:'0,000',
-//                    editor:{
-//                        xtype: 'numberfield',
-//                        id: 'rmslembur_ordernum',
-//                        name:'ordernum',
-//                        hiddenName:'ordernum',                        
-//                        allowBlank: false,   
-//                        hideTrigger: true,
-//                        minValue:0,
-//                        value:0,
-//                        enableKeyEvents:false,
-//                        listeners:{
-//                            keyup:function(me, e, eOpts){
-//                                var vstatus=Ext.getCmp('rmslembur_status').getValue();
-//                                var storelembur=Ext.getCmp('rmslembur_pengali').store;
-//                                console.log(eOpts);
-//                                var recfind=storelembur.queryRecordsBy( function(record,id){
-//                                    return (record.get('status') == vstatus);
-//                                });
-////                                console.log(recfind);
-//                                if (recfind.length > 0)
-//                                {
-//                                  var maxId = recfind[0].get('ordernum'); // initialise to the first record's id value.
-//                                  Ext.each(recfind,function(rec) // go through all the records
-//                                  {
-//                                    maxId = Math.max(maxId, rec.get('ordernum'));
-//                                  });
-//                                }
-//                                console.log(maxId);
-//                                if (me.getValue()<maxId){
-//                                    me.setValue(maxId+1);
-//                                }
-//                                
-//                            }
-//                        }
-//                    }
-//                    
-//                }
+                
                 ]
                 ,
                 tbar:{
@@ -424,10 +337,10 @@ Ext.define('Penggajian.view.rumus.lembur.RmsLembur',
                         iconCls:'icon-grid',
                         handler:function(){
                             // empty record
-                            var grid=Ext.getCmp('rmslembur_pengali');
+                            var grid=Ext.getCmp('rmsketerlambatan_pengali');
                             var str=grid.getStore();
                             var edit=grid.getPlugin();
-//                            var rec = new Penggajian.view.rumus.lembur.WriterPendapatan({
+//                            var rec = new Penggajian.view.rumus.keterlambatan.WriterPendapatan({
 //                                kode:'',
 //                                keterangan:''
 //                            });

@@ -45,14 +45,18 @@ class KetentuanController extends controller {
         $pwdmesin = $request->pwdmesin  ? $request->pwdmesin  : NULL;
         $periodemulai = $request->periodemulai ? $request->periodemulai : NULL;
         $periodeselesai = $request->periodeselesai ? $request->periodeselesai : NULL;
+//        $postterlambat=$request->postterlambat ? $request->postterlambat : NULL;
+//        $postmasakerja=$request->postmasakerja ? $request->postmasakerja : NULL;
         $pantangan = $request->pantangan ? json_decode($request->pantangan) : array();
-
+$batas=$request->batas ? json_decode($request->batas) : array();
         $query = MYModel::getRowsTable(NULL, 'ketentuan');
         $retval = 1;
         if (count($query) > 0) {
             $retval = MYModel::setUpdateRow('ketentuan', NULL
                             , array(
                         'toleransi' => $toleransi,
+                                'batas'=>$batas,
+                        
                         'kuotacuti' => $kuotacuti,
                         'periodemulai' => $periodemulai,
                         'periodeselesai' => $periodeselesai,
@@ -63,6 +67,8 @@ class KetentuanController extends controller {
         }else{
             $retval = MYModel::setInsertRow('ketentuan', array( array(
                         'toleransi' => $toleransi,
+                 'batas'=>$batas,
+               
                         'kuotacuti' => $kuotacuti,
                         'periodemulai' => $periodemulai,
                         'periodeselesai' => $periodeselesai,
