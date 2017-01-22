@@ -55,8 +55,9 @@ class PegawaiController extends Controller {
                     );
             }
 //          return  response($json, 200);
-        }
-        if(count($retval)>0){
+        }else{
+        if(count($retval)>0){		
+			
             $json = array(
                         "success" => false,
                         "message" => 'Data Is Exists, Try Another Data'
@@ -89,6 +90,7 @@ class PegawaiController extends Controller {
             }
             
         }
+	}
         return response($json, 200);
     }
     public function deleteFinger(Request $request){
