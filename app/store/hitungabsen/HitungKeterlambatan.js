@@ -23,7 +23,7 @@ Ext.define('Penggajian.store.hitungabsen.HitungKeterlambatan', {
         {name:'tgl'},
         {name:'hari'},
         {name:'thbl'},
-        {name:'is_pantangan'},
+        {name:'is_pantangan',type:'bool'},
         {name:'terlambat_masuk'},
         {name:'keluar_awal'},
         {name:'terlambat_masukkembali'},
