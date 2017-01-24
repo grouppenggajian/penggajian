@@ -43,9 +43,9 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
-
+   
     'connections' => [
-
+         
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
@@ -64,6 +64,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options'   => array(
+                PDO::ATTR_EMULATE_PREPARES => true
+            )
         ],
 
         'pgsql' => [

@@ -30,7 +30,7 @@ Ext.define('Penggajian.Application', {
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
         ,'jadwal.TukarOff','ijin.Ijin','ijin.Cuti'
         ,'pengaturan.HariLibur','pengaturan.PostingPendapatan','pengaturan.PostingPotongan'
-        ,'Absensi'
+        ,'Absensi','hitungabsen.HitungKeterlambatan'
         // TODO: add global / shared stores here
     ],
     views:[
@@ -41,7 +41,8 @@ Ext.define('Penggajian.Application', {
         'Ext.ux.SearchField',
          'Ext.ux.TwinCombo',
         'Ext.ux.TimeSpinner',
-        'Ext.ux.NumericField'
+        'Ext.ux.NumericField',
+        'Ext.ux.MonthPicker'
 //       'Penggajian.view.main.Main'
     ],
     

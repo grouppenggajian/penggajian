@@ -271,6 +271,10 @@ class MYModel extends Model {
             }
 //            $genparam = join(',', array_fill(0, count($param), '?'));
             $sql = "call $spname($genparam)";
+//            echo $sql;
+//             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+//            $mpdo =DB::getPdo();
+//            $mpdo ->setAttribute($mpdo->ATTR_EMULATE_PREPARES, true);
             $query = DB::select($sql); 
         } else {
             $sql = "call $spname()";

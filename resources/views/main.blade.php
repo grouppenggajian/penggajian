@@ -186,12 +186,17 @@
                                 params: ajax_params,
                                 success: successfunct,
                                 failure: function(obj) {
-                                    var  resp = Ext.decode(obj.responseText);
-                                    if (resp.reason == 'Session Expired' || resp.message == 'Session Expired') {
-                                        session_expired('Session Expired');
-                                    }  else{
-                                        set_message(0, resp.reason +' '+resp.message);
+                                    try{
+                                        var  resp = Ext.decode(obj.responseText);
+                                        if (resp.reason == 'Session Expired' || resp.message == 'Session Expired') {
+                                            session_expired('Session Expired');
+                                        }  else{
+                                            set_message(0, resp.reason +' '+resp.message);
+                                        }
+                                    }catch(ex){
+                                        window.location.href = Penggajian.Global.getApiUrl();
                                     }
+                                    
                                     //                                                                Ext.Msg.alert('info',resp.reason);
                                 }                                                            
                             });                 
@@ -338,6 +343,13 @@
         
         </script>
         <script type="text/javascript" language="javascript">
+            function getusersession(){
+                return "{{ $data['success'] }}";
+            }
+            
+            function gettokendata(){
+                return "{{ csrf_token() }}";
+            }
             var userstatus="{{ $data['success'] }}";
         
             var tokendata="{{ csrf_token() }}";
