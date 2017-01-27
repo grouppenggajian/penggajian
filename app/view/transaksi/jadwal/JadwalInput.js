@@ -144,10 +144,10 @@ Ext.define('Penggajian.view.transaksi.jadwal.JadwalInput',
                                   if(resp.success){
                                       var recdata=Ext.decode(resp.postdata);
                                       var rec=Ext.getCmp('gridinputjadwal').store.findRecord('tanggal',recdata.tanggal);
-                                      console.log(recdata.tanggal);
-                                      console.log(rec);
-                                      
-                                      rec.set(recdata);
+//                                      console.log(recdata.tanggal);
+//                                      console.log(rec);
+//                                      
+//                                      rec.set(recdata);
                                       rec.commit();
                                   }else{
                                       set_message(1, resp.message);
