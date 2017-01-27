@@ -23,6 +23,11 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffController', {
         Ext.getCmp('idButtonTukarOffInputSave').setIconCls('icons-add');   
 //        Ext.getCmp('jadwalnama').store.load();
         Ext.getCmp('tukaroffkode_jabatan').store.load();
+        var d=new Date();
+        d.setDate(d.getDate() + 1);
+        Ext.getCmp('tukarofftanggal').setMinValue(d);
+        Ext.getCmp('tukarofftanggal_tukar').setMinValue(d);
+        
                                             
         wintukaroff.show();
     },

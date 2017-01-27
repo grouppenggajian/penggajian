@@ -96,7 +96,14 @@ Ext.define('Penggajian.view.transaksi.jadwal.JadwalNikEditor', {
                         if(Ext.getCmp('jadwalnik').getValue()){
                             storegridjadwaledit.getProxy().setExtraParam('nik',sel[0].get('nik'));
                             storegridjadwaledit.getProxy().setExtraParam('kode_jabatan',sel[0].get('jabatan'));
-                            storegridjadwaledit.load();
+                            
+                            storegridjadwaledit.load({params:
+                                    {
+                                    awal:Ext.getCmp('inputjadwal_start').getValue(),                                    
+                                    akhir:Ext.getCmp('inputjadwal_finish').getValue()
+                                }
+                            }
+                        );
                         }
                    me.close();
             

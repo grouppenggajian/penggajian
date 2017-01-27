@@ -20,7 +20,7 @@ Ext.define('Penggajian.store.pegawai.Pegawai', {
     },{
         name:	'pin'
     },{
-        name:	'post_finger'
+        name:	'post_finger',type:'bool'
     },
 {
         name:	'nama'

@@ -102,34 +102,45 @@ Ext.define('Penggajian.view.master.periode.Periode', {
 // //                 }]
                                 
 // //             },
+//            {
+//                text: 'ID',  
+//                dataIndex: 'id',
+//                align:'center'
+//            },
             {
-                text: 'id periode',  
-                dataIndex: 'id',
-                align:'center'
-            },
-            {
-                text: 'tanggal awal', 
+                text: 'Tanggal Mulai', 
                 dataIndex: 'tglawal', 
                 align:'left',
                 flex: 1
             },
             {
-                text: 'tanggal akhir', 
+                text: 'Tanggal Selesai', 
                 dataIndex: 'tglakhir', 
                 align:'left',
                 flex: 1
             },
             {
-                text: 'tahun bulan', 
-                dataIndex: 'thnbln', 
-                align:'left',
+                text: 'TahunBulan', 
+                dataIndex: 'thbl', 
+                align:'center',
+                flex: 1
+            },
+            {
+                text: 'Jumlah Hari Kerja', 
+                dataIndex: 'jmlharikerja', 
+                align:'right',
                 flex: 1
             },
             {
                 text: 'status', 
+                xtype:'checkcolumn',
+                
                 dataIndex: 'aktif', 
-                align:'left',
-                flex: 1
+                align:'center',
+                flex: 1,
+                processEvent:function ( type , view , cell , recordIndex , cellIndex , e , record , row ){
+                    return false;
+                }
             }
        
             ],

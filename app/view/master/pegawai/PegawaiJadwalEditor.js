@@ -96,7 +96,11 @@ Ext.define('Penggajian.view.master.pegawai.PegawaiJadwalEditor', {
                     var me=Ext.getCmp('pegawaijadwaleditor_id');
                     var twinparent=Ext.getCmp(me.twin);
                         twinparent.setValue(sel[0].get('kode'));
-                   
+                        var recgrid=      Ext.getCmp('gridpegawaijadwal').getSelection();
+                            recgrid[0].set('jam_kerja_1',sel[0].get('jam_kerja_1'));
+                            recgrid[0].set('jam_kerja_2',sel[0].get('jam_kerja_2'));
+                            recgrid[0].set('jam_kerja_3',sel[0].get('jam_kerja_3'));
+                            recgrid[0].set('jam_kerja_4',sel[0].get('jam_kerja_4'));
                    me.close();
                    
             

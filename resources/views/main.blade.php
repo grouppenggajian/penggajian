@@ -48,7 +48,19 @@
         <script type="text/javascript" src="{!! asset('public/js/md5.js')!!}"></script>
         <script type="text/javascript">
             var required_css = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
-            
+            Date.prototype.withoutTime = function () {
+                var d = new Date(this);
+                d.setHours(0, 0, 0, 0);
+                return d;
+            }
+            Date.prototype.toMysql = function () {
+                var dthis = new Date(this);    
+                var d = dthis.getDate();
+                var m = dthis.getMonth() + 1;
+                var y = dthis.getFullYear();
+                return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+                
+            }
             String.prototype.toProperCase = function() {
                 return this.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -103,6 +115,7 @@
                     Ext.Msg.show({
                         title:'Message Warning',
                         msg: vmsg,
+                        alwaysOnTop:true,
                         buttons: Ext.Msg.OK,
                         icon: Ext.Msg.WARNING
                     });
@@ -194,7 +207,19 @@
                                             set_message(0, resp.reason +' '+resp.message);
                                         }
                                     }catch(ex){
-                                        window.location.href = Penggajian.Global.getApiUrl();
+                                        Ext.Msg.show({
+                                            title:'Message Error',
+                                            msg: ex.message,                                            
+                                            buttons: Ext.Msg.OK,
+                                            icon: Ext.Msg.ERROR,
+                                            maxWidth:'100%',
+                                            listeners:{
+                                                show:function(){
+                                                    Ext.Msg.doComponentLayout();
+                                                }
+                                            }
+                                        });
+//                                        window.location.href = Penggajian.Global.getApiUrl();
                                     }
                                     
                                     //                                                                Ext.Msg.alert('info',resp.reason);
@@ -340,7 +365,9 @@
                 });           
 
             }
-        
+        function format_date_mysql(valuedate){
+                        return Ext.Date.format(valuedate, 'Y-m-d');
+                    }
         </script>
         <script type="text/javascript" language="javascript">
             function getusersession(){

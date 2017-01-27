@@ -172,7 +172,7 @@ class PegawaiController extends Controller {
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;                
         $postdata=$request->postdata?json_decode($request->postdata):array();
-        $vuser='test';
+        $vuser=$request->session()->get('userid');;
         if (count($postdata)>0){ 
             $param = array('deletesave', $nik, $kode_jabatan, NULL, NULL,NULL);
             $data=Pegawai::SP_execData('sp_pegawaipendapatan',$param,true);
@@ -196,9 +196,12 @@ class PegawaiController extends Controller {
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
         $opt='get';
-        
+        $tglawal = $request->awal ? $request->awal : null;
+        $tglakhir= $request->akhir ? $request->akhir : null;
+              
+        $data = Pegawai::SP_getData('sp_jadwalkaryawans_new', array($opt, $nik, $kode_jabatan, NULL, NULL,NULL,$tglawal,$tglakhir,NULL),true);
 
-        $data = Pegawai::SP_getData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
+//        $data = Pegawai::SP_getData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
         return json_encode([
                     'success' => true,
                     'data' => $data,
@@ -210,8 +213,19 @@ class PegawaiController extends Controller {
         $opt= $request->opt ? $request->opt : null;
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
-              
-        $data = Pegawai::SP_execData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL),true);
+        $postdata=$request->postdata?json_decode($request->postdata):array();
+        $vuser=$request->session()->get('userid');
+//        $tanggal=$request->tanggal ? $request->tanggal : null;
+        $param = array(
+                    $opt,
+                    $nik,
+                    $kode_jabatan, 
+                    $postdata->tanggal, 
+                   str_ireplace("'", "\'",  $postdata->hari),
+                    $postdata->kode_shift,   
+                    null,null,
+                    $vuser);
+        $data = Pegawai::SP_execData('sp_jadwalkaryawans_new', $param,true);
         return response($data,200);
     }
     
@@ -219,25 +233,38 @@ class PegawaiController extends Controller {
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;                
         $postdata=$request->postdata?json_decode($request->postdata):array();
-        $vuser='test';
+//        return var_dump($postdata);
+        $vuser=$request->session()->get('userid');
         if (count($postdata)>0){ 
-            $param = array('deletesave', $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-            $data=Pegawai::SP_execData('sp_jadwalkaryawans',$param,true);
-            foreach ($postdata as $value) {
-                $param = array(
+//            $param = array('deletesave', $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+//            $data=Pegawai::SP_execData('sp_jadwalkaryawans',$param,true);
+            $param = array(
                     'save',
                     $nik,
-                    $kode_jabatan, 
-                    $value->senin, 
-                    $value->selasa,
-                    $value->rabu,
-                    $value->kamis,
-                    $value->jumat,
-                    $value->sabtu,
-                    $value->minggu,
-                    $vuser);
-                $data=Pegawai::SP_execData('sp_jadwalkaryawans',$param,true);
-            }
+                    $kode_jabatan,
+                $postdata->tanggal,
+                str_ireplace("'", "\'",  $postdata->hari),
+                $postdata->kode_shift, 
+                null,null,
+                $vuser
+                );
+//            foreach ($postdata as $key => $value) {
+//                
+//                if($key=='tanggal'){
+//                    
+//                }
+//                    $value->tanggal, 
+//                    $value->hari,
+//                    $value->kode_shift,                    
+//                    $vuser);
+//                
+//                
+//               
+//            }
+            $data=Pegawai::SP_execData('sp_jadwalkaryawans_new',$param,true);
+                if($data['success']==1){
+                    $data += [ "postdata" => $request->postdata];
+                }
             
         }else
         {
@@ -335,7 +362,7 @@ class PegawaiController extends Controller {
         $status_pegawai = $request->status_pegawai ? $request->status_pegawai : NULL;
         $tgl_keluar = $request->tgl_keluar ? $request->tgl_keluar : NULL;
         $photo = $request->photo ? $request->photo : NULL;
-        $user = 'test';
+        $user = $request->session()->get('userid');;
         //$file = $request->file('photopath');
         if ($request->hasFile('photopath')) {
             $file = $request->file('photopath');
@@ -383,7 +410,7 @@ class PegawaiController extends Controller {
 
     public function deleteRow(Request $request) {
         $nik = $request->nik ? $request->nik : NULL;
-        $user = 'test';
+        $user = $request->session()->get('userid');;
         $param = array($nik, $user);
         $data = Pegawai::SP_execData('sp_pegawai_delete', $param, true);
 

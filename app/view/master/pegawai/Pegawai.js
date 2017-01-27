@@ -3,10 +3,10 @@ Ext.define('Penggajian.view.master.pegawai.Pegawai', {
     xtype: 'TabPegawai',
     alias: 'widget.Pegawai',
     requires: [
-    'Penggajian.view.master.pegawai.PegawaiController',
+    'Penggajian.view.master.pegawai.PegawaiController',    
     'Penggajian.view.master.pegawai.PegawaiInput'
     ],
-    controller:'pegawai',
+    controller:'pegawai',    
     title: 'Master Pegawai',
     id: 'tab1e',
     closable: true,        

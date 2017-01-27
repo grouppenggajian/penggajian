@@ -2,6 +2,7 @@ Ext.define('Penggajian.store.Periode', {
     extend: 'Ext.data.Store',
     storeId:'storeperiode',
     //    autoLoad:true,
+    loadmask:false,
     proxy: {
         type: 'ajax',        
         url: Penggajian.Global.getApiUrl()+'periode/load',
@@ -26,10 +27,13 @@ Ext.define('Penggajian.store.Periode', {
         name: 'tglakhir'
     },
     {
-        name: 'thnbln'
+        name: 'jmlharikerja'
     },
     {
-        name: 'aktif'
+        name: 'thbl'
+    },
+    {
+        name: 'aktif',type:'bool'
     }
         
       

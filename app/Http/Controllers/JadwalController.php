@@ -18,34 +18,45 @@ use Illuminate\Http\Request;
 use App\Models\MYModel;
 class JadwalController extends Controller{
     //put your code here
+    
     public function index(Request $request){
         $start = $request->start?$request->start:0;
         $limit = $request->limit?$request->limit:0;
-//        echo $request->searchvalue;
-//        return;
+        $tglawal = $request->awal ? $request->awal : null;
+        $tglakhir= $request->akhir ? $request->akhir : null;
+
         $query=$request->searchvalue?$request->searchvalue:NULL;
         
-        $sqlsearch=NULL;
+        $sqlsearch='';         
+        
         if($query){
-            $sqlsearch=array('where'=>array(['kode_jabatan', 'LIKE', '%'.$query.'%']),
-                'orwhere'=>array(['nama_jabatan', 'LIKE', '%'.$query.'%'],['nik', 'LIKE', '%'.$query.'%'],['nama', 'LIKE', '%'.$query.'%']));
+            $sqlsearch='where (mst_karyawans.nik LIKE "%'.$query.'%" or mst_karyawans.nama LIKE "%'.$query.'%" or mst_karyawans.jabatan LIKE "%'.$query.'%" or nama_jabatan LIKE "%'.$query.'%")';
+            
         }
-
-        $data = MYModel::getRowsTableQueryLimit('v_jadwal',$sqlsearch,$start,$limit,['kode_jabatan','asc']);
+        
+        $dataall=MYModel::SP_getData('sp_paging_jadwal',array('count',$tglawal,$tglakhir,$sqlsearch,'',''));
+        $vlimit="limit $start,$limit";
+        
+            
+        $data = MYModel::SP_getData('sp_paging_jadwal',array('select',$tglawal,$tglakhir,$sqlsearch,'',$vlimit));
         return json_encode([
                     'success' => true,
-                    'data' => $data[0],
-                    'record' => $data[1]
+                    'data' => $data,
+                    'record' => $dataall[0]->retval
                         ]);
+
     }
     
     public function loadInput(Request $request){
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
         $opt='get';
-        
+        $tglawal = $request->awal ? $request->awal : null;
+        $tglakhir= $request->akhir ? $request->akhir : null;
+              
+        $data = MYModel::SP_getData('sp_jadwalkaryawans_new', array($opt, $nik, $kode_jabatan, NULL, NULL,NULL,$tglawal,$tglakhir,NULL),true);
 
-        $data = MYModel::SP_getData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
+//        $data = Pegawai::SP_getData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
         return json_encode([
                     'success' => true,
                     'data' => $data,
@@ -56,52 +67,57 @@ class JadwalController extends Controller{
         $opt= $request->opt ? $request->opt : null;
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
-              
-        $data = MYModel::SP_execData('sp_jadwalkaryawans', array($opt, $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL),true);
+        $postdata=$request->postdata?json_decode($request->postdata):array();      
+        $vuser=$request->session()->get('userid');
+//        $tanggal=$request->tanggal ? $request->tanggal : null;
+        $param = array(
+                    $opt,
+                    $nik,
+                    $kode_jabatan, 
+                    $postdata->tanggal, 
+                   str_ireplace("'", "\'",  $postdata->hari),
+                    $postdata->kode_shift,   
+                    null,null,
+                    $vuser);
+        $data = MYModel::SP_execData('sp_jadwalkaryawans_new', $param,true);
         return response($data,200);
     }
     public function saveJadwal(Request $request) {
-        $opt = $request->opt ? $request->opt : '';
         $nik = $request->nik ? $request->nik : null;
         $kode_jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;                
         $postdata=$request->postdata?json_decode($request->postdata):array();
-        $vuser='test';
+//        return var_dump($postdata);
+        $vuser=$request->session()->get('userid');
         if (count($postdata)>0){ 
-            if($opt=='insert'){
-                foreach ($postdata as $value) {
-                    $param = array(
-                        $opt,
-                        $nik,
-                        $kode_jabatan, 
-                        $value->senin, 
-                        $value->selasa,
-                        $value->rabu,
-                        $value->kamis,
-                        $value->jumat,
-                        $value->sabtu,
-                        $value->minggu,
-                        $vuser);
-                    $data=MYModel::SP_execData('sp_jadwalkaryawans',$param,true);
+//            $param = array('deletesave', $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+//            $data=Pegawai::SP_execData('sp_jadwalkaryawans',$param,true);
+            $param = array(
+                    'save',
+                    $nik,
+                    $kode_jabatan,
+                $postdata->tanggal,
+                str_ireplace("'", "\'",  $postdata->hari),
+                $postdata->kode_shift, 
+                null,null,
+                $vuser
+                );
+//            foreach ($postdata as $key => $value) {
+//                
+//                if($key=='tanggal'){
+//                    
+//                }
+//                    $value->tanggal, 
+//                    $value->hari,
+//                    $value->kode_shift,                    
+//                    $vuser);
+//                
+//                
+//               
+//            }
+            $data=MYModel::SP_execData('sp_jadwalkaryawans_new',$param,true);
+                if($data['success']==1){
+                    $data += [ "postdata" => $request->postdata];
                 }
-            }else{
-                $param = array($opt, $nik, $kode_jabatan, NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-                $data=MYModel::SP_execData('sp_jadwalkaryawans',$param,true);
-                foreach ($postdata as $value) {
-                    $param = array(
-                        'save',
-                        $nik,
-                        $kode_jabatan, 
-                        $value->senin, 
-                        $value->selasa,
-                        $value->rabu,
-                        $value->kamis,
-                        $value->jumat,
-                        $value->sabtu,
-                        $value->minggu,
-                        $vuser);
-                    $data=MYModel::SP_execData('sp_jadwalkaryawans',$param,true);
-                }
-            }
             
         }else
         {
@@ -115,15 +131,14 @@ class JadwalController extends Controller{
     }
     
     public function loadJadwalPegawai(Request $request) {
-        $hari = $request->hari ? $request->hari : '';
+        $tanggal = $request->tanggal ? $request->tanggal : null;
         $nik = $request->nik ? $request->nik : null;
         $jabatan = $request->kode_jabatan ? $request->kode_jabatan : null;
-              $hari=  str_ireplace("'", "", $hari);
-        $data = MYModel::getDBTable('mst_jadwal_karyawans')
-            ->join('shifts','mst_jadwal_karyawans.'.$hari, '=', 'shifts.kode')            
-            ->select('shifts.kode', 'shifts.jam_kerja_1', 'shifts.jam_kerja_2',
-                    'shifts.jam_kerja_3', 'shifts.jam_kerja_4' )
-            ->where(array(array('nik','=',$nik),array('kode_jabatan','=',$jabatan)))
+              //$hari=  str_ireplace("'", "", $hari);
+        $data = MYModel::getDBTable('v_jadwal_karyawan')            
+            ->select('kode_shift', 'jam_kerja_1', 'jam_kerja_2',
+                    'jam_kerja_3', 'jam_kerja_4' )
+            ->where(array(array('tanggal','=',$tanggal),array('nik','=',$nik),array('kode_jabatan','=',$jabatan)))
             ->get();
         
         

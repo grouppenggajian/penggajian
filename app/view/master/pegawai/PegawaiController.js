@@ -225,7 +225,11 @@ Ext.define('Penggajian.view.master.pegawai.PegawaiController', {
     },
     onClickRefreshJadwal:function(){
         if(Ext.getCmp('pegawainik').getValue()){
-            Ext.getCmp('gridpegawaijadwal').store.reload();
+            Ext.getCmp('gridpegawaijadwal').store.reload({params:{
+                        awal:Ext.getCmp('pegawaijadwal_start').getValue(),
+                        akhir:Ext.getCmp('pegawaijadwal_finish').getValue()
+                    }
+                });
         }
         
     },
@@ -255,13 +259,13 @@ Ext.define('Penggajian.view.master.pegawai.PegawaiController', {
         var vnik=Ext.getCmp('pegawainik').getValue();
         var vjab=Ext.getCmp('pegawaijabatan').getValue();
         var rec = grid.getStore().getAt(rowIndex);
-        var vkode=rec.data.kode;
+        var vpostdata=Ext.JSON.encode(rec.data);
         
         
         execute_confirm('Are you sure to delete this ?', Penggajian.Global.getApiUrl()+'pegawai/deletejadwal', {
             nik:vnik,
             kode_jabatan:vjab,
-            kode:vkode,
+            postdata:vpostdata,
             opt:'deletesave',            
             _token:tokendata
             }, function(obj) {                                                            

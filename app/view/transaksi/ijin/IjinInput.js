@@ -157,19 +157,19 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinInput',
                                 Ext.getCmp('ijinhari').setValue(datahari[value.getDay()]);
                                 var ctrl=Ext.getCmp('ijin_input').conttroller;
                                              
-                                if(Ext.getCmp('ijinnik').getValue()){
+                                if(Ext.getCmp('ijinnik').getValue() && Ext.getCmp('ijinkode_jabatan').getValue()){
                                     var mysqtore=Ext.getCmp('ijin_input').getViewModel().getData().shiftijin;
                                     mysqtore.load({
                                         params:{
                                             nik:Ext.getCmp('ijinnik').getValue(),
                                             kode_jabatan:Ext.getCmp('ijinkode_jabatan').getValue(),
-                                            hari:Ext.getCmp('ijinhari').getValue()
+                                            tanggal:value.toMysql()
                                         }
                                         ,
                                         callback:function(records, operation, success) {
                                             if(success){
                                                 if(records.length>0){
-                                                    Ext.getCmp('ijinkode_shift').setValue(records[0].get('kode'));
+                                                    Ext.getCmp('ijinkode_shift').setValue(records[0].get('kode_shift'));
                                                     Ext.getCmp('ijinjam_kerja_1').setValue(records[0].get('jam_kerja_1'));
                                                     Ext.getCmp('ijinjam_kerja_2').setValue(records[0].get('jam_kerja_2'));
                                                     Ext.getCmp('ijinjam_kerja_3').setValue(records[0].get('jam_kerja_3'));
@@ -178,6 +178,18 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinInput',
                                             }
                                         }
                                     });
+                                }else{
+                                    var msg=
+                                    Ext.Msg.show({
+                                        title:'Message Warning',
+                                        msg: 'Nik/Jabatan Belum Diisi!',
+                                        alwaysOnTop:true,
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.WARNING
+                                    });
+                                    Ext.defer(function () {
+                                        msg.toFront();
+                                    }, 100);
                                 }
                                              
                             }

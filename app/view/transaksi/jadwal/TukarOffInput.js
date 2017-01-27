@@ -151,18 +151,49 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffInput',
                         xtype:'datefield',
                         name: 'tanggal',
                         id: 'tukarofftanggal',    
-                        minValue:new Date(),
+                        minValue: new Date(),
                         afterLabelTextTpl: required_css,                        
                         fieldLabel: 'Tanggal',
                         hiddenName:'tanggal',
                         allowBlank: false,            
-                        format:'d-m-Y',
+                        format:'d-m-Y',                        
                         //                                    labelAlign:'right',
                         //                                    labelWidth:120,
                         width:225,
                         listeners:{
                             select:function ( dfield , value , eOpts ){
-                                console.log(datahari[value.getDay()]);
+//                              
+                                
+//                                if(value.toMysql()==new Date().toMysql()){
+//                                    Ext.getCmp('tukarofftanggal').setValue(null);
+//                                    Ext.getCmp('tukaroffhari').setValue(null);
+//                                    return;
+//                                }
+                                    
+                                if( !Ext.getCmp('tukaroffnik').getValue() || !Ext.getCmp('tukaroffkode_jabatan').getValue()){
+//                                    set_message(2, 'Nik/Jabatan Belum Diisi!');
+                                    Ext.getCmp('tukarofftanggal').setValue(null);
+                                    Ext.getCmp('tukaroffhari').setValue(null);
+                                    Ext.getCmp('tukaroffkode_shift').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_1').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_2').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_3').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_4').setValue(null);
+                                    var msg=
+                                    Ext.Msg.show({
+                                        title:'Message Warning',
+                                        msg: 'Nik/Jabatan Belum Diisi!',
+                                        alwaysOnTop:true,
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.WARNING
+                                    });
+                                    Ext.defer(function () {
+                                        msg.toFront();
+                                    }, 100);
+                                    
+                                    return;
+                                }
+                                            
                                 Ext.getCmp('tukaroffhari').setValue(datahari[value.getDay()]);
                                 var ctrl=Ext.getCmp('tukaroff_input').conttroller;
                                              
@@ -172,13 +203,13 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffInput',
                                         params:{
                                             nik:Ext.getCmp('tukaroffnik').getValue(),
                                             kode_jabatan:Ext.getCmp('tukaroffkode_jabatan').getValue(),
-                                            hari:Ext.getCmp('tukaroffhari').getValue()
+                                            tanggal:format_date_mysql(value)
                                         }
                                         ,
                                         callback:function(records, operation, success) {
                                             if(success){
                                                 if(records.length>0){
-                                                    Ext.getCmp('tukaroffkode_shift').setValue(records[0].get('kode'));
+                                                    Ext.getCmp('tukaroffkode_shift').setValue(records[0].get('kode_shift'));
                                                     Ext.getCmp('tukaroffjam_kerja_1').setValue(records[0].get('jam_kerja_1'));
                                                     Ext.getCmp('tukaroffjam_kerja_2').setValue(records[0].get('jam_kerja_2'));
                                                     Ext.getCmp('tukaroffjam_kerja_3').setValue(records[0].get('jam_kerja_3'));
@@ -382,6 +413,63 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffInput',
                         width:225,
                         listeners:{
                             select:function ( dfield , value , eOpts ){
+                                if( !Ext.getCmp('tukaroffnik_tukar').getValue() || !Ext.getCmp('tukaroffkode_jabatan').getValue()){
+//                                    set_message(2, 'Nik/Jabatan Belum Diisi!');
+                                    Ext.getCmp('tukarofftanggal_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffhari_tukar').setValue(null);
+                                     Ext.getCmp('tukaroffkode_shift_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_1_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_2_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_3_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_4_tukar').setValue(null);
+                                    var msg=Ext.Msg.show({
+                                        title:'Message Warning',
+                                        msg: 'Nik/Jabatan Belum Diisi!',
+                                        alwaysOnTop:true,
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.WARNING
+                                    });
+                                    Ext.defer(function () {
+                                        msg.toFront();
+                                    }, 100);
+                                    return;
+                                }
+                                if(value.withoutTime() <= Ext.getCmp('tukarofftanggal').getValue().withoutTime()){
+                                    Ext.getCmp('tukarofftanggal_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffhari_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffkode_shift_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_1_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_2_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_3_tukar').setValue(null);
+                                    Ext.getCmp('tukaroffjam_kerja_4_tukar').setValue(null);
+                                    var msg=Ext.Msg.show({
+                                        title:'Message Warning',
+                                        msg: 'Tanggal Tukar Tidak Boleh Sama/Lebih Kecil!',
+                                        alwaysOnTop:true,
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.WARNING
+                                    });
+                                    Ext.defer(function () {
+                                        msg.toFront();
+                                    }, 100);
+                                    return;
+                                }
+//                                console.log(Ext.getCmp('tukarofftanggal').getValue().withoutTime());
+//                                console.log(value.withoutTime());
+//                                if(value.withoutTime() < Ext.getCmp('tukarofftanggal').getValue().withoutTime()){
+//                                    
+//                                    Ext.getCmp('tukarofftanggal_tukar').setValue(null);
+//                                    Ext.getCmp('tukaroffhari_tukar').setValue(null);
+//                                    Ext.Msg.show({
+//                                        title:'Message Warning',
+//                                        msg: 'Tanggal Lebih Kecil!',
+//                                        alwaysOnTop:true,
+//                                        buttons: Ext.Msg.OK,
+//                                        icon: Ext.Msg.WARNING
+//                                    }).defer(100);
+//                                    return;
+//                                }
+                                
                                 console.log(datahari[value.getDay()]);
                                 Ext.getCmp('tukaroffhari_tukar').setValue(datahari[value.getDay()]);
                                 var ctrl=Ext.getCmp('tukaroff_input').conttroller;
@@ -392,13 +480,13 @@ Ext.define('Penggajian.view.transaksi.jadwal.TukarOffInput',
                                         params:{
                                             nik:Ext.getCmp('tukaroffnik_tukar').getValue(),
                                             kode_jabatan:Ext.getCmp('tukaroffkode_jabatan').getValue(),
-                                            hari:Ext.getCmp('tukaroffhari_tukar').getValue()
+                                            tanggal:format_date_mysql(value)
                                         }
                                         ,
                                         callback:function(records, operation, success) {
                                             if(success){
                                                 if(records.length>0){
-                                                    Ext.getCmp('tukaroffkode_shift_tukar').setValue(records[0].get('kode'));
+                                                    Ext.getCmp('tukaroffkode_shift_tukar').setValue(records[0].get('kode_shift'));
                                                     Ext.getCmp('tukaroffjam_kerja_1_tukar').setValue(records[0].get('jam_kerja_1'));
                                                     Ext.getCmp('tukaroffjam_kerja_2_tukar').setValue(records[0].get('jam_kerja_2'));
                                                     Ext.getCmp('tukaroffjam_kerja_3_tukar').setValue(records[0].get('jam_kerja_3'));

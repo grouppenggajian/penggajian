@@ -68,40 +68,88 @@ Ext.define('Penggajian.view.transaksi.jadwal.Jadwal', {
             width:200
         },        
         {
-            text: 'Senin',  
-            dataIndex: 'senin',
+            
+            text: 'Tanggal',  
+            dataIndex: 'tanggal',
+            xtype: 'datecolumn',   
+            format:'d-m-Y', 
             align:'center',
+            hidden:false,      
+            editor:
+            {
+                xtype:'datefield',
+                id:'inputjadwal_tanggal',                    
+                format:'d-m-Y',                
+                width: 95,
+                name: 'inputjadwal_tanggal',
+                itemId: 'itemIdinputjadwal_tanggal'  ,
+                listeners:{
+                    select:function ( me , value , eOpts ){
+                        var gridstore=Ext.getCmp('gridinputjadwal').store;
+                        var frec= gridstore.findRecord('tanggal',value);
+                        if(!frec){
+                            var recgrid=      Ext.getCmp('gridinputjadwal').getSelection();
+                            recgrid[0].set('hari',datahari[value.getDay()]);//                   
+                        }else{
+                            me.setValue(null);
+                            Ext.getCmp('gridinputjadwal').getPlugin().cancelEdit();
+                        }
+                    }
+                }
+            }
+        },
+        {
+            
+            text: 'Hari',  
+            dataIndex: 'hari',
+            align:'left',
             hidden:false
+        },
+        {
+            text: 'Kode Shift',  
+            dataIndex: 'kode_shift',
+            align:'center',
+            hidden:false,            
+            editor:{
+                xtype:'twincombo',
+                id:'inputjadwal_kode_shift',                    
+                menu:'jadwalshifteditor',                    
+                width: 95,
+                name: 'inputjadwal_kode_shift',
+                itemId: 'itemIdinputjadwal_kode_shift'
+                    
+            }
         },{
-            text: 'Selasa',  
-            dataIndex: 'selasa',
-            align:'center',
-            hidden:false
-        },{
-            text: 'Rabu',  
-            dataIndex: 'rabu',
-            align:'center',
-            hidden:false
-        },{
-            text: 'Kamis',  
-            dataIndex: 'kamis',
-            align:'center',
-            hidden:false
-        },{
-            text: 'Jum\'at',  
-            dataIndex: 'jumat',
-            align:'center',
-            hidden:false
-        },{
-            text: 'Sabtu',  
-            dataIndex: 'sabtu',
-            align:'center',
-            hidden:false
-        },{
-            text: 'Minggu',  
-            dataIndex: 'minggu',
-            align:'center',
-            hidden:false
+            text: 'I/Masuk', 
+            dataIndex: 'jam_kerja_1', 
+            align:'left',
+            xtype: 'datecolumn',   
+            format:'H:i',
+            flex: 1
+        },
+        {
+            text: 'II/Keluar/Pulang', 
+            dataIndex: 'jam_kerja_2', 
+            align:'left',
+            xtype: 'datecolumn',   
+            format:'H:i',
+            flex: 1
+        },
+        {
+            text: 'III/Masuk', 
+            dataIndex: 'jam_kerja_3', 
+            align:'left',
+            xtype: 'datecolumn',   
+            format:'H:i',
+            flex: 1
+        },
+        {
+            text: 'IV/Keluar/Pulang', 
+            dataIndex: 'jam_kerja_4', 
+            align:'left',
+            xtype: 'datecolumn',   
+            format:'H:i',
+            flex: 1
         }
         ],
         tbar:[
@@ -111,11 +159,41 @@ Ext.define('Penggajian.view.transaksi.jadwal.Jadwal', {
             handler:'onClickAdd'
         },
         {
-            xtype: 'searchfield',
+            xtype: 'textfield',
             id:'jadwalsearch',
-            store: 'storejadwal',
+//            store: 'storejadwal',
             width: 380,
-            emptyText: 'Quick Search...'
+            emptyText: 'Search Nik,Nama,Jabatan...',
+//            enableKeyEvents:true,
+            listeners:{
+                specialkey: function(field, e){
+                    if (e.getKey() == e.ENTER) {
+                        var ctrl=Ext.getCmp('tab2a1').getController();
+                        ctrl.onClickSearchJadwal();
+//                        var form = field.up('form').getForm();
+//                        form.submit();
+                    }
+                }
+            }
+            
+        },
+{
+            xtype: 'datefield',
+            id:'jadwal_start',
+            format:'d-m-Y',
+            width:125
+        },
+        ' s/d ',
+        {
+            xtype: 'datefield',
+            id:'jadwal_finish',
+            format:'d-m-Y',
+            width:125
+        },
+        {
+            text:'Search',
+            iconCls:Ext.baseCSSPrefix + 'form-search-trigger',
+            handler:'onClickSearchJadwal'
         }],
         bbar: {
             xtype: 'pagingtoolbar',
