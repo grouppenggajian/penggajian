@@ -7,6 +7,13 @@ Ext.define('Penggajian.view.transaksi.absensi.AbsensiController', {
             ////                        console.log(refjkstoregrid);
             refstoreabsensi.loadPage(1);
     },
+    onSearchTanggal:function(btn){
+        var refstoreabsensi=Ext.getCmp('idabsensilist').store;  
+        refstoreabsensi.load({params:{
+                awal:Ext.getCmp('absensi_start').getValue().toMysql(),
+                akhir:Ext.getCmp('absensi_finish').getValue().toMysql()
+                }})
+    },
     onDownloadFinger:function(btn){
         Ext.Ajax.request({
             method:'GET',
