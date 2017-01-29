@@ -3,16 +3,42 @@ Ext.define('Penggajian.view.transaksi.absensi.AbsensiController', {
 
     alias: 'controller.absensi',
     onShow:function(me,opts){
-        var refstoreabsensi=Ext.getCmp('idabsensilist').store;   
+        
+        var refstoreabsensi=Ext.getCmp('idabsensilist').store; 
+        var app = Penggajian.getApplication();
+        app.getStore('storeperiode').load({
+            scope: this,
+            callback:function(records, operation, success){
+                if(success){
+                    if(records.length>0){
+                        Ext.getCmp('absensi_start').setValue(records[0].get('tglawal'));
+                        Ext.getCmp('absensi_finish').setValue(records[0].get('tglakhir'));
+                            
+                            
+                        refstoreabsensi.getProxy().setExtraParam('awal',records[0].get('tglawal'));
+                        refstoreabsensi.getProxy().setExtraParam('akhir',records[0].get('tglakhir'));                                
+                        refstoreabsensi.load({
+                            params:{
+                                searchvalue:Ext.getCmp('absensisearch').getValue()
+                            }
+                        });
+                            
+                    }
+                }
+            }
+        });
             ////                        console.log(refjkstoregrid);
-            refstoreabsensi.loadPage(1);
+//            refstoreabsensi.loadPage(1);
     },
     onSearchTanggal:function(btn){
-        var refstoreabsensi=Ext.getCmp('idabsensilist').store;  
-        refstoreabsensi.load({params:{
-                awal:Ext.getCmp('absensi_start').getValue().toMysql(),
-                akhir:Ext.getCmp('absensi_finish').getValue().toMysql()
-                }})
+        var refstoreabsensi=Ext.getCmp('idabsensilist').store; 
+        refstoreabsensi.getProxy().setExtraParam('awal',Ext.getCmp('absensi_start').getValue().toMysql());
+        refstoreabsensi.getProxy().setExtraParam('akhir',Ext.getCmp('absensi_finish').getValue().toMysql());                                
+        refstoreabsensi.load({
+                            params:{
+                                searchvalue:Ext.getCmp('absensisearch').getValue()
+                            }
+                        })
     },
     onDownloadFinger:function(btn){
         Ext.Ajax.request({
