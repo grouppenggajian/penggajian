@@ -56,7 +56,7 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadir',
         {
                 text:'id',
                 dataIndex:'id',
-                sortable:false,
+                sortable:true,
                 width:110,
                 hidden:true
             },
@@ -64,7 +64,7 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadir',
             {
                 text:'kategori_ijin',
                 dataIndex:'kategori_ijin',
-                sortable:false,
+                sortable:true,
                 width:110,
                 hidden:true
             },
@@ -145,7 +145,17 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadir',
         }
         
         
-        ]
+        ],bbar: [
+                
+             
+        {
+            xtype: 'pagingtoolbar',
+            displayInfo: true,
+            pageSize: 10,
+            bind:{
+                store: '{storermsinsentifhadir}'
+            }
+        }]
 
     }
         ],

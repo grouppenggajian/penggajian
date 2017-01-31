@@ -15,12 +15,13 @@ use Illuminate\Http\Request;
 use App\Models\MYModel;
 class RumusInsentifHadirController extends Controller{
     public function index(Request $request){        
-        
-        $query = MYModel::getRowsTable(NULL, 'v_rumus_insentifhadir', []);
+        $start = $request->start?$request->start:0;
+        $limit = $request->limit?$request->limit:0;
+        $query = MYModel::getRowsTableQueryLimit('v_rumus_insentifhadir',null,$start,$limit);
         return json_encode([
                     'success' => true,
-                    'data' => $query,
-                    'record' => count($query)
+                    'data' => $query[0],
+                    'record' => $query[1]
                         ]);
     }
     public function jenisharikerja(Request $request){        
