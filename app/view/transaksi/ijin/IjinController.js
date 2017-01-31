@@ -3,7 +3,30 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinController', {
 
     alias: 'controller.ijin',
     onShow:function(me,opts){
-    Ext.getCmp('idijinlist').store.load();
+        var strijin=Ext.getCmp('idijinlist').store;
+        var app = Penggajian.getApplication();
+        app.getStore('storeperiode').load({
+            scope: this,
+            callback:function(records, operation, success){
+                if(success){
+                    if(records.length>0){
+                        Ext.getCmp('ijin_start').setValue(records[0].get('tglawal'));
+                        Ext.getCmp('ijin_finish').setValue(records[0].get('tglakhir'));                            
+                            
+                        strijin.getProxy().setExtraParam('awal',records[0].get('tglawal'));
+                        strijin.getProxy().setExtraParam('akhir',records[0].get('tglakhir'));                                
+                        strijin.load({
+                            params:{
+                                searchvalue:Ext.getCmp('ijinsearch').getValue()
+                            }
+                        });
+                            
+                    }
+                }
+            }
+        });
+    
+    
     },
     onClickAdd:function(btn,opts){
         var winijin=Ext.create({
@@ -20,8 +43,11 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinController', {
     onSearchTanggal:function(){
         var awal=Ext.getCmp('ijin_start').getValue();
         var akhir=Ext.getCmp('ijin_finish').getValue();
-        
-        Ext.getCmp('idijinlist').store.load({params:{awal:awal,akhir:akhir}});
+        var cari=Ext.getCmp('ijinsearch').getValue();
+        var strijin=Ext.getCmp('idijinlist').store;
+        strijin.getProxy().setExtraParam('awal',awal);
+        strijin.getProxy().setExtraParam('akhir',akhir);
+        strijin.load({params:{searchvalue:cari}});
     },
     onSave:function(btn){
         
@@ -35,7 +61,7 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinController', {
                 opt='update';
             }
             var tgl_ijin=Ext.getCmp('ijintangggal').getValue();
-            tgl_ijin=Ext.Date.format(tgl_ijin, 'Y-m-d') ;
+            tgl_ijin=tgl_ijin.toMysql() ;
             formfield.submit({
                 url: Penggajian.Global.getApiUrl() + 'ijin/executeRow',
                 methods:'POST',
@@ -48,12 +74,17 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinController', {
                 success:function(form,action) {
                     var res = Ext.decode(action.response.responseText);
                     set_message(0, res.message); 
-                    Ext.getCmp('idijinlist').store.load();
+                    Ext.getCmp('ijin_start').setValue(tgl_ijin);
+                    Ext.getCmp('ijin_finish').setValue(tgl_ijin);
+                    Ext.getCmp('ijinsearch').setValue(Ext.getCmp('ijinnik').getValue());
+                    Ext.getCmp('tab2f1').getController().onSearchTanggal();
                     Ext.getCmp('ijin_input').close();
                 },
                 failure:function(form,action){
-                    var res = Ext.decode(action.response.responseText);  
-                    set_message(1, res.message);  
+                    responseFailure(action.response);
+                                    
+                                    //                                                                Ext.Msg.alert('info',resp.reason);
+                                
                     
                 }
             });

@@ -3,9 +3,32 @@ Ext.define('Penggajian.view.transaksi.hitungketerlambatan.HitungKeterlambatanCon
 
     alias: 'controller.hitungketerlambatan',
     onShow:function(me,opts){
-        var refstoreabsensi=Ext.getCmp('idhitungketerlambatanlist').store;   
+        
+        var refstoreterlambat=Ext.getCmp('idhitungketerlambatanlist').store; 
+        var app = Penggajian.getApplication();
+        app.getStore('storeperiode').load({
+            scope: this,
+            callback:function(records, operation, success){
+                if(success){
+                    if(records.length>0){
+                        Ext.getCmp('hitungketerlambatan_start').setValue(records[0].get('tglawal'));
+                        Ext.getCmp('hitungketerlambatan_finish').setValue(records[0].get('tglakhir'));
+                            
+                            
+//                        refstoreterlambat.getProxy().setExtraParam('awal',records[0].get('tglawal'));
+//                        refstoreterlambat.getProxy().setExtraParam('akhir',records[0].get('tglakhir'));                                
+                        refstoreterlambat.load({
+                            params:{
+                                searchvalue:Ext.getCmp('hitungketerlambatansearch').getValue()
+                            }
+                        });
+                            
+                    }
+                }
+            }
+        });
             ////                        console.log(refjkstoregrid);
-            refstoreabsensi.loadPage(1);
+//            refstoreterlambat.loadPage(1);
     },
     onSearchTanggal:function(){
         var awal=Ext.getCmp('hitungketerlambatan_start').getValue();

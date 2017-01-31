@@ -63,7 +63,7 @@ class PostingController extends controller {
         
         if (count($postdata)>0){
             $param =array('clear', null,null);
-            $data=MYModel::SP_execData('sp_posting_pendapatan',$param,true);
+            $data=MYModel::SP_execData('sp_posting_pendapatan',$param,false);
                 foreach ($postdata as $value) {
                     $param = array($opt,$value->jenis, $value->kode);
                     $data=MYModel::SP_execData('sp_posting_pendapatan',$param,true);
@@ -79,7 +79,7 @@ class PostingController extends controller {
         
         if (count($postdata)>0){
             $param =array('clear', null,null);
-            $data=MYModel::SP_execData('sp_posting_potongan',$param,true);
+            $data=MYModel::SP_execData('sp_posting_potongan',$param,false);
                 foreach ($postdata as $value) {
                     $param = array($opt,$value->jenis, $value->kode);
                     $data=MYModel::SP_execData('sp_posting_potongan',$param,true);

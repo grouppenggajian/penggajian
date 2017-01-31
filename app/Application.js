@@ -30,7 +30,7 @@ Ext.define('Penggajian.Application', {
         ,'jadwal.Jadwal','jadwal.InputJadwal','jadwal.JadwalShiftEditor'
         ,'jadwal.TukarOff','ijin.Ijin','ijin.Cuti'
         ,'pengaturan.HariLibur','pengaturan.PostingPendapatan','pengaturan.PostingPotongan'
-        ,'Absensi','hitungabsen.HitungKeterlambatan'
+        ,'Absensi','hitungabsen.HitungKeterlambatan','hitungabsen.HitungLembur'
         // TODO: add global / shared stores here
     ],
     views:[
@@ -79,7 +79,7 @@ Ext.define('Penggajian.Application', {
 //        loggedIn = locaStorage.getItem('userid');        
 //        console.log(userstatus);
         
-        if(userstatus){
+         if(getusersession()){
             var appm=Ext.getCmp('app-main-id');
             if(appm){
                 appm.show();

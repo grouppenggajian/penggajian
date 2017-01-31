@@ -67,6 +67,7 @@ Ext.define('Penggajian.view.rumus.insentifhadir.RmsInsentifHadirInput',
                 anchor    : '100%',
                 hiddenName:'kategori_ijin',
                 allowBlank: false,
+                queryParam:'searchvalue',
                 bind:{
                     store: '{storekategori_absen_rih}'
                 },

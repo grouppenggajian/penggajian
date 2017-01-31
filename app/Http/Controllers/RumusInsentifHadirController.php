@@ -39,7 +39,7 @@ class RumusInsentifHadirController extends Controller{
         $tipe_ijin=$request->tipe_ijin?$request->tipe_ijin:NULL;
         $jenisharikerja=$request->jenisharikerja?$request->jenisharikerja:NULL;
         $kali_ijin=$request->kali_ijin?$request->kali_ijin:NULL;
-        $nilai_insentif=$request->nilai_insentif?$request->nilai_insentif:NULL;
+        $nilai_insentif=$request->nilai_insentif>-1?$request->nilai_insentif:NULL;
         $param = array($opt, $id, $kategori_ijin,
                     $tipe_ijin,
                     $jenisharikerja,

@@ -96,7 +96,7 @@ class IjinController extends Controller{
 
         $param = array($opt, $no_ijin,
                 $tgl_ijin,
-                $hari_ijin,
+               str_ireplace("'", "\'",  $hari_ijin),
                 $jam_ijin_awal,
                 $jam_ijin_akhir,
                 $nik,

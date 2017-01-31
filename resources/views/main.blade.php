@@ -168,6 +168,54 @@
                     }
                 });
             }
+            function session_expired(err){
+                        Ext.Msg.show({
+                            title: 'Error',
+                            msg: err,
+                            modal: true,
+                            closable: false,
+                            icon: Ext.Msg.ERROR,
+                            buttons: Ext.Msg.OK,
+                            fn: function(btn){
+                                if (btn == 'ok') {
+                                    window.location.href = Penggajian.Global.getApiUrl();
+                                }
+                            }
+                        });
+                    }
+            function responseFailure(obj){
+                try{
+                                        var  resp = Ext.decode(obj.responseText);
+                                        if (resp.reason == 'Session Expired' || resp.message == 'Session Expired') {
+                                            session_expired('Session Expired');
+                                        }  else{
+                                            set_message(0, resp.reason +' '+resp.message);
+                                        }
+                                    }catch(ex){
+                                        var msg=ex.message;
+//                                        var divEl = Ext.DomHelper.createDom('<div>'+ex.msg+'</div>');
+//                                        var vdiv=divEl.textContent;
+                                        var exmsg=null;
+                                        if (msg.indexOf('TokenMismatchException') > -1) {
+                                            //console.log('TokenMismatchException');
+                                            session_expired('Session Expired');
+                                        }else{
+                                            Ext.Msg.show({
+                                                title:'Message Error',
+                                                msg: ex.message,                                            
+                                                buttons: Ext.Msg.OK,
+                                                icon: Ext.Msg.ERROR,
+                                                maxWidth:'100%',
+                                                listeners:{
+                                                    show:function(){
+                                                        Ext.Msg.doComponentLayout();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                    }
+            }
             function execute_confirm(vmsg,ajax_url,ajax_params,successfunct){
                 var myAjax=Ext.Ajax;
                 Ext.Msg.show({
@@ -207,19 +255,28 @@
                                             set_message(0, resp.reason +' '+resp.message);
                                         }
                                     }catch(ex){
-                                        Ext.Msg.show({
-                                            title:'Message Error',
-                                            msg: ex.message,                                            
-                                            buttons: Ext.Msg.OK,
-                                            icon: Ext.Msg.ERROR,
-                                            maxWidth:'100%',
-                                            listeners:{
-                                                show:function(){
-                                                    Ext.Msg.doComponentLayout();
+                                        var msg=ex.message;
+//                                        var divEl = Ext.DomHelper.createDom('<div>'+ex.msg+'</div>');
+//                                        var vdiv=divEl.textContent;
+                                        var exmsg=null;
+                                        if (msg.indexOf('TokenMismatchException') > -1) {
+                                            //console.log('TokenMismatchException');
+                                            session_expired('Session Expired');
+                                        }else{
+                                            Ext.Msg.show({
+                                                title:'Message Error',
+                                                msg: ex.message,                                            
+                                                buttons: Ext.Msg.OK,
+                                                icon: Ext.Msg.ERROR,
+                                                maxWidth:'100%',
+                                                listeners:{
+                                                    show:function(){
+                                                        Ext.Msg.doComponentLayout();
+                                                    }
                                                 }
-                                            }
-                                        });
-//                                        window.location.href = Penggajian.Global.getApiUrl();
+                                            });
+                                        }
+
                                     }
                                     
                                     //                                                                Ext.Msg.alert('info',resp.reason);

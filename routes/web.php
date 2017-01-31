@@ -207,5 +207,7 @@ Route::get('/mesin/setuserinfo', 'MesinController@SetUserInfo');
 Route::get('/hitungketerlambatan/load','HitungKeterlambatanController@index');
 Route::post('/hitungketerlambatan/executeRow','HitungKeterlambatanController@executeRow');
 
+Route::get('/hitunglembur/load','HitungLemburController@index');
+Route::post('/hitunglembur/executeRow','HitungLemburController@executeRow');
 
 

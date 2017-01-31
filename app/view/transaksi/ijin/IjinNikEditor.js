@@ -119,6 +119,11 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinNikEditor', {
     
     ,
     listeners:{
+        beforedestroy  :function( me , eOpts ){
+            Ext.getCmp('searchfieldijinnikeditor').onClearClick();
+//            me.destroy();
+            
+        }, 
         hide :function( me , eOpts ){
             Ext.getCmp('searchfieldijinnikeditor').onClearClick();
             me.destroy();
@@ -126,6 +131,7 @@ Ext.define('Penggajian.view.transaksi.ijin.IjinNikEditor', {
         },    
    
         show:function(){
+            
             var app = Penggajian.getApplication();
             var gridstore=app.getStore('storepegawaitwin');            
             gridstore.load();
