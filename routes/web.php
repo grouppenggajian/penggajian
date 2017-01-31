@@ -210,4 +210,7 @@ Route::post('/hitungketerlambatan/executeRow','HitungKeterlambatanController@exe
 Route::get('/hitunglembur/load','HitungLemburController@index');
 Route::post('/hitunglembur/executeRow','HitungLemburController@executeRow');
 
+Route::get('/hitinsentifhadir/load','HitungInsentifHadirController@index');
+Route::post('/hitinsentifhadir/executeRow','HitungInsentifHadirController@executeRow');
+
 
