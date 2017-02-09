@@ -28,6 +28,23 @@ class PeriodeController extends Controller{
                     'record' => $data[1]
                         ]);
     }
+    public function refPeriodeByThbl(Request $request){
+        $start = 0;
+        $limit = 1;
+        $thbl = $request->thbl?$request->thbl:null;
+        $sql_search=null;
+        if($thbl){
+            $sql_search=array('where'=>array(array('thbl','=',$thbl)));
+        }
+//        $limit = isset($_POST['limit']) ? $this->db->escape_str($this->input->post('limit', TRUE)) : $this->config->item("length_records");
+        $data=MYModel::getRowsTableQueryLimit( 'periode_gaji', $sql_search,$start,$limit,['thbl','DESC'] ) ;
+        
+        return  json_encode([
+                    'success' => true,
+                    'data' => $data[0],
+                    'record' => $data[1]
+                        ]);
+    }
     public function executeRow(Request $request){
         $param = array($request->opt, $request->id, $request->tglawal,$request->tglakhir,$request->thnbln,$request->aktif);
 //        echo 'test';

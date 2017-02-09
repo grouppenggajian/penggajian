@@ -61,6 +61,20 @@
                 return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
                 
             }
+            Date.prototype.toThblMysql = function () {
+                var dthis = new Date(this);    
+                var d = dthis.getDate();
+                var m = dthis.getMonth() + 1;
+                var y = dthis.getFullYear();
+                return '' + y + (m<=9 ? '0' + m : m);
+                
+            }
+            String.prototype.toThblExt = function() {
+                var dthis = this;  
+                var thbl=dthis.substring(0, 4)+'-'+dthis.substring(4, 6)+'-'+'01'; 
+                return thbl;
+            };
+            
             String.prototype.toProperCase = function() {
                 return this.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -443,7 +457,7 @@
             var datathr=[['<1 TAHUN','<1 TAHUN'],['>1 TAHUN','>1 TAHUN']];
             var datakelamin=[['L','Laki-laki'],['P','Perempuan']];
             var datastatuslembur=[['BIASA','BIASA'],['OFF','OFF']];
-            var dataharimenit=[['HARI','HARI'],['MENIT','MENIT'],['TAHUN','TAHUN'],['BULAN','BULAN'],['MASA KERJA','MASA KERJA']];
+            var dataharimenit=[['HARI','HARI'],['MENIT','MENIT'],['TAHUN','TAHUN'],['BULAN','BULAN'],['MASA KERJA','MASA KERJA'],['HARI KERJA','HARI KERJA']];
             var datahari=['MINGGU','SENIN','SELASA','RABU','KAMIS','JUM\'AT','SABTU'];
             var dataharicombo=[[0,'MINGGU'],[1,'SENIN'],[2,'SELASA'],[3,'RABU'],
                 [4,'KAMIS'],[5,'JUM\'AT'],[6,'SABTU']];

@@ -112,6 +112,18 @@ Route::post('/rumusketerlambatan/save','RumusKeterlambatanController@executeRows
 Route::post('/rumusketerlambatan/deletePendapatan','RumusKeterlambatanController@deletePendapatan');
 Route::post('/rumusketerlambatan/deletePengali','RumusKeterlambatanController@deletePengali');
 
+Route::get('/rumusdendaabsensi/combopotongan','RumusDendaAbsensiController@comboPotongan');
+Route::get('/rumusdendaabsensi/loadpendapatan','RumusDendaAbsensiController@loadPendapatan');
+Route::get('/rumusdendaabsensi/loadpengali','RumusDendaAbsensiController@loadPengali');
+Route::get('/rumusdendaabsensi/loaddenda','RumusDendaAbsensiController@loadDenda');
+Route::get('/rumusdendaabsensi/jenisharikerja','RumusDendaAbsensiController@jenisHariKerja');
+Route::post('/rumusdendaabsensi/deletependapatan','RumusDendaAbsensiController@deletePendapatan');
+Route::post('/rumusdendaabsensi/deletepengali','RumusDendaAbsensiController@deletePengali');
+Route::post('/rumusdendaabsensi/deletedenda','RumusDendaAbsensiController@deleteDenda');
+Route::post('/rumusdendaabsensi/executeRow','RumusDendaAbsensiController@executeRow');
+
+
+
 Route::get('/referensi/agama','ReferensiController@getAgama');
 Route::get('/referensi/golongandarah','ReferensiController@getGolonganDarah');
 Route::get('/referensi/statuskerja','ReferensiController@getStatusKerja');
@@ -123,6 +135,8 @@ Route::get('/referensi/kecamatan','ReferensiController@getKecamatan');
 Route::get('/referensi/kelurahan','ReferensiController@getKelurahan');
 Route::get('/referensi/tipepinjaman','ReferensiController@getTipePinjaman');
 Route::get('/referensi/thrpembagi','ReferensiController@getThrPembagi');
+Route::get('/referensi/refrumus','ReferensiController@getRefRumus');
+Route::get('/referensi/periode','PeriodeController@refPeriodeByThbl');
 
 
 Route::get('/pinjaman/load','PinjamanController@index');
@@ -212,5 +226,17 @@ Route::post('/hitunglembur/executeRow','HitungLemburController@executeRow');
 
 Route::get('/hitinsentifhadir/load','HitungInsentifHadirController@index');
 Route::post('/hitinsentifhadir/executeRow','HitungInsentifHadirController@executeRow');
+
+Route::get('/hitdenda/load','HitungDendaController@index');
+Route::post('/hitdenda/executeRow','HitungDendaController@executeRow');
+
+Route::get('/hitpotongan/load','GajiPotonganController@index');
+Route::post('/hitpotongan/executeRow','GajiPotonganController@executeRow');
+
+Route::get('/hitpendapatan/load','GajiPendapatanController@index');
+Route::post('/hitpendapatan/executeRow','GajiPendapatanController@executeRow');
+
+Route::get('/koreksiabsensi/load','KoreksiAbsensiController@index');
+
 
 

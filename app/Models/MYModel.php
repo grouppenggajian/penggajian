@@ -238,6 +238,7 @@ class MYModel extends Model {
             }
 //            $genparam = join(',', array_fill(0, count($param), '?'));
             $sql = "call $spname($genparam)";
+            
             $query = DB::select($sql); 
         } else {
             $sql = "call $spname()";
@@ -275,14 +276,29 @@ class MYModel extends Model {
 //             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 //            $mpdo =DB::getPdo();
 //            $mpdo ->setAttribute($mpdo->ATTR_EMULATE_PREPARES, true);
-            $query = DB::select($sql); 
+//            $query = DB::select($sql); 
+            if(!$msg){
+                $query =DB::statement($sql);
+            }else{
+                $query = DB::select($sql); 
+            }
         } else {
             $sql = "call $spname()";
-            $query = DB::select($sql);
+            if(!$msg){
+                $query =DB::statement($sql);
+            }else{
+                $query = DB::select($sql);
+            }
+            
         }
-
         
-        $total = count($query);
+        if($msg){
+            $total = count($query);
+        }else{
+            $total=$query;
+        }
+        
+        
 $json=array();
         if ($msg) {
             if ($total > 0) {

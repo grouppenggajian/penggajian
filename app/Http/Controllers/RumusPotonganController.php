@@ -65,10 +65,10 @@ class RumusPotonganController extends Controller {
         $postdata=$request->postdata?json_decode($request->postdata):array();
         if (count($postdata)>0){
             $param = array('clear', null, null,null,null);
-            $data=RumusPotongan::SP_execData('sp_rumuspotongan',$param,true);
+            $data=RumusPotongan::SP_execData('sp_rumuspotongan',$param,false);
             foreach ($postdata as $value) {
                 $param = array('insert', $value->kode, $value->komponen,$value->rowset,$value->column_name);
-                $data=RumusPotongan::SP_execData('sp_rumuspotongan',$param,true);
+                $data=RumusPotongan::SP_execData('sp_rumuspotongan',$param,false);
             }
             
         }else

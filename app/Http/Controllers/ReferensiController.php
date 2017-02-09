@@ -119,6 +119,23 @@ class ReferensiController extends Controller{
                         ]);
     }
     
+    public function getRefRumus(Request $request){
+        $isdenda=$request->isdenda>-1?$request->isdenda:NULL;
+        $search=$request->searchvalue?$request->searchvalue:NULL;
+        
+        if($isdenda){            
+            $query = MYModel::getRowsTable(array(array('isdenda','=',$isdenda),array('kode','like','%'.$search.'%')), 'ref_rumus', [], ['id', 'asc']);
+        }else{
+            $query = MYModel::getRowsTable(array(array('kode','like','%'.$search.'%')), 'ref_rumus', [], ['id', 'asc']);
+        }
+        
+        return json_encode([
+                    'success' => true,
+                    'data' => $query,
+                    'record' => count($query)
+                        ]);
+    }
+    
     
 }
 

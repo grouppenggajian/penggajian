@@ -18,7 +18,7 @@ Ext.define('Penggajian.Application', {
         ,'referensi.Kabupaten'
         ,'referensi.Kecamatan'
         ,'referensi.Kelurahan','referensi.StatusPajak','referensi.Pendidikan','JabatanCombo',
-        'referensi.ImageStore','referensi.TipePinjaman'
+        'referensi.ImageStore','referensi.TipePinjaman','referensi.RefPeriode'
         ,'pegawai.Pegawai','pegawai.PegawaiPendapatan','pegawai.PegawaiPendapatanEdit'
         ,'pegawai.PegawaiJadwal','pegawai.ShiftPegawaiEditor','pegawai.PegawaiTwin','pegawai.PegawaiCombo'
         ,'pegawai.PegawaiTwinJabatan'
@@ -31,6 +31,9 @@ Ext.define('Penggajian.Application', {
         ,'jadwal.TukarOff','ijin.Ijin','ijin.Cuti'
         ,'pengaturan.HariLibur','pengaturan.PostingPendapatan','pengaturan.PostingPotongan'
         ,'Absensi','hitungabsen.HitungKeterlambatan','hitungabsen.HitungLembur','hitungabsen.HitungInsentifHadir'
+        ,'hitungabsen.HitungDendaAbsensi'
+        ,'hitunggaji.PerhitunganPotongan','hitunggaji.PerhitunganPendapatan'
+        ,'koreksi.KoreksiAbsensi'
         // TODO: add global / shared stores here
     ],
     views:[

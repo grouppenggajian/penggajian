@@ -82,7 +82,7 @@ class RumusKeterlambatanController extends Controller {
 //        $exec=MYModel::SP_execData('sp_rumusterlambat_postpotongan',array($postpotongan),true);
             if (count($pendapatan)>0){
                 $param = array('clear', null);
-                $data=MYModel::SP_execData('sp_rumusterlambat_pendapatan',$param,true);
+                $data=MYModel::SP_execData('sp_rumusterlambat_pendapatan',$param,false);
                 foreach ($pendapatan as $value) {
                     $param = array('insert', $value->kode);
                     $data=MYModel::SP_execData('sp_rumusterlambat_pendapatan',$param,true);
@@ -90,7 +90,7 @@ class RumusKeterlambatanController extends Controller {
                 if($data['success']==1){
                     if (count($pengali)>0){
                         $param = array('clear', null, null);
-                        $data=MYModel::SP_execData('sp_rumusterlambat_pengali',$param,true);
+                        $data=MYModel::SP_execData('sp_rumusterlambat_pengali',$param,false);
                         foreach ($pengali as $value) {
                             $param = array('insert', $value->status, $value->nilaikali);
                             $data=MYModel::SP_execData('sp_rumusterlambat_pengali',$param,true);
