@@ -59,7 +59,7 @@ class PinjamanController extends Controller{
     }
     public function executeRow(Request $request){
         
-        $datanomor=Pinjaman::getsetIdMaster('set','PJ',0,10);
+        $datanomor=Pinjaman::getsetIdMaster('set','PJ',0,6);
         $no_pinjaman=$datanomor[0]->idmaster;
         $tgl_pinjam=$request->tgl_pinjam?$request->tgl_pinjam:NULL;
         $tipe_pinjaman=$request->tipe_pinjaman?$request->tipe_pinjaman:NULL;
