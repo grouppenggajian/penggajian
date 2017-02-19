@@ -1,6 +1,6 @@
-Ext.define('Penggajian.store.jadwal.JadwalShiftEditor', {
+Ext.define('Penggajian.store.koreksi.KoreksiAbsensiShiftEditor', {
     extend: 'Ext.data.Store',
-    storeId:'storejadwalshifteditor',
+    storeId:'storekoreksiabsensishifteditor',
     requires:[
         'Ext.ux.DataFieldTime'
     ],

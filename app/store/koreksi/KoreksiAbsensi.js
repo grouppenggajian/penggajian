@@ -22,8 +22,9 @@ Ext.define('Penggajian.store.koreksi.KoreksiAbsensi', {
         {name:'x_koreksi'},
         {name:'nik'},
         {name:'nama'},       
+        {name:'kode_jabatan'},       
         {name:'hari'},
-        {name:'is_pantangan'},
+        {name:'is_pantangan',type:'bool'},
         {name:'kode_shift'},        
         {name:'jmljamkerja'},
         {name:'jam_kerja_1',type: 'time'},
@@ -34,10 +35,14 @@ Ext.define('Penggajian.store.koreksi.KoreksiAbsensi', {
         {name:'keluar',type: 'time'},
         {name:'masuk_kembali',type: 'time'},
         {name:'pulang',type: 'time'},
+        {name:'jmljamabsen'},
         {name:'lembur_masuk',type: 'time'},
         {name:'lembur_keluar',type: 'time'},       
+        {name:'jmljamlembur'},
         {name:'koreksi_by'},
-        {name:'tglkoreksi'}
+        {name:'tglkoreksi'},
+        {name:'keterangan'}
+        
 
     ]
     

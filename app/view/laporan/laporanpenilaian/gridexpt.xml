@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <o:DocumentProperties>
+        <o:Title>Jurnal Monitor</o:Title>
+    </o:DocumentProperties>
+    <ss:ExcelWorkbook>
+        <ss:WindowHeight>9000</ss:WindowHeight>
+        <ss:WindowWidth>50000</ss:WindowWidth>
+        <ss:ProtectStructure>false</ss:ProtectStructure>
+        <ss:ProtectWindows>false</ss:ProtectWindows>
+    </ss:ExcelWorkbook>
+    <ss:Styles>
+        <ss:Style ss:ID="Default">
+            <ss:Alignment ss:Vertical="Top" ss:WrapText="1"  />
+            <ss:Font ss:FontName="arial" ss:Size="10"  />
+            <ss:Interior  />
+            <ss:NumberFormat  />
+            <ss:Protection  />
+            <ss:Borders >
+                <ss:Border ss:Position="Top" ss:Color="#e4e4e4" ss:Weight="1" ss:LineStyle="Continuous"  />
+                <ss:Border ss:Position="Bottom" ss:Color="#e4e4e4" ss:Weight="1" ss:LineStyle="Continuous"  />
+                <ss:Border ss:Position="Left" ss:Color="#e4e4e4" ss:Weight="1" ss:LineStyle="Continuous"  />
+                <ss:Border ss:Position="Right" ss:Color="#e4e4e4" ss:Weight="1" ss:LineStyle="Continuous"  />
+            </ss:Borders>
+        </ss:Style>
+        <ss:Style ss:ID="even">
+            <ss:Interior ss:Pattern="Solid" ss:Color="#CCFFFF"  />
+        </ss:Style>
+        <ss:Style ss:ID="odd">
+            <ss:Interior ss:Pattern="Solid" ss:Color="#CCCCFF"  />
+        </ss:Style>
+        <ss:Style ss:ID="evendate" ss:Parent="even">
+            <ss:NumberFormat ss:Format="[ENG][$-409]dd-mmm-yyyy;@"  />
+        </ss:Style>
+        <ss:Style ss:ID="evenint" ss:Parent="even">
+            <ss:NumberFormat ss:Format="0"  />
+        </ss:Style>
+        <ss:Style ss:ID="evenfloat" ss:Parent="even">
+            <ss:NumberFormat ss:Format="0.00"  />
+        </ss:Style>
+        <ss:Style ss:ID="odddate" ss:Parent="even">
+            <ss:NumberFormat ss:Format="[ENG][$-409]dd-mmm-yyyy;@"  />
+        </ss:Style>
+        <ss:Style ss:ID="oddint" ss:Parent="even">
+            <ss:NumberFormat ss:Format="0"  />
+        </ss:Style>
+        <ss:Style ss:ID="oddfloat" ss:Parent="even">
+            <ss:NumberFormat ss:Format="0.00"  />
+        </ss:Style>
+        <ss:Style ss:ID="title">
+            <ss:Borders  />
+            <ss:Font  />
+            <ss:NumberFormat ss:Format="@"  />
+            <ss:Alignment ss:WrapText="1" ss:Horizontal="Center" ss:Vertical="Center"  />
+        </ss:Style>
+        <ss:Style ss:ID="headercell">
+            <ss:Font ss:Bold="1" ss:Size="10"  />
+            <ss:Interior ss:Pattern="Solid" ss:Color="#A3C9F1"  />
+            <ss:Alignment ss:WrapText="1" ss:Horizontal="Center"  />
+        </ss:Style>
+    </ss:Styles>
+    <ss:Worksheet ss:Name="Jurnal Monitor">
+        <ss:Names>
+            <ss:NamedRange ss:Name="Print_Titles" ss:RefersTo="='Jurnal Monitor'!R1:R2" />
+        </ss:Names>
+        <ss:Table x:FullRows="1" x:FullColumns="1" ss:ExpandedColumnCount="12" ss:ExpandedRowCount="27">
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Column ss:AutoFitWidth="1" ss:Width="164" />
+            <ss:Row ss:Height="38">
+                <ss:Cell ss:StyleID="title" ss:MergeAcross="11">
+                    <ss:Data xmlns:html="http://www.w3.org/TR/REC-html40" ss:Type="String">
+                        <html:B>
+                            <html:U>
+                                <html:Font html:Size="15">Jurnal Monitor</html:Font>
+                            </html:U>
+                        </html:B>
+                    </ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row ss:AutoFitHeight="1">
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Nomor Jurnal</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Tgl Jurnal</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Referensi</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Keterangan</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Rekening</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Nama Rekening</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Debet</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Kredit</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Transaksi Cd</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Jurnal By</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Jurnal Date</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+                <ss:Cell ss:StyleID="headercell">
+                    <ss:Data ss:Type="String">Kode Posting</ss:Data>
+                    <ss:NamedCell ss:Name="Print_Titles" />
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158596]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206355-BALI TRAVELINDO CHINA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00304]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[BALI TRAVELINDO CHINA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[7,095,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:44]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158329]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206354-PENJOR BALI WISATA TAIWAN-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00250]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[PENJOR BALI WISATA TAIWAN]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[9,066,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:44]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158473]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206323-NEW BIDADARI-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00602]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[NEW BIDADARI]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[12,848,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:45]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158555]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206340-BALI TRAVELINDO CHINA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00304]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[BALI TRAVELINDO CHINA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[9,460,800]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:46]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158556]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206341-BALI TRAVELINDO CHINA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00304]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[BALI TRAVELINDO CHINA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[8,278,200]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:46]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206344-DISCOVER BALI-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00754]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[DISCOVER BALI]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[8,760,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:47]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158573]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206335-MUSTIKA DEWATA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00751]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[MUSTIKA DEWATA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[1,693,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:47]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158581]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206325-NEW BIDADARI-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00602]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[NEW BIDADARI]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[10,037,500]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:48]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158590]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206337-NEW BIDADARI-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00602]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[NEW BIDADARI]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[6,424,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:49]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158328]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206339-PENJOR BALI WISATA TAIWAN-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00250]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[PENJOR BALI WISATA TAIWAN]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[8,278,200]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:49]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158293]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206322-PENJOR BALI WISATA TAIWAN-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00250]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[PENJOR BALI WISATA TAIWAN]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[11,037,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:49]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158153]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206320-GTA (GULLIVERS TRAVEL ASSOCIATE)-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00155]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[GTA (GULLIVERS TRAVEL ASSOCIATE)]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[3,912,800]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:50]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000156804]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206319-BARATA TOUR-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00344]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[BARATA TOUR]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[1,300,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:51]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158627]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206358-BALI TRAVELINDO CHINA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00304]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[BALI TRAVELINDO CHINA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[9,460,800]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:51]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000154843]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206318-PENJOR BALI WISATA TAIWAN-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00250]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[PENJOR BALI WISATA TAIWAN]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[9,855,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:51]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000156392]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206338-RINTIS WISATA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00270]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[RINTIS WISATA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[4,657,400]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:52]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[CL-SLS-011015-004]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[PENJ. A/R, QSD1/01-10-2015]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[41.01.00000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[Pendapatan QS]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[122,166,100]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-A/R]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:53]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158591]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206343-BALI TAMASYA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00759]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[BALI TAMASYA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[4,599,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-CASH]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:53]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158639]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206362-BALI OK WISATA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00781]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[BALI OK WISATA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[1,693,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-CASH]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:53]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158618]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206357-BALI OK WISATA-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00781]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[BALI OK WISATA]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[20,323,200]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-CASH]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:54]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[CL-SLS-011015-004]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[PENJ. CASH, QSD1/01-10-2015]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[41.01.00000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[Pendapatan QS]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[26,615,800]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-CASH]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:55]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158610]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206356-KOREA TRAVEL-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00196]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[KOREA TRAVEL]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[8,760,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-VOUCHER]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:56]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158630]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206359-JETWINGS BALI TOUR & TRAVEL-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00188]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JETWINGS BALI TOUR & TRAVEL]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[1,547,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-VOUCHER]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:57]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0000158631]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206361-KOREA TRAVEL-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00196]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[KOREA TRAVEL]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[1,460,000]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-VOUCHER]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:57]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="odd">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+            <ss:Row>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JU201604-4]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2015-10-01]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0000158609]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS/QSD1/161015-tic:206345-JETWINGS BALI TOUR & TRAVEL-]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[13.01.00188]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[JETWINGS BALI TOUR & TRAVEL]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[1,547,600]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[0]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[SLS_AR_POST-VOUCHER]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[admin]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[2016-04-05 15:24:58]]>
+                    </ss:Data>
+                </ss:Cell>
+                <ss:Cell ss:StyleID="even">
+                    <ss:Data ss:Type="String"><![CDATA[]]>
+                    </ss:Data>
+                </ss:Cell>
+            </ss:Row>
+        </ss:Table>
+        <x:WorksheetOptions>
+            <x:PageSetup>
+                <x:Layout x:CenterHorizontal="1" x:Orientation="Landscape" />
+                <x:Footer x:Data="Page &amp;P of &amp;N" x:Margin="0.5" />
+                <x:PageMargins x:Top="0.5" x:Right="0.5" x:Left="0.5" x:Bottom="0.8" />
+            </x:PageSetup>
+            <x:FitToPage />
+            <x:Print>
+                <x:PrintErrors>Blank</x:PrintErrors>
+                <x:FitWidth>1</x:FitWidth>
+                <x:FitHeight>32767</x:FitHeight>
+                <x:ValidPrinterInfo />
+                <x:VerticalResolution>600</x:VerticalResolution>
+            </x:Print>
+            <x:Selected />
+            <x:DoNotDisplayGridlines />
+            <x:ProtectObjects>False</x:ProtectObjects>
+            <x:ProtectScenarios>False</x:ProtectScenarios>
+        </x:WorksheetOptions>
+    </ss:Worksheet>
+</ss:Workbook>

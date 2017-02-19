@@ -32,8 +32,8 @@ Ext.define('Penggajian.Application', {
         ,'pengaturan.HariLibur','pengaturan.PostingPendapatan','pengaturan.PostingPotongan'
         ,'Absensi','hitungabsen.HitungKeterlambatan','hitungabsen.HitungLembur','hitungabsen.HitungInsentifHadir'
         ,'hitungabsen.HitungDendaAbsensi'
-        ,'hitunggaji.PerhitunganPotongan','hitunggaji.PerhitunganPendapatan'
-        ,'koreksi.KoreksiAbsensi'
+        ,'hitunggaji.PerhitunganPotongan','hitunggaji.PerhitunganPendapatan','hitunggaji.RekapGaji'
+        ,'koreksi.KoreksiAbsensi','koreksi.KoreksiAbsensiShiftEditor','koreksi.KoreksiAbsensiHisto'
         // TODO: add global / shared stores here
     ],
     views:[
@@ -45,7 +45,9 @@ Ext.define('Penggajian.Application', {
          'Ext.ux.TwinCombo',
         'Ext.ux.TimeSpinner',
         'Ext.ux.NumericField',
-        'Ext.ux.MonthPicker'
+        'Ext.ux.MonthPicker',
+        'Ext.ux.GridExporter'
+//        ,'Ext.ux.YearPicker'
 //       'Penggajian.view.main.Main'
     ],
     

@@ -15,22 +15,30 @@ Ext.define('Penggajian.view.auth.Login', {
 
     items: {
         xtype: 'form',
-        reference: 'form',
+        reference: 'form',        
         items: [{
             xtype: 'textfield',
             name: 'username',
             fieldLabel: 'Username',
-            allowBlank: false,
-            value:'admin'
+            allowBlank: false
+//            value:'dev'
         }, {
             xtype: 'textfield',
             name: 'password',
             inputType: 'password',
             fieldLabel: 'Password',
             allowBlank: false,
-            value:'21232f297a57a5a743894a0e4a801fc3',
+//            value:'e77989ed21758e78331b20e477fc5582',
             listeners:{
-                    blur : function(me){ me.setRawValue(hex_md5(me.getValue())); }
+                    blur : function(me){ me.setRawValue(hex_md5(me.getValue())); },
+                    specialkey: function(field, e){
+                    if (e.getKey() == e.ENTER) {
+                        field.blur();
+                        var ctrl=Ext.getCmp('loginid').getController();
+                        ctrl.onLoginClick(field);
+                        
+                    }
+                }
                 }
 
         }, {

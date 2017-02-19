@@ -1,62 +1,30 @@
-
-Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
-    extend: 'Ext.container.Container',
-    xtype: 'TabApprovalKoreksi',
-    alias: 'widget.ApprovalKoreksi',
-    requires: [
-        'Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksiController',
-        'Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksiModel'
-    ],
-
-    controller: 'approvalkoreksi',
-    viewModel: {
-        type: 'approvalkoreksi'
-    },
-//    html: 'Hello, World!!',
-    id: 'tab2b3',
-    title: 'Approval Koreksi Absensi',
-    closable: true,        
-    layout: 'border', 
-    items:[
-        {
+Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiHisto', 
+    {
+        extend          : 'Ext.window.Window',
+        title           : 'History Koreksi Absensi',
+        requires        : [
+        'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiController'
+        ],
+        controller:'koreksiabsensi',        
+        //        plugins: {
+        //            ptype: 'datatip'
+        //        },
+        width           : 800,
+        height          : 510,
+        layout          : 'fit',
+        autoShow        : true,
+        modal           : true,
+        alias           : 'widget.koreksiabsensihisto',
+        id              : 'koreksiabsensi_histo',
+        maximizable     :true,
+        closeAction:'destroy',
+        items:[
+            {
         xtype:'grid',
-        id:'idapprovalkoreksilist',
+        id:'idkoreksiabsensihistolist',
         region:'center',            
-        bind:{
-                store:'{strapproval}'
-            },
-//        store: 'storeapprovalkoreksi',
-        columns: [
-        {
-            xtype: 'actioncolumn',
-            header: 'approve',
-            menuDisabled: true,
-            sortable: false,   
-            align:'center',
-            width: 85,
-            items: [
-            {
-                iconCls: 'icon-approval',
-                tooltip: 'Approval',
-                handler: 'onApproveClick' 
-            }]
-                                
-        },  
-        {
-            xtype: 'actioncolumn',
-            header: 'Reject',
-            menuDisabled: true,
-            sortable: false,   
-            align:'center',
-            width: 85,
-            items: [
-            {
-                iconCls: 'icon-reject',
-                tooltip: 'Reject',
-                handler: 'onRejectClick' 
-            }]
-                                
-        },  
+        store: 'storekoreksiabsensihisto',
+        columns: [        
         {
             text:'Koreksi ID',
             dataIndex:'koreksi_id',
@@ -66,12 +34,23 @@ Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
             align:'center'
         },
         {
-            text:'Keterangan',
-            dataIndex:'keterangan',
+            text:'Koreksi Ke',
+            dataIndex:'x_koreksi',
             sortable:false,
-            width:60,
-            hidden:true
+            width:100,
+            hidden:false,
+            align:'center'
         },
+        {
+            text:'Approval',            
+            dataIndex:'approval',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'left'
+        }
+        ,
+        
         {
             text:'Tanggal',
             dataIndex:'tgl',
@@ -94,7 +73,13 @@ Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
             width:60,
             hidden:true
         },
-        
+        {
+            text:'Keterangan',
+            dataIndex:'keterangan',
+            sortable:false,
+            width:60,
+            hidden:true
+        },
 {
             text:'NIK',
             dataIndex:'nik',
@@ -215,13 +200,6 @@ Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
             align:'center',   
             format:'H:i'
         },{
-            text:'JamAbsen',            
-            dataIndex:'jmljamabsen',
-            sortable:false,
-            width:100,
-            hidden:false,
-            align:'right'
-        },{
             text:'Lembur Masuk',
             xtype:'datecolumn',
             dataIndex:'lembur_masuk',
@@ -260,23 +238,61 @@ Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
             hidden:false,
             align:'left'
         }
+        ,
+        
+        
+        
+        {
+            text:'Tanggal Approval',            
+            dataIndex:'approval_date',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'left'
+        },
+        
+        {
+            text:'Approval_By',            
+            dataIndex:'approval_by',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'left'
+        }
 
         
 
         
         ],
-        
-        bbar: [                
+        tbar:[
         
         {
-            xtype: 'pagingtoolbar',
+            xtype: 'textfield',
+            id:'koreksiabsensisearchnik',
+            width: 280,
+            readOnly:true
+        },
+        '-',
+        {
+            xtype: 'datefield',
+            id:'koreksiabsensisearchtgl',
+            format:'Y-m-d',
+            width:100,
+            hidden:false,
+            readOnly:true
+            
+        }
+        
+        
+        ],
+        bbar: [        
+            {
+                xtype: 'pagingtoolbar',
             displayInfo: true,
             pageSize: 10,
-            bind:{
-                store:'{strapproval}'
+            store: 'storekoreksiabsensihisto'
             }
-//            store: 'storeapprovalkoreksi'
-        }]
+        ]
     //        ,
     //        features:[{
     //            ftype: 'grouping',            
@@ -286,9 +302,5 @@ Ext.define('Penggajian.view.transaksi.approvalkoreksi.ApprovalKoreksi',{
     //            id: 'storetukaroff_grouping'
     //        }]
     }
-    ],
-    listeners:{
-        show:'onShow'
-    }
-    
-});
+        ]
+    });

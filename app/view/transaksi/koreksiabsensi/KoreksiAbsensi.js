@@ -5,14 +5,17 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
     alias: 'widget.KoreksiAbsensi',
     requires: [
         'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiController',
-        'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiModel'
+        'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiModel',
+            'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiInput',
+            'Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensiHisto'
+            
     ],
 
     controller: 'koreksiabsensi',
     viewModel: {
         type: 'koreksiabsensi'
     },
-    html: 'Hello, World!!',
+//    html: 'Hello, World!!',
     id: 'tab2b2',
     title: 'Koreksi Absensi',
     closable: true,        
@@ -38,7 +41,22 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
                 handler: 'onKoreksiClick' 
             }]
                                 
-        },    
+        },  
+        {
+            xtype: 'actioncolumn',
+            header: 'History',
+            menuDisabled: true,
+            sortable: false,   
+            align:'center',
+            width: 85,
+            items: [
+            {
+                iconCls: 'icon-history',
+                tooltip: 'History Koreksi Row',
+                handler: 'onHistoryKoreksiClick' 
+            }]
+                                
+        },  
         {
             text:'Koreksi ID',
             dataIndex:'koreksi_id',
@@ -58,6 +76,20 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
         {
             text:'PIN',
             dataIndex:'pin',
+            sortable:false,
+            width:60,
+            hidden:true
+        },
+        {
+            text:'KODE_Jabatan',
+            dataIndex:'kode_jabatan',
+            sortable:false,
+            width:60,
+            hidden:true
+        },
+        {
+            text:'Keterangan',
+            dataIndex:'keterangan',
             sortable:false,
             width:60,
             hidden:true
@@ -137,6 +169,12 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
                 xtype: 'datecolumn',   
                 format:'H:i',
                 width:100
+            },
+            {
+                text: 'JamKerja', 
+                dataIndex: 'jmljamkerja', 
+                align:'center',                
+                width:100
             }]
         },
         
@@ -182,12 +220,12 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
             align:'center',   
             format:'H:i'
         },{
-            text:'JamAbsen',            
+            text:'JamAbsen',
             dataIndex:'jmljamabsen',
             sortable:false,
             width:100,
             hidden:false,
-            align:'right'
+            align:'center'
         },{
             text:'Lembur Masuk',
             xtype:'datecolumn',
@@ -206,6 +244,14 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
             hidden:false,
             align:'center',   
             format:'H:i'
+        },{
+            text:'JamLembur',            
+            dataIndex:'jmljamlembur',
+            sortable:false,
+            width:100,
+            hidden:false,
+            align:'center'
+            
         }]
         }
         ,
@@ -244,7 +290,7 @@ Ext.define('Penggajian.view.transaksi.koreksiabsensi.KoreksiAbsensi',{
             listeners:{
                 specialkey: function(field, e){
                     if (e.getKey() == e.ENTER) {
-                        var ctrl=Ext.getCmp('2b2').getController();
+                        var ctrl=Ext.getCmp('tab2b2').getController();
                         ctrl.onSearchKoreksiAbsensi();
 //                        var form = field.up('form').getForm();
 //                        form.submit();
