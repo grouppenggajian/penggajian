@@ -29,6 +29,7 @@
     25 => 'App\\Providers\\RouteServiceProvider',
     26 => 'Codedge\\Fpdf\\FpdfServiceProvider',
     27 => 'App\\Providers\\HelperServiceProvider',
+    28 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,6 +48,7 @@
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'App\\Providers\\HelperServiceProvider',
+    15 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
   ),
   'deferred' => 
   array (
