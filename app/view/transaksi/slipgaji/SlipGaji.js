@@ -15,7 +15,7 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGaji',{
         type: 'transaksi-slipgaji-slipgaji'
     },
     
-    id: 'tab2g4',
+    id: 'tab2g6',
     title: 'Slip Gaji',
     closable: true,        
     layout: 'fit', 

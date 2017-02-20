@@ -5,7 +5,7 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
     onShow:function(){
         
         
-        var mymodel = Ext.getCmp('tab2g4').getViewModel();
+        var mymodel = Ext.getCmp('tab2g6').getViewModel();
         var refstore=mymodel.getData().storeslipgaji; 
         
         var app = Penggajian.getApplication();
@@ -57,7 +57,7 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
         });
     },
     getDataSet:function(){
-        var mymodel = Ext.getCmp('tab2g4').getViewModel();
+        var mymodel = Ext.getCmp('tab2g6').getViewModel();
         var refstore=mymodel.getData().storeslipgaji; 
         var vurl=Penggajian.Global.getApiUrl() +'slipgaji/loadsetcolumn';//refstore.getProxy().getUrl();
 //                console.log(vurl);
@@ -76,8 +76,8 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
                 var data=resp.data;  
                 //                console.log(data);
                 var gridView = Ext.getCmp('idslipgajilist');
-                var me=Ext.getCmp('tab2g4').controller;
-                var mymodel = Ext.getCmp('tab2g4').getViewModel();
+                var me=Ext.getCmp('tab2g6').controller;
+                var mymodel = Ext.getCmp('tab2g6').getViewModel();
                 var str=mymodel.getData().storeslipgaji; 
                 
                 str=me.genStore(data);
@@ -100,9 +100,9 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
 
     genStore : function (json) {
         //        console.log(json);
-        var me=Ext.getCmp('tab2g4').controller;
+        var me=Ext.getCmp('tab2g6').controller;
         var keys = (Object.keys(json[0]));
-        var mymodel = Ext.getCmp('tab2g4').getViewModel();
+        var mymodel = Ext.getCmp('tab2g6').getViewModel();
         var gridstore=mymodel.getData().storeslipgaji;         
         gridstore.setFields(keys);        //        gridstore.setData(json);        
         return gridstore;
@@ -110,7 +110,7 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
     },
 
     genColumns : function (json) {
-        var me=Ext.getCmp('tab2g4').controller;
+        var me=Ext.getCmp('tab2g6').controller;
         var keys = (Object.keys(json[0]));
         //        readLog(json[0]);
         
@@ -154,7 +154,7 @@ Ext.define('Penggajian.view.transaksi.slipgaji.SlipGajiController', {
     },
     onClickSearch:function(btn){
         
-        var mymodel = Ext.getCmp('tab2g4').getViewModel();
+        var mymodel = Ext.getCmp('tab2g6').getViewModel();
         var refstore=mymodel.getData().storeslipgaji; 
         var vthbl=Ext.getCmp('slipgaji_periode').getValue();
         var vnik=Ext.getCmp('slipgaji_nik').getValue();
