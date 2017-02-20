@@ -86,5 +86,15 @@
     background-image:url('../images/icons/cog_edit.png')!important;
 
 }
+.icon-history{
+    background-image:url('../images/icons/control_rewind.png')!important;
+
+}
+.icon-payment{
+    background-image:url('../images/icons/dollar.png')!important;
+
+}
+
+
 
 

@@ -80,6 +80,7 @@
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
             };
+            
             function to_print(domid,url){      
                 Ext.getDom(domid).src ="{{ url('/').'/'}}" + url;
             }

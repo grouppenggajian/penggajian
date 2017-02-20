@@ -179,7 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Codedge\Fpdf\FpdfServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -228,7 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

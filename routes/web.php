@@ -203,7 +203,7 @@ Route::post('/posting/deletepotongan', 'PostingController@deletePotongan');
 
 
 
-Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
+
 
 Route::get('/absensi/load', 'AbsensiController@index');
 Route::get('/absensi/getlogmesin', 'AbsensiController@getLogMesin');
@@ -236,7 +236,62 @@ Route::post('/hitpotongan/executeRow','GajiPotonganController@executeRow');
 Route::get('/hitpendapatan/load','GajiPendapatanController@index');
 Route::post('/hitpendapatan/executeRow','GajiPendapatanController@executeRow');
 
+Route::get('/rekapgaji/load','GajiController@index');
+Route::get('/rekapgaji/toexcel','GajiController@exportToExcel');
+Route::get('/rekapgaji/loadAll','GajiController@loadAll');
+
+
 Route::get('/koreksiabsensi/load','KoreksiAbsensiController@index');
+Route::get('/koreksiabsensi/historyload','KoreksiAbsensiController@historyLoad');
+Route::get('/koreksiabsensi/loadjadwalpegawai','KoreksiAbsensiController@loadJadwalPegawai');
+Route::get('/koreksiabsensi/loadapproval','KoreksiAbsensiController@loadApproval');
+
+Route::post('/koreksiabsensi/executeRow','KoreksiAbsensiController@executeRow');
+Route::post('/koreksiabsensi/executeApproval','KoreksiAbsensiController@executeApproval');
+
+Route::get('/periodethr/load','PeriodeThrController@index');
+Route::post('/periodethr/executeRow','PeriodeThrController@executeRow');
 
 
+Route::get('/validasimasakerja/load','ValidasiMasaKerjaController@index');
+Route::get('/validasimasakerja/loadperiodethr','ValidasiMasaKerjaController@periodeThrLoad');
 
+Route::post('/validasimasakerja/executeRow','ValidasiMasaKerjaController@executeRow');
+Route::post('/validasimasakerja/updateRow','ValidasiMasaKerjaController@updateRow');
+Route::post('/validasimasakerja/deleteRow','ValidasiMasaKerjaController@deleteRow');
+
+
+Route::get('/hitungthr/load','HitungThrController@index');
+Route::post('/hitungthr/executeRow','HitungThrController@executeRow');
+
+Route::get('/approvalthr/load','ApprovalThrController@index');
+Route::post('/approvalthr/executeRow','ApprovalThrController@executeRow');
+
+Route::get('/koreksigaji/load','KoreksiGajiController@index');
+Route::get('/koreksigaji/pendapatanLoad','KoreksiGajiController@pendapatanLoad');
+Route::get('/koreksigaji/potonganLoad','KoreksiGajiController@potonganLoad');
+Route::post('/koreksigaji/executeRow','KoreksiGajiController@executeRow');
+
+Route::get('/approvalgaji/load','ApprovalGajiController@index');
+Route::post('/approvalgaji/executeRow','ApprovalGajiController@executeRow');
+
+Route::get('/paymentthr/load','PembayaranThrController@index');
+Route::get('/paymentthr/loadreport','PembayaranThrController@loadreport');
+Route::post('/paymentthr/executeRow','PembayaranThrController@executeRow');
+
+Route::get('/lapterlambat/load','RepKeterlambatanController@index');
+Route::get('/lapterlambat/loadreport','RepKeterlambatanController@loadReport');
+
+Route::get('/hutangpegawai/load', 'HutangPegawaiController@index');
+Route::get('/hutangpegawai/loadAngsuran', 'HutangPegawaiController@getAngsuran');
+Route::get('/hutangpegawai/loadreport', 'HutangPegawaiController@loadreport');
+Route::get('/hutangpegawai/loadreportangsuran', 'HutangPegawaiController@loadreportangsuran');
+
+
+Route::get('/slipgaji/load', 'SlipGajiController@index');
+Route::get('/slipgaji/loadsetcolumn', 'SlipGajiController@indexSetColumn');
+
+Route::get('/slipgaji/loadreport', 'SlipGajiController@loadreport');
+
+Route::get('/slipthr/load', 'SlipThrController@index');
+Route::get('/slipthr/loadreport', 'SlipThrController@loadreport');
