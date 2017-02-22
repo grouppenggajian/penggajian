@@ -295,3 +295,11 @@ Route::get('/slipgaji/loadreport', 'SlipGajiController@loadreport');
 
 Route::get('/slipthr/load', 'SlipThrController@index');
 Route::get('/slipthr/loadreport', 'SlipThrController@loadreport');
+
+Route::get('/laphut/load', 'RepHutKaryawanController@index');
+Route::get('/laphut/loadreport', 'RepHutKaryawanController@loadreport');
+
+Route::get('/lapnilai/load', 'RepPenilaianController@index');
+Route::get('/lapnilai/loadentry', 'RepPenilaianController@indexEntry');
+Route::get('/lapnilai/loadreport', 'RepPenilaianController@loadreport');
+Route::post('/lapnilai/executeRow', 'RepPenilaianController@executeRow');

@@ -28,7 +28,7 @@ class HutangPegawaiController extends Controller{
             
             if ($v->field == 'periode') {
                 
-                    $table->whereBetween('tgl_pinjam',$v->field[0],$v->field[1]);
+                    $table->whereBetween('tgl_pinjam',array($v->value[0],$v->value[1]));
                 
             } else {
                 if ($v->field == 'status_lunas') {
@@ -87,7 +87,7 @@ class HutangPegawaiController extends Controller{
             }
             if ($v->field == 'periode') {
                 $paramheader.='Periode : '.date_format(date_create( $v->value[0]),"d/m/Y").' s.d '.date_format(date_create( $v->value[1]),"d/m/Y");
-                    $table->whereBetween('tgl_pinjam',$v->value[0],$v->value[1]);
+                    $table->whereBetween('tgl_pinjam',array($v->value[0],$v->value[1]));
                 
             } else {
                 if ($v->field == 'status_lunas') {
