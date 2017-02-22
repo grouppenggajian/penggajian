@@ -69,6 +69,17 @@
                 return '' + y + (m<=9 ? '0' + m : m);
                 
             }
+            Date.dateDiff = function(datepart, fromdate, todate) {	
+            datepart = datepart.toLowerCase();	
+            var diff = todate - fromdate;	
+            var divideBy = { w:604800000, 
+                             d:86400000, 
+                             h:3600000, 
+                             n:60000, 
+                             s:1000 };	
+
+            return Math.floor( diff/divideBy[datepart]);
+          }
             String.prototype.toThblExt = function() {
                 var dthis = this;  
                 var thbl=dthis.substring(0, 4)+'-'+dthis.substring(4, 6)+'-'+'01'; 
